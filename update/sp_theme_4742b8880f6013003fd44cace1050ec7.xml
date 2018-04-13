@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_theme">
+    <sp_theme action="INSERT_OR_UPDATE">
+        <css_variables>$sp-logo-margin-x: 		15px !default;&#13;
+$sp-tagline-color:		$text-color !default;&#13;
+$navbar-inverse-bg: 	#003660 !default;&#13;
+$navbar-inverse-link-color: #bdc0c4 !default;&#13;
+$navbar-inverse-link-hover-color: #ffffff !default;&#13;
+$body-bg: 				#f0f3f4 !default;&#13;
+$dropdown-link-disabled-color: #ccc;&#13;
+</css_variables>
+        <footer display_value="Sample Footer">feb4f763df121200ba13a4836bf26320</footer>
+        <footer_fixed>true</footer_fixed>
+        <header display_value="Stock Header">bf5ec2f2cb10120000f8d856634c9c0c</header>
+        <name>ucsb_hr</name>
+        <navbar_fixed>true</navbar_fixed>
+        <sys_class_name>sp_theme</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-22 22:36:09</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>4742b8880f6013003fd44cace1050ec7</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>ucsb_hr</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_theme_4742b8880f6013003fd44cace1050ec7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-02-23 23:23:53</sys_updated_on>
+    </sp_theme>
+</record_update>

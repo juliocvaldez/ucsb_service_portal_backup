@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope,spUtil) {
+  /* widget controller */
+  var c = this;
+	
+	// refresh the client data object whenever a change is detected
+	spUtil.recordWatch($scope,c.data.table,c.options.filter, function(name){
+			c.server.refresh();
+	})
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance_vlist</data_table>
+        <demo_data>{
+	"options": {
+		"table": "kb_knowledge",
+		"display_field": "short_description",
+		"filter": "active=true^workflow_state=published^kb_category.parent_id=a6026f3d0f6013003fd44cace1050e3f",
+		"secondary_fields": "description,published",
+		"glyph": "fa-icon"
+	}
+}</demo_data>
+        <description/>
+        <docs/>
+        <field_list>title,color,glyph,table,filter,display_field,field_list,sp_page,order_direction,maximum_entries,order_by</field_list>
+        <has_preview>true</has_preview>
+        <id>ucsb-announcement-ticker</id>
+        <internal>false</internal>
+        <link/>
+        <name>UCSB Announcements Ticker</name>
+        <option_schema>[{"name":"secondary_fields","label":"Secondary fields","type":"field_list"},{"hint":"kb_category","name":"category_field","label":"Category field","type":"string"},{"hint":"#EF5645","name":"alert_icon_color","label":"Alert icon color","type":"string"},{"hint":"#04859B","name":"info_icon_color","label":"Information icon color","type":"string"}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	data.list = [];
+	data.table = options.table || "kb_knowledge";
+	var gr = new GlideRecordSecure(data.table);
+	if (gr == null || !gr.isValid())
+		return;
+
+	/* --Settings-- */
+	data.interval = 3500;
+	data.direction = 'up'; // 'up' or 'down'
+	data.line_height = 60;
+	data.num_lines = 3;
+
+	options.title = options.title || gs.getMessage("UCSB Ticker");
+	options.display_field = options.display_field || gr.getDisplayName();
+	options.category_field = options.category_field || "kb_category";
+	options.order_by = options.order_by || "published";
+	options.info_icon_color = options.info_icon_color || "#04859B"; // gold - not being used
+	options.alert_icon_color = options.alert_icon_color || "#EF5645"; // coral - not being used
+	
+
+	options.secondary_fields = options.secondary_fields || "";
+	options.secondary_fields = options.secondary_fields.split(",");
+
+	data.height = (data.line_height - 1) * data.num_lines;
+	data.sp_page = options.sp_page_dv || "ucsb_announcement_article";
+
+	if (options.filter)
+		gr.addEncodedQuery(options.filter);
+
+	gr.orderByDesc(options.order_by);
+
+	if (!options.maximum_entries || options.maximum_entries < 1)
+		options.maximum_entries = 5;
+	// can't use maximum_entries to limit the query because GlideRecordSecure
+	// prunes records the user can't see. If the limit is 5, the user
+	// might not be able to see any of those 5, so need to loop 
+	// through until we find 5 the user can see. Nonetheless, we don't want
+	// anything silly happening here, so hardcode a query limit of 500 records.
+	// If that's not enough, improve the options.filter value to be more accurate
+	gr.setLimit(500);
+	gr.query();
+
+	while (gr.next() && data.list.length < options.maximum_entries) {
+		var record = {};
+		record.sys_id = gr.getUniqueValue();
+		if (options.image_field) {
+			record.image_field = gr.getDisplayValue(options.image_field);
+			if (!record.image_field)
+				record.image_field = "/noimage.pngx";
+		}
+
+		if (options.display_field)
+			record.display_field = gr.getDisplayValue(options.display_field);
+
+		record.secondary_fields = [];
+		options.secondary_fields.forEach(function(f) {
+			record.secondary_fields.push(getField(gr, f));
+		});
+
+		record.url = "";
+		if (data.sp_page)
+			record.url = "?id=" + data.sp_page + "&table=" + data.table + "&sys_id=" + record.sys_id + "&view=sp";
+		
+		record.category = gr.getDisplayValue(options.category_field);
+		
+		data.list.push(record);
+	}
+})();
+
+function setRecordFields(record, gr) {
+	for (var f = 0; f < options.secondary_fields.length; f++) {
+		record.secondary_fields.push(getField(gr, options.secondary_fields[f]));
+	}
+}
+
+function getField(gr, name) {
+	var f = {};
+	f.value = gr.getValue(name);
+	var ge = gr.getElement(name);
+	f.type = ge.getED().getInternalType();
+	f.label = ge.getLabel();
+	if (f.type == "translated_html") {
+		var origVal = gr.getDisplayValue(name).toString();
+		var newVal = origVal.replace(/(<([^>]+)>)/ig,"");
+		f.display_value = newVal;
+	} else {
+		f.display_value = gr.getDisplayValue(name);
+	}
+	return f;
+}]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-27 19:53:31</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>6d0df1290f6013003fd44cace1050e78</sys_id>
+        <sys_mod_count>274</sys_mod_count>
+        <sys_name>UCSB Announcements Ticker</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_widget_6d0df1290f6013003fd44cace1050e78</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-04-07 00:26:39</sys_updated_on>
+        <template><![CDATA[<div ng-if="data.list.length > 0">
+  <div class="panel panel-{{options.color}}">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <span ng-if="c.options.glyph">
+          <fa name="{{::c.options.glyph}}" />
+        </span>{{options.title}}
+      </h4>
+    </div>
+    <div sp-ticker timing="{{data.interval}}" direction="{{data.direction}}" class="list-group">
+      <a ng-href="{{item.url}}" ng-repeat="item in data.list" class="list-group-item">
+        <span ng-if="options.image_field" class="pull-left thumb-sm avatar m-r">
+          <img ng-src="{{item.image_field}}" alt="..." class="img-circle">
+        </span>
+        <span ng-if="!options.image_field && item.category == 'Alerts'">
+          <fa style="color:#EF5645" name="exclamation-triangle" />
+        </span>
+        <span ng-if="!options.image_field && item.category == 'News'">
+          <fa style="color:#FEBC11" name="exclamation-triangle" />
+        </span>
+        <span ng-if="!options.image_field && item.category == 'Information'">
+          <fa style="color:#04859B" name="info-circle" />
+        </span>
+        {{::item.display_field}}<br>
+        <small class="text-muted" ng-repeat="f in item.secondary_fields">
+          <span ng-if="!$first"> • </span>
+          <span ng-switch="f.type" title="{{::f.label}}">
+            <span ng-switch-when="glide_date"><sn-time-ago timestamp="::f.value" /></span>
+            <span ng-switch-when="glide_date_time"><sn-time-ago timestamp="::f.value" /></span>
+            <span ng-switch-default="">{{f.display_value}}</span>
+          </span>
+        </small>
+      </a>
+    </div>
+  </div>
+
+  <style>
+    [sp-ticker].active {
+      display: block;
+      height: {{data.height}}px;
+      overflow-y: hidden
+    }
+    [sp-ticker] a {
+      height: {{data.line_height}}px;
+      overflow: hidden;
+      transition: opacity 0.5s ease, margin 0.5s ease;
+      white-space: nowrap;
+    }
+    [sp-ticker] a.fade-out {
+      opacity: 0;
+    }
+    [sp-ticker] a.minus-margin-top {
+      margin-top: -{{data.line_height}}px;
+    }
+  </style>
+
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

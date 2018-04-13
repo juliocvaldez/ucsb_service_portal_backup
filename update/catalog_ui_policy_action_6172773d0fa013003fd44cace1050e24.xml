@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="catalog_ui_policy_action">
+    <catalog_ui_policy_action action="INSERT_OR_UPDATE">
+        <catalog_item display_value="">4972373d0fa013003fd44cace1050ecb</catalog_item>
+        <catalog_variable>IO:9972373d0fa013003fd44cace1050ef2</catalog_variable>
+        <disabled>ignore</disabled>
+        <field/>
+        <mandatory>true</mandatory>
+        <sys_class_name>catalog_ui_policy_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-28 23:05:05</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>6172773d0fa013003fd44cace1050e24</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>department</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>catalog_ui_policy_action_6172773d0fa013003fd44cace1050e24</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-02-28 23:05:05</sys_updated_on>
+        <table/>
+        <ui_policy display_value="Group or Department">6d72773d0fa013003fd44cace1050e14</ui_policy>
+        <variable>department</variable>
+        <variable_set/>
+        <visible>true</visible>
+    </catalog_ui_policy_action>
+</record_update>

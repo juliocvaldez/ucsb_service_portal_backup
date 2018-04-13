@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope, $http, $timeout) {
+  /* widget controller */
+  var c = this;
+	
+	$scope.toggleShow = function(bool) {
+		$scope.showSubcategories = bool || !$scope.showSubcategories;
+	}
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.iconlink a label,h2 {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.1;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+.list-group {
+  position: fixed;
+  z-index: 1000;
+
+}
+
+/* TOP ICON ---------- */
+
+a.top_icon {
+  display: block;
+  padding: 20px;
+  text-align: center;
+}
+
+a.top_icon .fa {
+  display: block;
+  text-align: center;
+}
+
+/* CIRCLE ICON ---------- */
+
+a.circle_icon {
+  display: block;
+  padding: 20px 0px 20px 70px;
+  position: relative;
+}
+
+a.circle_icon .fa {
+  position:absolute;
+  left: 0px;
+  top: 10px;
+}
+
+/* COLOR BOX ---------- */
+
+a.color_box {
+  display: block;
+  position: relative;
+  padding: 20px 20px 20px 82px;
+  border-radius: 4px;
+  /* margin-bottom: 20px; */
+}
+
+a.color_box .fa {
+  position:absolute;
+  left: 20px;
+  top: 20px;
+  width:42px;
+  text-align: center;
+}
+
+.icon-link-background-primary {
+  background-color: $brand-primary;
+}
+
+.icon-link-background-info {
+  background-color: $brand-info;
+}
+
+.icon-link-background-success {
+  background-color: $brand-success;
+}
+
+.icon-link-background-warning {
+  background-color: $brand-warning;
+}
+
+.icon-link-background-danger {
+  background-color: $brand-danger;
+}
+
+.icon-link-background-default {
+  background-color: $brand-primary;
+}
+
+.text-primary {
+  color: $brand-primary;
+
+  &amp;:hover {
+    color: darken($brand-primary, 20%);
+  }
+}
+
+.text-info {
+  color: $brand-info;
+
+  &amp;:hover {
+    color: darken($brand-info, 20%);
+  }
+}
+
+.text-success {
+  color: $brand-success;
+
+  &amp;:hover {
+    color: darken($brand-success, 20%);
+  }
+}
+
+.text-warning {
+  color: $brand-warning;
+
+  &amp;:hover {
+    color: darken($brand-warning, 20%);
+  }
+}
+
+.text-danger {
+  color: $brand-danger;
+
+  &amp;:hover {
+    color: darken($brand-danger, 20%);
+  }
+}
+
+.text-default {
+  color: $brand-primary;
+
+  &amp;:hover {
+    color: darken($brand-primary, 20%);
+  }
+}</css>
+        <data_table>sp_instance_link</data_table>
+        <demo_data>{
+	"options": {
+		"title": "Technical Support Services",
+		"link_template": "Color Box",
+		"short_description": "Technical Support Services, including assistance with desktops, laptops, printers, mobile and handheld devices.",
+		"category_ref": "cca015cb4f305740f74b495d0210c7f3",
+		"glyph": "anchor",
+		"color": "default",
+		"class_name": "",
+		"sc_page": "ucsb_sc_category",
+		"sc_category": "54a055cb4f305740f74b495d0210c775"
+	}
+}</demo_data>
+        <description/>
+        <docs/>
+        <field_list>title,short_description,glyph,class_name,type,sc_category,url,kb_article,kb_topic,kb_category,sc_cat_item,sp_page,color</field_list>
+        <has_preview>true</has_preview>
+        <id>ucsb_cat_icon_link</id>
+        <internal>false</internal>
+        <link/>
+        <name>UCSB Category Icon Link</name>
+        <option_schema>[{"name":"link_template","label":"Template","type":"choice","choices":[{"label":"Top Icon","value":"Top Icon"},{"label":"Circle Icon","value":"Circle Icon"},{"label":"Color Box","value":"Color Box"}]}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function(){
+	var categoryID = data.id = options.sc_category;
+	var page = options.sc_page || 'ucsb_sc_category';
+	
+	data.title = options.title || options.sc_category_dv;
+	data.short_description = options.short_description;
+	data.fields = options;
+	data.href = '?id=' + page + '&sys_id=' + categoryID;
+	data.target = options.target || "";
+
+	var categoryJS = new sn_sc.CatCategory(categoryID);
+	if (!categoryJS)
+		return;
+		
+	// gather related subcategories
+	var subcategories = data.subcategories = [];
+	var buildSubcatArr = categoryJS.getViewableSubCategories();
+	for (var subcat = 0; subcat < buildSubcatArr.length; subcat++) {
+		var subcategory = {};
+		subcategory.title = buildSubcatArr[subcat].title;
+		subcategory.description = buildSubcatArr[subcat].description;
+		subcategory.sys_id = buildSubcatArr[subcat].sys_id;
+		subcategory.order = buildSubcatArr[subcat].order;
+		subcategory.page = 'ucsb_sc_category';
+
+		subcategories.push(subcategory)
+
+	}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-04-04 23:39:17</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>f3e940154f595380a2f02ae6f110c719</sys_id>
+        <sys_mod_count>182</sys_mod_count>
+        <sys_name>UCSB Category Icon Link</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_widget_f3e940154f595380a2f02ae6f110c719</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-04-12 17:03:06</sys_updated_on>
+        <template><![CDATA[<div class="iconlink" ng-mouseenter="toggleShow(true)" ng-mouseleave="toggleShow(false)">
+  <!--// Top Icon -->
+  <a ng-if="::(options.link_template == 'Top Icon' || !options.link_template)" ng-href="{{::data.href}}" class="top_icon {{::options.class_name}}" target="{{::data.target}}">
+    <div class="m-b fa fa-{{::options.glyph}} fa-4x {{::options.class_name}} text-{{::options.color}}"></div>
+    <h2>{{::c.data.title}}</h2>
+      <div class="list-group no-radius alt" role="list">
+    <sp-category-flyout-list-item-ucsb 
+      ng-repeat="subcat in data.subcategories"
+      ng-if="showSubcategories"
+      category="subcat"
+      page="options.sc_page"
+      level="1"
+    />
+  </div>
+    <span class="text-muted">{{::c.data.short_description}}</span>
+  </a>
+
+
+  <!--// Circle Icon -->
+  <a ng-if="::(options.link_template == 'Circle Icon')" ng-href="{{::data.href}}" class="circle_icon {{::options.class_name}} text-{{::options.color}}" target="{{::data.target}}">
+    <span class="fa fa-stack fa-2x">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-{{::options.glyph}} fa-stack-1x fa-inverse"></i>
+    </span>
+    <h2>{{::c.data.title}}</h2>
+      <div class="list-group no-radius alt" role="list">
+    <sp-category-flyout-list-item-ucsb 
+      ng-repeat="subcat in data.subcategories"
+      ng-if="showSubcategories"
+      category="subcat"
+      page="options.sc_page"
+      level="1"
+    />
+  </div>
+    <span class="text-muted">{{::c.data.short_description}}</span>
+  </a>
+
+  <!--// Color Box -->
+  <a ng-if="::(options.link_template == 'Color Box')" ng-href="{{::data.href}}" class="color_box {{::options.class_name}} icon-link-background-{{::options.color}} text-white" target="{{::data.target}}">
+    <div class="fa fa-{{::options.glyph}} fa-3x {{::options.class_name}}"></div>
+    <h2>{{::c.data.title}}</h2>
+      <div class="list-group no-radius alt" role="list">
+    <sp-category-flyout-list-item-ucsb 
+      ng-repeat="subcat in data.subcategories"
+      ng-if="showSubcategories"
+      category="subcat"
+      page="options.sc_page"
+      level="1"
+    />
+  </div>
+    <span>{{::c.data.short_description}}</span>
+  </a>
+
+</div>]]></template>
+    </sp_widget>
+</record_update>

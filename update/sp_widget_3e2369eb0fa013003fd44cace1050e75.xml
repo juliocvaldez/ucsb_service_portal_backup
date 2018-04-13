@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope, spUtil, $window) {
+	/* widget controller */
+	var c = this;
+	
+	c.buttonColor = {
+		'background-color': c.options.button_color,
+		'border-color': c.options.button_color,
+		'color': c.options.button_text_color
+	}; 
+
+	//receiving a record watch update from the announcement header widget
+	$scope.$on('sp.announcement.inserted', function (event, data) {
+		c.data.action = "new_announcement";
+		c.server.update();
+	});
+
+	c.setRedirect = function(announcementId) {
+		$window.location.href = "?id=announcement&sys_id="+announcementId;
+	};
+
+	c.changeButtonColor = function(hovering) {
+		if(hovering === true) {
+			c.buttonColor = {
+				'background-color': c.options.button_hover_color,
+				'border-color': c.options.button_hover_color,
+				'color': c.options.button_text_hover_color
+			};
+		} else if (hovering === false) {
+			c.buttonColor = {
+				'background-color': c.options.button_color,
+				'border-color': c.options.button_color,
+				'color': c.options.button_text_color
+			}; 
+		}
+	};
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.nav-tabs  &gt; li.active &gt; a, .nav-tabs  &gt; li.active &gt; a:hover, .nav-tabs  &gt; li.active &gt; a:focus {
+	background-color: #ddd;
+}
+
+.nav-tabs {
+  border: 0;
+}
+
+hr {
+  margin: 0px !important;
+}
+
+.announcement-read-more {
+  padding-bottom: 10px;
+}
+
+/*
+calendar css
+Ref: http://codepen.io/chelovekov/pen/ayKAn
+*/
+
+.calendar {
+  margin:.25em 10px 10px 0;
+  padding-top:5px;
+  float:left;
+  width:80px;
+  background:#ededef;
+  background:-webkit-gradient(linear,left top,left bottom,from(#ededef),to(#ccc));
+  background:-moz-linear-gradient(top,#ededef,#ccc);
+  font:bold 30px/60px Arial Black,Arial,Helvetica,sans-serif;
+  text-align:center;
+  color:#000;
+  text-shadow:#fff 0 1px 0;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  border-radius:3px;
+  position:relative;
+  -moz-box-shadow:0 2px 2px #888;
+  -webkit-box-shadow:0 2px 2px #888;
+  box-shadow:0 2px 2px #888
+}
+
+.calendar em {
+  display:block;
+  font:normal bold 11px/30px Arial,Helvetica,sans-serif;
+  color:#fff;
+  text-shadow:#00365a 0 -1px 0;
+  background:#04599a;
+  background:-webkit-gradient(linear,left top,left bottom,from(#04599a),to(#00365a));
+  background:-moz-linear-gradient(top,#04599a,#00365a);
+  -moz-border-radius-bottomright:3px;
+  -webkit-border-bottom-right-radius:3px;
+  border-bottom-right-radius:3px;
+  -moz-border-radius-bottomleft:3px;
+  -webkit-border-bottom-left-radius:3px;
+  border-bottom-left-radius:3px;
+  border-top:1px solid #00365a
+}
+
+.calendar:before,.calendar:after {
+  content:'';
+  float:left;
+  position:absolute;
+  top:5px;
+  width:8px;
+  height:8px;
+  background:#111;
+  z-index:1;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px;
+  -moz-box-shadow:0 1px 1px #fff;
+  -webkit-box-shadow:0 1px 1px #fff;
+  box-shadow:0 1px 1px #fff
+}
+
+.calendar:before {
+  left:11px
+}
+
+.calendar:after {
+  right:11px
+}
+
+.calendar em:before,.calendar em:after {
+  content:'';
+  float:left;
+  position:absolute;
+  top:-5px;
+  width:4px;
+  height:14px;
+  background:#dadada;
+  background:-webkit-gradient(linear,left top,left bottom,from(#f1f1f1),to(#aaa));
+  background:-moz-linear-gradient(top,#f1f1f1,#aaa);
+  z-index:2;
+  -moz-border-radius:2px;
+  -webkit-border-radius:2px;
+  border-radius:2px
+}
+
+.calendar em:before {
+  left:13px
+}
+
+.calendar em:after {
+  right:13px
+}
+
+//Boxes
+
+.box &gt; .icon {
+  text-align:center;
+  position:relative;
+  padding-bottom:10px;
+}
+
+.box &gt; .icon &gt; .image {
+  position:relative;
+  z-index:2;
+  width:88px;
+  height:88px;
+  border:8px solid #FFF;
+  line-height:88px;
+  border-radius:50%;
+  background:$brand-primary;
+  vertical-align:middle;
+  margin:auto;
+}
+
+.box &gt; .icon:hover &gt; .image {
+  background:$westjet-dark-blue;
+}
+
+.box &gt; .icon &gt; .image &gt; i {
+  font-size:36px!important;
+  color:#fff!important;
+}
+
+.box &gt; .icon:hover &gt; .image &gt; i {
+  color:#FFF!important;
+}
+
+.box &gt; .icon &gt; .info {
+  margin-top:-24px;
+  //background:rgba(0,0,0,0.04);
+  background-color: $westjet-light-grey;
+  border:1px solid #e0e0e0;
+  padding:15px 0 10px;
+  min-height: 180px;
+}
+
+.box &gt; .icon:hover &gt; .info {
+  background:rgba(0,0,0,0.04);
+  color: $navbar-inverse-link-hover-color;
+  border-color:#e0e0e0;
+}
+
+.box &gt; .icon &gt; .info &gt; h3.title {
+  font-size:16px;
+  color:#222;
+  font-weight:500;
+}
+
+.box &gt; .icon &gt; .info &gt; p {
+  font-size:13px;
+  color:#666;
+  line-height:1.5em;
+  margin:20px;
+}
+
+.box &gt; .icon &gt; .info &gt; .more a {
+  font-size:12px;
+  line-height:12px;  
+  text-transform:uppercase;
+  text-decoration:none;
+  padding:6px 8px;
+}
+
+
+
+.box .space {
+  height:30px;
+}
+
+.box {
+  cursor: pointer;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>ucsb_announcement_overview</id>
+        <internal>false</internal>
+        <link/>
+        <name>UCSB Announcement Overview</name>
+        <option_schema>[{"name":"layout_type","default_value":"Tabs","label":"Layout Type","type":"choice","choices":[{"label":"Tabs","value":"Tabs"},{"label":"Boxed","value":"Boxed"},{"label":"List","value":"List"}]},{"hint":"Use the hex-code as the value, i.e. \"#fff\". The default value is $brand-primary.","name":"button_color","label":"Button Color","type":"string"},{"hint":"Use the hex-code as the value, i.e. \"#fff\". The default value is $navbar-inverse-hover-color.","name":"button_hover_color","label":"Button Hover Color","type":"string"},{"hint":"The text value within the button.","name":"announcement_button_text","default_value":"View Announcement","label":"Announcement Button Text","type":"string"},{"hint":"Use the hex-code as the value, i.e. \"#fff\". The default value is #fff.","name":"button_text_color","default_value":"#fff","label":"Button Text Color","type":"string"},{"hint":"Use the hex-code as the value, i.e. \"#fff\". The default value is #fff.","name":"button_text_hover_color","default_value":"#fff","label":"Button Text Hover Color","type":"string"},{"hint":"The text value within the button.","name":"outage_button_text","default_value":"View System Announcement","label":"Outage Button Text","type":"string"}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+
+
+	if(!input) {
+		//var spAnnouncementUtils = new global.SPAnnouncementUtils();
+
+		/* var gdtNow = new GlideDateTime(gs.beginningOfToday());
+		data.today = spAnnouncementUtils.getDay(gdtNow);
+		data.this_month = spAnnouncementUtils.getMonthFull(gdtNow); */
+
+		/* Retrieve all available announcements */
+		getAnnouncements();	
+	}
+
+
+	/* When record watch detects a new announcement, we will update the data object with the new announcement */
+	if(input && input.action == "new_announcement") {
+		getAnnouncements();
+	}
+
+
+	function getAnnouncements() {
+		data.showAnnouncements = true;
+
+		//Information Alert Handling
+		var grAnnouncement = new GlideRecord("kb_knowledge");
+		grAnnouncement.addActiveQuery();
+		grAnnouncement.addEncodedQuery("workflow_state=published^topic=News");
+		grAnnouncement.orderByDesc("published");
+		grAnnouncement.query();
+
+		data.informationAnnouncements = [];
+		data.informationAnnouncementIDs = "";
+		data.outages = [];
+		data.outageIDs = "";
+
+		while (grAnnouncement.next()) {
+			if(grAnnouncement.getDisplayValue("kb_category") == "Alerts") {
+				pushInformationAnnouncement(grAnnouncement);
+			} else {
+				pushOutageAnnouncement(grAnnouncement);
+			}
+		}
+	}
+
+	function pushInformationAnnouncement(announcementRecord) {
+		var announcement = {};
+		$sp.getRecordDisplayValues(announcement, announcementRecord, "text, short_description");
+		$sp.getRecordValues(announcement, announcementRecord, "published,sys_id"); //,u_class,u_more_info_link,u_more_info_button_text
+		data.informationAnnouncements.push(announcement);
+		data.informationAnnouncementIDs += "," + announcementRecord.getUniqueValue();
+	}
+
+	function pushOutageAnnouncement(announcementRecord) {
+		//Outage Handling
+		var outage = {};
+
+		$sp.getRecordDisplayValues(outage, announcementRecord, "published, text, short_description"); //u_outage.type,u_outage.cmdb_ci, u_outage.begin, 
+		$sp.getRecordValues(outage, announcementRecord, "sys_id"); //u_details_url,u_class,u_more_info_link,u_more_info_button_text,u_class,u_more_info_link,u_more_info_button_text
+
+		outage.announcement_id = announcementRecord.getUniqueValue();
+		data.outages.push(outage);
+		data.outageIDs += "," + announcementRecord.getValue("u_outage");
+	}
+
+})();
+
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-03-05 23:08:24</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>3e2369eb0fa013003fd44cace1050e75</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>UCSB Announcement Overview</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_widget_3e2369eb0fa013003fd44cace1050e75</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-03-06 00:06:59</sys_updated_on>
+        <template><![CDATA[<div class="row" ng-if="c.options.layout_type == 'Tabs' && (c.data.outages.length != 0 || c.data.informationAnnouncements.length != 0)">
+  <h1>
+    {{c.options.title || "Alerts &amp; Announcements"}}
+  </h1>
+  
+  <!-- Outage Tab -->
+  <uib-tabset active="active">
+    <uib-tab index="0" ng-if="c.data.outages.length > 0">
+      <uib-tab-heading>
+        ${Alerts} <span class="label label-as-badge label-primary">{{c.data.outages.length}}</span>       
+      </uib-tab-heading>
+
+      <!-- Alerts Panel-->
+      <div class="panel panel-default" >        
+        <div class="panel-body" ng-repeat="outage in c.data.outages">  
+
+          <span ng-if="outage.short_description"><strong>{{outage.short_description}}</strong></span>
+          <div>
+            <p ng-bind-html="outage.text"></p>
+
+            <div>
+              <span ng-if="outage.published"><small class="timestamp"> ${Published at: } {{outage.published}} </small></span>            
+            </div>
+            <div class="announcement-read-more">
+              <a ng-if="outage.u_more_info_link && outage.u_more_info_button_text" href="{{outage.u_more_info_link}}" class="btn btn-xs btn-primary">{{outage.u_more_info_button_text}}</a>
+              <a ng-if="!outage.u_more_info_link || !outage.u_more_info_button_text" ng-href="?id=ucsb_announcement_article&sys_id={{outage.sys_id}}" class="btn btn-xs btn-primary">${Outage Info}</a>
+              <!-- <a ng-href="?id=service_status&service={{outage.serviceID}}" class="btn btn-xs btn-primary">${View {{outage["u_outage.cmdb_ci"]}} System Status}</a> -->
+
+            </div>
+            <hr ng-if="c.data.outages.length > 1" />
+          </div>
+        </div>
+      </div>
+      <!-- Alerts Panel End -->
+
+    </uib-tab>
+    
+    <!-- Announcements Tab -->
+    <uib-tab index="$index + 1" ng-if="c.data.informationAnnouncements.length > 0">
+      <uib-tab-heading>
+        ${Announcements} <span class="label label-as-badge label-primary">{{c.data.informationAnnouncements.length}}</span>       
+      </uib-tab-heading>
+
+      <!-- Information Panel -->
+      <div class="panel panel-default">        
+        <div class="panel-body" ng-repeat="announcement in c.data.informationAnnouncements">  
+
+          <strong>{{announcement.short_description}}</strong>
+          <p ng-bind-html="announcement.text"></p>
+
+          <div>
+            <span ng-if="announcement.published"><small class="timestamp"> ${Published at: } {{announcement.published}} </small></span>            
+          </div>
+          <div class="announcement-read-more">
+            <a ng-if="announcement.u_more_info_link && announcement.u_more_info_button_text" href="{{announcement.u_more_info_link}}" class="btn btn-xs btn-primary" >{{announcement.u_more_info_button_text}}</a>
+            <a ng-if="!announcement.u_more_info_link || !announcement.u_more_info_button_text" href="?id=ucsb_announcement_article&sys_id={{announcement.sys_id}}" class="btn btn-xs btn-primary">${Read More}</a>            
+          </div>
+          <hr ng-if="c.data.informationAnnouncements.length > 1" />
+        </div>        
+      </div>
+      <!-- Information Panel End-->
+
+
+    </uib-tab>
+  </uib-tabset>
+
+</div>
+
+
+<!-- Boxed Layout -->
+<div class="row" ng-if="c.options.layout_type == 'Boxed' && (c.data.outages.length != 0 || c.data.informationAnnouncements.length != 0)">
+  <div class="col-sm-2">
+    <!-- <p class="calendar">{{c.data.today}}<em>{{c.data.this_month}}</em></p> -->
+
+  </div>
+  <div class="col-sm-10">
+    <div class="intro" ng-if="data.informationAnnouncements.length > 0">
+      <h2 class="text-center list-h2">${Current Information}</h2>   
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-4" ng-repeat="announcement in c.data.informationAnnouncements" ng-if="c.data.informationAnnouncements.length > 0">
+      <div class="box" ng-click="c.setRedirect(announcement.sys_id)">							
+        <div class="icon">
+          <div class="image">
+            <i class="fa fa-info-circle"></i>
+          </div>
+          <div class="info">
+            <h3 class="title">{{announcement.short_description}}</h3>
+            <p ng-bind-html="announcement.text | limitTo: 50"></p>
+            <span ng-if="announcement.text.length > 50">... read more</span>
+
+            <div class="more">
+              <div>
+                <small class="timestamp"> ${Published at: } {{announcement.published}}</small>
+              </div>
+              <button type="button" class="btn btn-primary" ng-style="c.buttonColor" ng-mouseenter="c.changeButtonColor(true)" ng-mouseleave="c.changeButtonColor(false)">
+                <a ng-href="?id=ucs_announcement_article&sys_id={{announcement.sys_id}}" title="Announcement Link" ng-style="c.buttonColor">
+                  {{c.options.announcement_button_text}} <i class="fa fa-angle-double-right"></i>
+                </a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+    <div class="clearfix">
+
+    </div>
+    <div class="intro" ng-if="c.data.outages.length > 0">
+      <h2 class="text-center list-h2">${Current System Status Messages}</h2>       
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-4" ng-repeat="outage in c.data.outages" ng-if="c.data.outages.length > 0">
+      <div class="box" ng-click="c.setRedirect(outage.sys_id)">							
+        <div class="icon">
+          <div class="image">
+            <i class="fa fa-exclamation-triangle"></i>
+          </div>
+          <div class="info">
+            <h3 class="title" ng-if="outage.short_description">{{outage.short_description}}</h3>
+            <p ng-bind-html="outage.text | limitTo: 155"></p>
+            <div class="more">
+              <div>
+                <small class="timestamp"> ${Published at: } {{outage.published}}</small>
+                <!-- <a ng-href="?id=service_status&service={{outage.serviceID}}" ng-if="!outage.short_description && !outage.text">{{outage["u_outage.type"]}} - {{outage["u_outage.cmdb_ci"]}} (${started {{outage["u_outage.begin"]}}})</a> -->
+              </div>
+              <button type="button" class="btn btn-primary" ng-style="c.buttonColor" ng-mouseenter="c.changeButtonColor(true)" ng-mouseleave="c.changeButtonColor(false)">
+                <a ng-href="?id=ucs_announcement_article&sys_id={{outage.sys_id}}" title="Announcement Link" ng-style="c.buttonColor">
+                  {{c.options.outage_button_text}} <i class="fa fa-angle-double-right"></i>
+                </a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>
+
+
+<!-- List Layout -->
+<div class="row" ng-if="c.options.layout_type == 'List' && (c.data.outages.length != 0 || c.data.informationAnnouncements.length != 0)">
+  <div class="col-sm-2">
+    <!-- <p class="calendar">{{c.data.today}}<em>{{c.data.this_month}}</em></p> -->
+
+  </div>
+  <div class="col-sm-10">
+    <!-- Information Panel -->
+    <div class="panel panel-primary">
+      <div class="panel-heading"><i class="fa fa-info-circle" aria-hidden="true"></i><strong>${Current Announcements}</strong></div>
+      <div class="panel-body" ng-repeat="announcement in c.data.informationAnnouncements">  
+        <strong>{{announcement.short_description}}</strong>
+        <p ng-bind-html="announcement.text"></p>
+
+        <div>
+          <small class="timestamp"> ${Published at: } {{announcement.published}} <a ng-href="?id=ucs_announcement_article&sys_id={{announcement.sys_id}}"> (${Click for more details})</a></small>
+        </div>
+      </div>
+    </div>
+    <!-- Information Panel End-->
+
+    <!-- Outage Panel-->
+    <div class="panel panel-primary" ng-if="c.data.outages.length > 0">
+      <div class="panel-heading"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><strong>${Current System Status Messages}</strong></div>
+      <div class="panel-body" ng-repeat="outage in c.data.outages">  
+
+        <span ng-if="outage.short_description"><strong>{{outage.short_description}}</strong></span>
+        <div>
+          <p ng-bind-html="outage.text"></p>
+          <!-- <a ng-href="?id=service_status&service={{outage.serviceID}}" ng-if="!outage.short_description && !outage.text">{{outage["u_outage.type"]}} - {{outage["u_outage.cmdb_ci"]}} (${started {{outage["u_outage.begin"]}}})</a> -->
+          <div>
+            <small class="timestamp"> ${Published at: } {{outage.published}} <a ng-href="?id=ucs_announcement_article&sys_id={{outage.sys_id}}"> (${Click for more details})</a></small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Outage Panel End -->
+  </div>
+
+</div>
+
+
+<!-- No Records Panel -->
+<div class="panel panel-primary" ng-if="c.data.outages.length == 0 && c.data.informationAnnouncements.length == 0">
+  <div class="panel-heading"><i class="fa fa-info-circle" aria-hidden="true"></i><strong>${No Announcements}</strong></div>
+  <div class="panel-body">  
+    <strong>${Currently there are no announcements or any system related messages. Should there be either one of them, you will find an envelope icon in the header, notifying you that there are available messages.}</strong>
+  </div>
+</div>
+<!-- No Records Panel End-->
+
+
+
+]]></template>
+    </sp_widget>
+</record_update>

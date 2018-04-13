@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <css>section.page {
+	background-color: $sp-homepage-bg;
+}
+section.page, main.body {
+    padding-top: 0px !important;
+}
+
+#homepage-search {
+  padding: 0px !important;
+}
+
+.categories-container-padding {
+  margin: 20px 0px 40px 0px;
+}</css>
+        <draft>false</draft>
+        <id>ucsb_it_index</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles/>
+        <short_description>UCSB Information Techonology index</short_description>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-23 19:29:18</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>771195140f6013003fd44cace1050e28</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>ucsb_it_index</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_page_771195140f6013003fd44cace1050e28</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-04-12 21:27:38</sys_updated_on>
+        <title>IT index</title>
+    </sp_page>
+</record_update>

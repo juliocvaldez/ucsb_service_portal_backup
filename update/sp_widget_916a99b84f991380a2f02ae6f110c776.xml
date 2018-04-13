@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function ($scope, spUtil, $rootScope, $location, $timeout) {
+	console.log('JCV: test is .....', $scope.data.test);
+	
+	var bc = [{label: $scope.page.title, url: '?id=' + $scope.data.sc_catalog_page}];
+	if ($scope.data.category)
+		bc[bc.length] = {label: $scope.data.category, url: '#'};
+
+	$timeout(function() {
+		$rootScope.$broadcast('sp.update.breadcrumbs', bc);
+	});
+	spUtil.setSearchPage('sc');
+
+	/*=============== Begin link handling ===============*/
+	$scope.onClick = function($event, item) {
+		var lp = getLinkParts(item);
+		if (typeof lp == "string")
+			return; // can't intercept/redirect external content item
+
+		$event.stopPropagation();
+		$event.preventDefault();
+		var evt = {item: item, search: lp};
+
+		// This will let a wrapper widget intercept and redirect somewhere else
+		$scope.$emit($scope.options.click_event_name, evt);
+	};
+
+	function getLinkParts(item) {
+		if (item.sys_class_name == 'sc_cat_item_content' && item.content_type == 'external')
+			return item.url;
+
+		return {id: item.page, sys_id: item.sys_id};
+	}
+
+	$scope.getItemHREF = function(item) {
+		var lp = getLinkParts(item);
+		if (typeof lp == "string")
+			return lp;
+
+		return "?id=" + lp.id + "&sys_id=" + lp.sys_id;
+	}
+
+	var unregister = $rootScope.$on($scope.options.click_event_name, function($event, o) {
+		if ("url" in o)
+			$location.href = o.url;
+		else
+			$location.search(o.search);
+	});
+
+	$scope.$on("$destroy", function() {
+		unregister();
+	});
+	/*=============== End link handling ===============*/
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>ucsb_sc_category_page</id>
+        <internal>false</internal>
+        <link/>
+        <name>UCSB SC Category Page</name>
+        <option_schema>[{"name":"click_event_name","default_value":"$sp.cat_item_list.click","label":"Click event name","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	data.category_id = $sp.getParameter("sys_id");
+	if (options && options.sys_id)
+		data.category_id = options.sys_id;
+
+	if (!data.category_id) {
+		data.error = gs.getMessage("No category specified");
+		return;
+	}
+
+	data.showPrices = $sp.showCatalogPrices();
+	data.sc_catalog_page = $sp.getDisplayValue("sc_catalog_page") || "sc_home";
+	// Does user have permission to see this category?
+	var categoryId = '' + data.category_id;
+	var categoryJS = new sn_sc.CatCategory(categoryId);
+	if (!categoryJS.canView()) {
+		data.error = gs.getMessage("You do not have permission to see this category");
+		return;
+	}
+	data.category = categoryJS.getTitle();
+
+	/* This method allows for better security but does not provide the description field
+	// gather related subcategories
+	var subcategories = data.subcategories = [];
+	var buildSubcatArr = data.test = categoryJS.getViewableSubCategories();
+	for (var subcat = 0; subcat < buildSubcatArr.length; subcat++) {
+		var subcategory = {};
+		subcategory.title = buildSubcatArr[subcat].title;
+		subcategory.description = buildSubcatArr[subcat].description;
+		subcategory.sys_id = buildSubcatArr[subcat].sys_id;
+		subcategory.order = buildSubcatArr[subcat].order;
+		subcategory.page = 'ucsb_sc_category';
+		
+		subcategories.push(subcategory)
+	
+	}
+	*/
+	
+	// gather related subcategories
+	var subcategories = data.subcategories = [];
+	var subcategoryIds = new GlideRecord('sc_category');
+	subcategoryIds.addActiveQuery();
+	subcategoryIds.addQuery('parent.sys_id', categoryId)
+	subcategoryIds.query();
+	while(subcategoryIds.next()){
+		var subcategoryJS = new sn_sc.CatCategory(subcategoryIds.getUniqueValue());
+		if (!subcategoryJS.canView())
+			continue;
+		var subcategory = {};
+		subcategory.title = subcategoryIds.getValue('title');
+		subcategory.description = subcategoryIds.getValue('description');
+		subcategory.sys_id = subcategoryIds.getUniqueValue();
+		subcategory.order = subcategoryIds.getValue('order');
+		subcategory.page = 'ucsb_sc_category';
+		subcategories.push(subcategory)
+	}
+
+	
+	// gather related catalog items
+	var categoryItemIds = categoryJS.getItemIds();
+	var items = data.items = [];
+	for (var i = 0; i < categoryItemIds.length; i++) {
+		var catalogItemJS = new sn_sc.CatItem(categoryItemIds[i]);
+		if (!catalogItemJS.canView(gs.isMobile()))
+			continue;
+		var catItemDetails = catalogItemJS.getItemSummary();
+		if (catItemDetails.type == 'wizard_item')
+			continue;
+		var item = {};
+		item.name = catItemDetails.name;
+		item.short_description = catItemDetails.short_description;
+		item.picture = catItemDetails.picture;
+		item.price = catItemDetails.price;
+		item.sys_id = catItemDetails.sys_id;
+		item.hasPrice = catItemDetails.show_price;
+		item.page = 'sc_cat_item';
+		item.type = catItemDetails.type;
+		item.order = catItemDetails.order;
+		item.sys_class_name = catItemDetails.sys_class_name;
+		if (item.type == 'order_guide') {
+			item.page = 'sc_cat_item_guide';
+		} else if (item.type == 'content_item') {
+			item.content_type = catItemDetails.content_type;
+			item.url = catItemDetails.url;
+			if (item.content_type == 'kb') {
+				item.kb_article = catItemDetails.kb_article;
+				item.page = 'kb_article';
+				item.sys_id = item.kb_article;
+			} else if (item.content_type == 'external') {
+				item.target = '_blank';
+			}
+		}
+		items.push(item);
+
+	}
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-04-03 16:13:52</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>916a99b84f991380a2f02ae6f110c776</sys_id>
+        <sys_mod_count>76</sys_mod_count>
+        <sys_name>UCSB SC Category Page</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_widget_916a99b84f991380a2f02ae6f110c776</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-04-12 17:42:38</sys_updated_on>
+        <template><![CDATA[<div>
+  <h4 ng-if="data.error">{{data.error}}</h4>
+  <div ng-init="spSearch.targetCatalog()">
+    <h1 class="h4 m-t-none" aria-label="{{data.category}} ${Category}">{{data.category}}</h1>
+    <div class="row">
+      
+      <!-- CASE: No subcategories or items found -->
+      <div class="col-sm-6 col-md-4" ng-if="!data.subcategories.length && !data.items.length && !data.error">
+        ${No items in category}
+      </div>
+      
+      <!-- CASE: Subcategories exist -->
+      <div class="col-sm-6 col-md-4" ng-if="data.subcategories.length" ng-repeat="subcategory in data.subcategories | orderBy: 'order' track by subcategory.sys_id">
+        <div class="panel panel-{{::options.color}} b">
+          <a target="{{::subcategory.target}}" ng-href="{{::getItemHREF(subcategory)}}" ng-click="onClick($event, subcategory)" class="panel-body block">
+            <div class="overflow-100">
+              <h2 class="h4 m-t-none m-b-xs">
+                <i class="fa fa-fw text-muted" ng-class="'fa-folder'" />    {{::subcategory.title}}<span ng-if="subcategory.content_type == 'external'" aria-label="${External Link}"> ➚</span>
+              </h2>
+              <img ng-src="{{::subcategory.picture}}" ng-if="subcategory.picture" alt="{{::subcategory.title}}" class="m-r-sm m-b-sm item-image pull-left" />
+              <div class="text-muted item-short-desc">{{::subcategory.description}}</div>
+            </div>
+          </a>
+          <div aria-hidden="true" class="panel-footer">
+            <a aria-hidden="true" ng-click="onClick($event, subcategory)" ng-href="{{getItemHREF(subcategory)}}" class="pull-left text-muted" tabindex="-1">
+              ${View Items}</a>
+            <span ng-if="data.showPrices && item.hasPrice" class="pull-right item-price font-bold">{{item.price}}</span> &nbsp;
+          </div>
+        </div>
+      </div>
+      
+      <!-- CASE: Items exist -->
+      <div class="col-sm-6 col-md-4" ng-if="data.items.length" ng-repeat="item in data.items | orderBy: 'order' track by item.sys_id">
+        <div class="panel panel-{{::options.color}} b">
+          <a target="{{::item.target}}" ng-href="{{::getItemHREF(item)}}" ng-click="onClick($event, item)" class="panel-body block">
+            <div class="overflow-100">
+              <h2 class="h4 m-t-none m-b-xs">
+                <i class="fa fa-fw" ng-class="'fa-file-text'" />    {{::item.name}}<span ng-if="item.content_type == 'external'" aria-label="${External Link}"> ➚</span>
+              </h2>
+              <img ng-src="{{::item.picture}}" ng-if="item.picture" alt="{{::item.name}}" class="m-r-sm m-b-sm item-image pull-left" />
+              <div class="text-muted item-short-desc">{{::item.description}}</div>
+            </div>
+          </a>
+          <div aria-hidden="true" class="panel-footer">
+            <a aria-hidden="true" ng-if="item.sys_class_name != 'sc_cat_item_content' || item.content_type == 'kb' || item.content_type == 'literal'" ng-click="onClick($event, item)" ng-href="{{getItemHREF(item)}}" class="pull-left text-muted" tabindex="-1">
+              ${View Details}</a>
+            <a aria-hidden="true" ng-if="item.sys_class_name == 'sc_cat_item_content' && item.content_type == 'external'" ng-click="onClick($event, item)" ng-href="{{getItemHREF(item)}}" target="_blank" class="pull-left text-muted" tabindex="-1">
+              ${View Details}</a>
+            <span ng-if="data.showPrices && item.hasPrice" class="pull-right item-price font-bold">{{item.price}}</span> &nbsp;
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

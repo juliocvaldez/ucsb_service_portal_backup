@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_angular_provider">
+    <sp_angular_provider action="INSERT_OR_UPDATE">
+        <name>spCategoryListItemUcsb</name>
+        <script><![CDATA[function spCategoryListItemUcsb() {
+	var template = 
+			'<div role="listitem" ng-class="{\'indent-category\': indentCategory}">' +
+				'<a class="list-group-item" aria-label="{{::category.title}} ${Number of items in this category} {{::category.count}}" ng-class="{selected: category.selected}" href="?id={{page}}&sys_id={{::category.sys_id}}">' +
+					'<span ng-if="!omitBadges" class="label label-as-badge label-primary">{{::category.count}}</span>' +
+					'<i tabindex="0" aria-label="{{category.showSubcategories ? \'${Collapse subcategories}\' : \'${Expand subcategories}\'}}" class="fa fa-fw text-muted pull-right" ng-class="{\'fa-chevron-right\': !category.showSubcategories, \'fa-chevron-down\': category.showSubcategories}" ng-if="category.isParentCategory" ng-click="toggleShowSubcategories($event)"></i>' +
+					'{{::category.title}}' +
+				'</a>' +
+				'<sp-category-list-item-ucsb ng-if="category.showSubcategories" ng-repeat="subcategory in category.subcategories" category="subcategory" omit-badges="omitBadges" level="level + 1" />' +
+			'</div>'
+	return {
+		restrict: 'E',
+		scope: {
+			category: "=",
+			omitBadges: "=",
+			level: "=",
+			page: "=?"
+		},
+		replace: true,
+		template: template,
+		controller: function($scope) {
+			// We have to eventually stop indenting the categories.
+			// So, we're choosing to indent up to 3 times. Otherwise,
+			// there won't be enough room to show the category name.
+			$scope.indentCategory = ($scope.level > 0 && $scope.level < 4);
+			$scope.page = $scope.page || 'ucsb_sc_category';
+			$scope.toggleShowSubcategories = function(e) {
+				e.originalEvent.stopPropagation();
+				e.originalEvent.preventDefault();
+				$scope.$emit("$sp.sc_category.retrieve_subcategories", $scope.category);
+				$scope.category.showSubcategories = !$scope.category.showSubcategories;
+			}
+		}
+	}
+}]]></script>
+        <sys_class_name>sp_angular_provider</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-24 00:04:37</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>092052d00fe013003fd44cace1050e45</sys_id>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_name>spCategoryListItemUcsb</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_angular_provider_092052d00fe013003fd44cace1050e45</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-04-05 00:29:26</sys_updated_on>
+        <type>directive</type>
+    </sp_angular_provider>
+</record_update>
