@@ -13,7 +13,7 @@
         <order>0</order>
         <roles/>
         <sc_cat_item/>
-        <sc_category display_value="Messaging, Communication, and Collaboration">f790d1cb4f305740f74b495d0210c728</sc_category>
+        <sc_category display_value="Messaging, Communication, and Collaboration">fbf351c54f255300a2f02ae6f110c7b8</sc_category>
         <short_description>Messaging, Communication, and Collaboration services, including UCSB Connect services and Web Conferencing services.</short_description>
         <size>md</size>
         <sp_column display_value="2">51c93cb74fdd5300a2f02ae6f110c738</sp_column>
@@ -24,7 +24,7 @@
         <sys_created_on>2018-04-12 21:37:06</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>3faa74f74fdd5300a2f02ae6f110c73b</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Messaging, Communication, &amp; Collaboration</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
@@ -32,7 +32,7 @@
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_instance_link_3faa74f74fdd5300a2f02ae6f110c73b</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-12 21:47:11</sys_updated_on>
+        <sys_updated_on>2018-04-16 22:56:35</sys_updated_on>
         <title>Messaging, Communication, &amp; Collaboration</title>
         <type>sc_category</type>
         <url/>

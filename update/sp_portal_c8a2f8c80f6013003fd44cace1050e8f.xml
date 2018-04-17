@@ -42,7 +42,7 @@ $text-muted: #9CBEBE;
 		"field" : "background_image"
 	}
 }]]]></quick_start_config>
-        <sc_catalog display_value="HR">061a74624fec1f00a2f02ae6f110c794</sc_catalog>
+        <sc_catalog display_value="">061a74624fec1f00a2f02ae6f110c794</sc_catalog>
         <sc_catalog_page display_value="sc_home">fe87a11147132100ba13a5554ee490b9</sc_catalog_page>
         <sc_category_page/>
         <sp_chat_queue/>

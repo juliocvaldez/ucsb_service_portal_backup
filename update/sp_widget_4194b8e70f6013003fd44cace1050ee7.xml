@@ -6,7 +6,7 @@
 	var c = this;
 
 	//Initialize the filter for the record watcher
-	c.watchFilter = "workflow_state=published";
+	c.watchFilter = "workflow_state=published^topic=News";
 	spUtil.recordWatch($scope, "kb_knowledge", c.watchFilter, function(name, data) { 
 		c.data.action = "new_announcement";
 		c.server.update().then(function(response) {
@@ -537,7 +537,7 @@ a.notification:hover {
         <demo_data/>
         <description/>
         <docs/>
-        <field_list>u_background_color,u_text_color,u_more_text_color,u_information_glyph,u_outage_glyph</field_list>
+        <field_list/>
         <has_preview>true</has_preview>
         <id>ucsb-announcements-header-banner</id>
         <internal>false</internal>
@@ -568,11 +568,16 @@ a.notification:hover {
 
 	function getAnnouncements() {
 		data.showAnnouncements = true;
+		var now = new Date();
+		var year = now.getFullYear();
+		var month = (now.getMonth()+1).toString().length == 1 ? "0" + (now.getMonth() + 1) : (now.getMonth() + 1);
+		var day = now.getDate().toString().length == 1 ? "0" + now.getDate() : now.getDate();
+		var today = "" + year + "-" + month + "-" + day;
 
 		//Information Alert Handling
 		var grAnnouncement = new GlideRecord("kb_knowledge");
 		grAnnouncement.addActiveQuery();
-		grAnnouncement.addEncodedQuery("workflow_state=published^topic=News");
+		grAnnouncement.addEncodedQuery("workflow_state=published^topic=News^valid_to>=" + today);
 		grAnnouncement.orderByDesc("published");
 		grAnnouncement.query();
 
@@ -617,7 +622,7 @@ a.notification:hover {
         <sys_created_on>2018-03-05 19:44:51</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>4194b8e70f6013003fd44cace1050ee7</sys_id>
-        <sys_mod_count>36</sys_mod_count>
+        <sys_mod_count>44</sys_mod_count>
         <sys_name>UCSB Announcements for Header</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
@@ -625,7 +630,7 @@ a.notification:hover {
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_widget_4194b8e70f6013003fd44cace1050ee7</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-13 00:18:37</sys_updated_on>
+        <sys_updated_on>2018-04-17 00:00:59</sys_updated_on>
         <template><![CDATA[<div class="container-fluid announcement-container" ng-if="c.data.showAnnouncements && (c.data.informationAnnouncements.length > 0 || c.data.outages.length > 0)">
   <!-- Information -->
   <div ng-show="c.data.informationAnnouncements.length > 0 && c.data.showAnnouncements">
