@@ -23,14 +23,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-02-21 23:59:05</sys_created_on>
         <sys_id>44bb3f670f1013003fd44cace1050e00</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-13 23:04:56</sys_updated_on>
+        <sys_updated_on>2018-04-26 21:11:53</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <user_role/>
         <vendor/>
         <vendor_prefix/>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
     </sys_app>
 </record_update>

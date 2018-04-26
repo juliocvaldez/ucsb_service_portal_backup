@@ -11,23 +11,23 @@
         <roles/>
         <short_description/>
         <size>md</size>
-        <sp_column display_value="1">edd446014fe55300a2f02ae6f110c7e3</sp_column>
-        <sp_widget display_value="Approvals">f37aa302cb70020000f8d856634c9cfc</sp_widget>
+        <sp_column display_value="1">28f8f0b74fdd5300a2f02ae6f110c7c1</sp_column>
+        <sp_widget display_value="UCSB Approvals">8e7bf0904f79d700f74b495d0210c7ad</sp_widget>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>julio.valdez_admin</sys_created_by>
-        <sys_created_on>2018-04-17 00:12:40</sys_created_on>
+        <sys_created_on>2018-04-26 21:22:07</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>69a4ce014fe55300a2f02ae6f110c7c4</sys_id>
-        <sys_mod_count>1</sys_mod_count>
-        <sys_name/>
+        <sys_id>498df0144f79d700f74b495d0210c7b8</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>My Approvals 2</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
-        <sys_update_name>sp_instance_69a4ce014fe55300a2f02ae6f110c7c4</sys_update_name>
+        <sys_update_name>sp_instance_498df0144f79d700f74b495d0210c7b8</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-17 00:15:54</sys_updated_on>
-        <title/>
+        <sys_updated_on>2018-04-26 21:23:45</sys_updated_on>
+        <title>My Approvals 2</title>
         <url/>
         <widget_parameters><![CDATA[{
 	"portal": {
@@ -37,6 +37,10 @@
 	"max_number_of_elements_shown_on_the_list": {
 		"value": null,
 		"displayValue": ""
+	},
+	"always_show": {
+		"value": "true",
+		"displayValue": "true"
 	}
 }]]></widget_parameters>
     </sp_instance>
