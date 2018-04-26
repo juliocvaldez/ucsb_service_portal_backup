@@ -6,173 +6,281 @@
   var c = this;
 	
 	$scope.toggleShow = function(bool) {
-		$scope.showSubcategories = bool || !$scope.showSubcategories;
-	}
+		$scope.showSubcategories = bool;
+	};
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css>.iconlink a label,h2 {
-  display: block;
-  font-size: 2.5rem;
-  font-weight: 300;
-  line-height: 1.1;
-  padding: 0;
-  margin: 0 0 10px 0;
-}
-
-.list-group {
-  position: fixed;
-  z-index: 1000;
-
-}
-
-/* TOP ICON ---------- */
-
-a.top_icon {
-  display: block;
-  padding: 20px;
-  text-align: center;
-}
-
-a.top_icon .fa {
-  display: block;
-  text-align: center;
-}
-
-/* CIRCLE ICON ---------- */
-
-a.circle_icon {
-  display: block;
-  padding: 20px 0px 20px 70px;
-  position: relative;
-}
-
-a.circle_icon .fa {
-  position:absolute;
-  left: 0px;
-  top: 10px;
-}
-
-/* COLOR BOX ---------- */
-
-a.color_box {
-  display: block;
-  position: relative;
-  padding: 20px 20px 20px 82px;
-  border-radius: 4px;
-  /* margin-bottom: 20px; */
-}
-
-a.color_box .fa {
-  position:absolute;
-  left: 20px;
-  top: 20px;
-  width:42px;
-  text-align: center;
-}
-
-.icon-link-background-primary {
-  background-color: $brand-primary;
-}
-
-.icon-link-background-info {
-  background-color: $brand-info;
-}
-
-.icon-link-background-success {
-  background-color: $brand-success;
-}
-
-.icon-link-background-warning {
-  background-color: $brand-warning;
-}
-
-.icon-link-background-danger {
-  background-color: $brand-danger;
-}
-
-.icon-link-background-default {
-  background-color: $brand-primary;
-}
-
-.text-primary {
-  color: $brand-primary;
-
-  &amp;:hover {
-    color: darken($brand-primary, 20%);
-  }
-}
-
-.text-info {
-  color: $brand-info;
-
-  &amp;:hover {
-    color: darken($brand-info, 20%);
-  }
-}
-
-.text-success {
-  color: $brand-success;
-
-  &amp;:hover {
-    color: darken($brand-success, 20%);
-  }
-}
-
-.text-warning {
-  color: $brand-warning;
-
-  &amp;:hover {
-    color: darken($brand-warning, 20%);
-  }
-}
-
-.text-danger {
-  color: $brand-danger;
-
-  &amp;:hover {
-    color: darken($brand-danger, 20%);
-  }
-}
-
-.text-default {
-  color: $brand-primary;
-
-  &amp;:hover {
-    color: darken($brand-primary, 20%);
-  }
+        <css>.widget_container {&#13;
+  position: relative;&#13;
+  margin-bottom: 20px;&#13;
+  min-width: fit-content;&#13;
+}&#13;
+&#13;
+.category_container {&#13;
+  display: flex;&#13;
+  flex-direction: row;&#13;
+}&#13;
+&#13;
+.list-group {&#13;
+  position: absolute;&#13;
+  z-index: 1000;&#13;
+}&#13;
+&#13;
+a label,h2 {&#13;
+  font-size: 2.5rem;&#13;
+  font-weight: 300;&#13;
+  line-height: 1.1;&#13;
+  padding: 0;&#13;
+  margin: 0 0 10px 0;&#13;
+}&#13;
+&#13;
+&#13;
+&#13;
+/* TOP ICON ---------- */&#13;
+&#13;
+a.top_icon {&#13;
+  align-items: stretch;&#13;
+  border: 1px solid $body-bg;&#13;
+  border-top: 5px solid $body-bg;&#13;
+  flex-direction: column;&#13;
+  padding-bottom: 15px;&#13;
+  text-align: center;&#13;
+&#13;
+  h2 {&#13;
+    padding: 0 0 10px 0;&#13;
+    margin: 0;&#13;
+  }&#13;
+&#13;
+  .icon_container {&#13;
+    padding-top: 20px;&#13;
+  }&#13;
+&#13;
+  .title, .description {&#13;
+    padding: 0 20px 0 20px;&#13;
+  }&#13;
+}&#13;
+&#13;
+a.top_icon.flyout_down:hover {&#13;
+  border-top: 4px solid;&#13;
+  border-radius: 4px;&#13;
+&#13;
+  .title {&#13;
+    border: 1px solid;&#13;
+    border-top: 0;&#13;
+    border-bottom-left-radius: 4px;&#13;
+    border-bottom-right-radius: 4px;&#13;
+  }&#13;
+&#13;
+  .list-group {&#13;
+    width: 99.5%;&#13;
+  }&#13;
+&#13;
+  .icon_container {&#13;
+    border-right: 1px solid;&#13;
+    border-left: 1px solid;&#13;
+  }&#13;
+}&#13;
+&#13;
+a.top_icon.flyout_right:hover {&#13;
+  border-top: 4px solid;&#13;
+  border-radius: 4px;&#13;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);&#13;
+  transition: all 0.2s ease-in-out;&#13;
+&#13;
+  .list-group {&#13;
+    width: fit-content;&#13;
+    top: 0px;&#13;
+    left: 100.5%;&#13;
+    border-top: 4px solid;&#13;
+    border-radius: 4px;&#13;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);&#13;
+    transition: all 0.2s ease-in-out;&#13;
+  }&#13;
+&#13;
+  .list-group-item {&#13;
+    border-radius: unset;&#13;
+  }&#13;
+}&#13;
+&#13;
+&#13;
+&#13;
+/* CIRCLE ICON ---------- */&#13;
+&#13;
+a.circle_icon {&#13;
+  padding: 20px 0px 20px 0px;&#13;
+  border: 1px solid $body-bg;&#13;
+  border-top: 5px solid $body-bg;&#13;
+&#13;
+  .title_container {&#13;
+    margin-right: 10px;&#13;
+    width: 90%;&#13;
+  }&#13;
+&#13;
+  .icon_container {&#13;
+    width: 10%;&#13;
+    display: flex;&#13;
+    justify-content: center;&#13;
+    min-width: 50px;&#13;
+    margin: 0px 10px 0px 10px;&#13;
+  }&#13;
+&#13;
+  .flyout_down {&#13;
+    width: 99%;&#13;
+    top: 100.5%;&#13;
+    left: 0.5%;&#13;
+  }&#13;
+&#13;
+  .flyout_right {&#13;
+    width: fit-content;&#13;
+    top: 0px;&#13;
+    left: 100.5%;&#13;
+&#13;
+    .list-group-item {&#13;
+      border-radius: unset;&#13;
+    }&#13;
+  }&#13;
+}&#13;
+&#13;
+a.circle_icon:hover {&#13;
+  border-top: 5px solid;&#13;
+  border-radius: 4px;&#13;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);&#13;
+  transition: all 0.3s ease-in-out;&#13;
+&#13;
+  ul.flyout_down {&#13;
+    border-radius: 4px;&#13;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 0 6px 20px 0 rgba(0, 0, 0, 0.19);&#13;
+    transition: all 0.3s ease-in-out;&#13;
+  }&#13;
+&#13;
+  ul.flyout_right {&#13;
+    border-top: 5px solid;&#13;
+    border-radius: 4px;&#13;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 0 6px 20px 0 rgba(0, 0, 0, 0.19);&#13;
+    transition: all 0.3s ease-in-out;&#13;
+  }&#13;
+}&#13;
+&#13;
+&#13;
+&#13;
+/* CIRCLE ICON INVERSE---------- */&#13;
+&#13;
+a.circle_icon.inverse {&#13;
+  .flyout_right {&#13;
+    left: 99.5%;&#13;
+  }&#13;
+}&#13;
+&#13;
+a.circle_icon.inverse:hover {&#13;
+  background-color: #f5f5f5;&#13;
+  box-shadow: unset;&#13;
+&#13;
+  ul.flyout_down {&#13;
+    box-shadow: unset;&#13;
+    top: unset;&#13;
+    left: 1px;&#13;
+  }  &#13;
+&#13;
+  ul.flyout_right {&#13;
+    box-shadow: unset;&#13;
+  }&#13;
+}&#13;
+&#13;
+&#13;
+&#13;
+/* COLOR BOX ---------- */&#13;
+&#13;
+a.color_box {&#13;
+  padding: 20px 20px 20px 10px;&#13;
+  border-radius: 4px;&#13;
+&#13;
+  .title_container {&#13;
+    width: 90%;&#13;
+  }&#13;
+&#13;
+  .icon_container {&#13;
+    width: 10%;&#13;
+    display: flex;&#13;
+    justify-content: center;&#13;
+    min-width: 65px;&#13;
+  }&#13;
+&#13;
+  + .list-group-down {&#13;
+    position: absolute;&#13;
+    z-index: 1000;&#13;
+  }&#13;
+&#13;
+  + .list-group-right {&#13;
+    position: absolute;&#13;
+    z-index: 1000;&#13;
+    top: 0%;&#13;
+    left: 100%;&#13;
+  }&#13;
+}&#13;
+&#13;
+a.color_box:hover {&#13;
+  background-color: $brand-info;&#13;
+}&#13;
+&#13;
+&#13;
+&#13;
+/* THEME COLORS -------- */&#13;
+&#13;
+.icon-link-background-primary {&#13;
+  background-color: $brand-primary;&#13;
+}&#13;
+&#13;
+.icon-link-background-info {&#13;
+  background-color: $brand-info;&#13;
+}&#13;
+&#13;
+.icon-link-background-success {&#13;
+  background-color: $brand-success;&#13;
+}&#13;
+&#13;
+.icon-link-background-warning {&#13;
+  background-color: $brand-warning;&#13;
+}&#13;
+&#13;
+.icon-link-background-danger {&#13;
+  background-color: $brand-danger;&#13;
+}&#13;
+&#13;
+.icon-link-background-default {&#13;
+  background-color: $brand-primary;&#13;
 }</css>
         <data_table>sp_instance_link</data_table>
         <demo_data>{
 	"options": {
 		"title": "Technical Support Services",
-		"link_template": "Color Box",
+		"link_template": "Top Icon",
 		"short_description": "Technical Support Services, including assistance with desktops, laptops, printers, mobile and handheld devices.",
-		"category_ref": "cca015cb4f305740f74b495d0210c7f3",
+		"category_ref": "800491c54f255300a2f02ae6f110c740",
 		"glyph": "anchor",
 		"color": "default",
 		"class_name": "",
 		"sc_page": "ucsb_sc_category",
-		"sc_category": "54a055cb4f305740f74b495d0210c775"
+		"sc_category": "800491c54f255300a2f02ae6f110c740",
+		"flyout_direction": "down"
 	}
 }</demo_data>
         <description/>
         <docs/>
         <field_list>title,short_description,glyph,class_name,type,sc_category,url,kb_article,kb_topic,kb_category,sc_cat_item,sp_page,color</field_list>
         <has_preview>true</has_preview>
-        <id>ucsb_cat_icon_link</id>
+        <id>ucsb-cat-icon-link</id>
         <internal>false</internal>
         <link/>
         <name>UCSB Category Icon Link</name>
-        <option_schema>[{"name":"link_template","label":"Template","type":"choice","choices":[{"label":"Top Icon","value":"Top Icon"},{"label":"Circle Icon","value":"Circle Icon"},{"label":"Color Box","value":"Color Box"}]}]</option_schema>
+        <option_schema>[{"name":"link_template","label":"Template","type":"choice","choices":[{"label":"Top Icon","value":"Top Icon"},{"label":"Circle Icon","value":"Circle Icon"},{"label":"Circle Icon Inverse","value":"Circle Icon Inverse"},{"label":"Color Box","value":"Color Box"}]},{"hint":"","name":"flyout_direction","default_value":"","label":"Flyout direction","type":"choice","choices":[{"label":"down","value":"down"},{"label":"right","value":"right"}]}]</option_schema>
         <public>true</public>
         <roles/>
         <script><![CDATA[(function(){
 	var categoryID = data.id = options.sc_category;
 	var page = options.sc_page || 'ucsb_sc_category';
-	
+	options.inverse = options.link_template.includes('Inverse') ? 'inverse' : '';
 	data.title = options.title || options.sc_category_dv;
 	data.short_description = options.short_description;
-	data.fields = options;
 	data.href = '?id=' + page + '&sys_id=' + categoryID;
 	data.target = options.target || "";
 
@@ -189,12 +297,11 @@ a.color_box .fa {
 		subcategory.description = buildSubcatArr[subcat].description;
 		subcategory.sys_id = buildSubcatArr[subcat].sys_id;
 		subcategory.order = buildSubcatArr[subcat].order;
-		subcategory.page = 'ucsb_sc_category';
+		subcategory.page = page;
 
-		subcategories.push(subcategory)
+		subcategories.push(subcategory);
 
 	}
-
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
@@ -202,7 +309,7 @@ a.color_box .fa {
         <sys_created_on>2018-04-04 23:39:17</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>f3e940154f595380a2f02ae6f110c719</sys_id>
-        <sys_mod_count>182</sys_mod_count>
+        <sys_mod_count>225</sys_mod_count>
         <sys_name>UCSB Category Icon Link</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
@@ -210,59 +317,82 @@ a.color_box .fa {
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_widget_f3e940154f595380a2f02ae6f110c719</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-12 17:03:06</sys_updated_on>
-        <template><![CDATA[<div class="iconlink" ng-mouseenter="toggleShow(true)" ng-mouseleave="toggleShow(false)">
-  <!--// Top Icon -->
-  <a ng-if="::(options.link_template == 'Top Icon' || !options.link_template)" ng-href="{{::data.href}}" class="top_icon {{::options.class_name}}" target="{{::data.target}}">
-    <div class="m-b fa fa-{{::options.glyph}} fa-4x {{::options.class_name}} text-{{::options.color}}"></div>
-    <h2>{{::c.data.title}}</h2>
-      <div class="list-group no-radius alt" role="list">
+        <sys_updated_on>2018-04-26 00:37:02</sys_updated_on>
+        <template><![CDATA[<div class="widget_container" ng-mouseleave="toggleShow(false)">
+
+  <!--// TOP ICON -->
+  <a ng-if="::(options.link_template == 'Top Icon' || !options.link_template)" class="category_container top_icon flyout_{{::options.flyout_direction}} {{::options.class_name}}" ng-href="{{::data.href}}" target="{{::data.target}}">
+    <div class="icon_container" ng-mouseenter="toggleShow(true)">
+      <div class="m-b fa fa-{{::options.glyph}} fa-4x {{::options.class_name}} text-{{::options.color}}"></div>
+    </div>
+    <div class="title_container">
+      <div class="title"  ng-mouseenter="toggleShow(true)">
+        <h2>{{::c.data.title}}</h2>
+      </div>
+      <div class="top_icon list-group no-radius alt" role="list">
+        <sp-category-flyout-list-item-ucsb 
+          ng-repeat="subcat in data.subcategories"
+          ng-if="showSubcategories"                               
+          category="subcat"
+          page="options.sc_page"
+          level="1"
+        />
+      </div>
+      <div class="description text-muted">
+        <span>{{::c.data.short_description}}</span>
+      </div>
+    </div>
+  </a>
+
+  <!--// CIRCLE ICON -->
+  <a ng-if="::(options.link_template == 'Circle Icon' || options.link_template == 'Circle Icon Inverse')" ng-href="{{::data.href}}" class="category_container circle_icon {{::options.class_name}} {{::options.inverse}} text-{{::options.color}}" target="{{::data.target}}">
+    <div class="icon_container">
+      <span class="fa fa-stack fa-2x"  ng-mouseenter="toggleShow(true)">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-{{::options.glyph}} fa-stack-1x fa-inverse"></i>
+      </span>
+    </div>
+    <div class="title_container">
+      <div class="title"  ng-mouseenter="toggleShow(true)">
+        <h2>{{::c.data.title}}</h2>
+      </div>
+      <ul ng-if="showSubcategories" class="circle_icon list-group flyout_{{::options.flyout_direction}} no-radius alt" role="list">
+        <sp-category-flyout-list-item-ucsb 
+          ng-repeat="subcat in data.subcategories"                               
+          category="subcat"
+          page="options.sc_page"
+          level="1"
+        />
+      </ul>
+      <div class="description text-muted">
+        <span>{{::c.data.short_description}}</span>
+      </div>
+    </div>
+  </a>
+
+  <!--// COLOR BOX -->
+  <a ng-if="::(options.link_template == 'Color Box')" ng-href="{{::data.href}}" class="category_container color_box {{::options.class_name}} icon-link-background-{{::options.color}} text-white" target="{{::data.target}}"   ng-mouseenter="toggleShow(true)">
+    <div class="icon_container">
+      <div class="fa fa-{{::options.glyph}} fa-3x {{::options.class_name}}"></div>
+    </div>
+    <div class="title_container">
+      <div class="title">
+        <h2>{{::c.data.title}}</h2>
+      </div>
+      <div class="description">
+        <span>{{::c.data.short_description}}</span>
+      </div>
+    </div>
+  </a>
+  <div ng-if="::(options.link_template == 'Color Box')" class="color_box list-group-{{::options.flyout_direction}} no-radius alt" role="list" style="width:100%">
     <sp-category-flyout-list-item-ucsb 
       ng-repeat="subcat in data.subcategories"
-      ng-if="showSubcategories"
+      ng-if="showSubcategories"                               
       category="subcat"
       page="options.sc_page"
       level="1"
     />
   </div>
-    <span class="text-muted">{{::c.data.short_description}}</span>
-  </a>
-
-
-  <!--// Circle Icon -->
-  <a ng-if="::(options.link_template == 'Circle Icon')" ng-href="{{::data.href}}" class="circle_icon {{::options.class_name}} text-{{::options.color}}" target="{{::data.target}}">
-    <span class="fa fa-stack fa-2x">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-{{::options.glyph}} fa-stack-1x fa-inverse"></i>
-    </span>
-    <h2>{{::c.data.title}}</h2>
-      <div class="list-group no-radius alt" role="list">
-    <sp-category-flyout-list-item-ucsb 
-      ng-repeat="subcat in data.subcategories"
-      ng-if="showSubcategories"
-      category="subcat"
-      page="options.sc_page"
-      level="1"
-    />
-  </div>
-    <span class="text-muted">{{::c.data.short_description}}</span>
-  </a>
-
-  <!--// Color Box -->
-  <a ng-if="::(options.link_template == 'Color Box')" ng-href="{{::data.href}}" class="color_box {{::options.class_name}} icon-link-background-{{::options.color}} text-white" target="{{::data.target}}">
-    <div class="fa fa-{{::options.glyph}} fa-3x {{::options.class_name}}"></div>
-    <h2>{{::c.data.title}}</h2>
-      <div class="list-group no-radius alt" role="list">
-    <sp-category-flyout-list-item-ucsb 
-      ng-repeat="subcat in data.subcategories"
-      ng-if="showSubcategories"
-      category="subcat"
-      page="options.sc_page"
-      level="1"
-    />
-  </div>
-    <span>{{::c.data.short_description}}</span>
-  </a>
 
 </div>]]></template>
     </sp_widget>

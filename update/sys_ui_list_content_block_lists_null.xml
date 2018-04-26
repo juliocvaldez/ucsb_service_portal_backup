@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="content_block_lists" version="2" view="">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>name</element>
+            <list_id display_value="content_block_lists" element="NULL" name="content_block_lists" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">6e9a4cd20a0a0b1200e76885151be327</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>glide.maint</sys_created_by>
+            <sys_created_on>2008-11-05 21:41:25</sys_created_on>
+            <sys_id>6e9a4cf30a0a0b120089b558eab654eb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>glide.maint</sys_updated_by>
+            <sys_updated_on>2008-11-05 21:41:25</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>title</element>
+            <list_id display_value="content_block_lists" element="NULL" name="content_block_lists" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">6e9a4cd20a0a0b1200e76885151be327</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>glide.maint</sys_created_by>
+            <sys_created_on>2008-11-05 21:41:25</sys_created_on>
+            <sys_id>6e9a4d130a0a0b12000f6a965302549d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>glide.maint</sys_updated_by>
+            <sys_updated_on>2008-11-05 21:41:25</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>type</element>
+            <list_id display_value="content_block_lists" element="NULL" name="content_block_lists" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">6e9a4cd20a0a0b1200e76885151be327</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>glide.maint</sys_created_by>
+            <sys_created_on>2008-11-05 21:41:25</sys_created_on>
+            <sys_id>6e9a4d160a0a0b12001b2f04a42aeb93</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>glide.maint</sys_updated_by>
+            <sys_updated_on>2008-11-05 21:41:25</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>content_block_lists</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>julio.valdez_admin</sys_created_by>
+            <sys_created_on>2018-04-19 18:30:37</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_id>e82314c64f65d300f74b495d0210c7bf</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name/>
+            <sys_package/>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+            <sys_update_name/>
+            <sys_updated_by>julio.valdez_admin</sys_updated_by>
+            <sys_updated_on>2018-04-19 18:30:37</sys_updated_on>
+            <sys_user display_value="Julio Admin">0caa141d6f856e009fc877f16a3ee443</sys_user>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

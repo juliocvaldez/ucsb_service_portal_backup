@@ -30,7 +30,7 @@
         <internal>false</internal>
         <link/>
         <name>UCSB Announcements Ticker</name>
-        <option_schema>[{"name":"secondary_fields","label":"Secondary fields","type":"field_list"},{"hint":"kb_category","name":"category_field","label":"Category field","type":"string"},{"hint":"#EF5645","name":"alert_icon_color","label":"Alert icon color","type":"string"},{"hint":"#04859B","name":"info_icon_color","label":"Information icon color","type":"string"}]</option_schema>
+        <option_schema>[{"name":"secondary_fields","label":"Secondary fields","type":"field_list"},{"hint":"kb_category","name":"category_field","label":"Category field","type":"string"},{"hint":"#EF5645","name":"alert_icon_color","label":"Alert icon color","type":"string"},{"hint":"#04859B","name":"info_icon_color","label":"Information icon color","type":"string"},{"hint":"In seconds","name":"ticker_time_interval","label":"Ticker time interval","type":"string"}]</option_schema>
         <public>true</public>
         <roles/>
         <script><![CDATA[(function() {
@@ -41,7 +41,7 @@
 		return;
 
 	/* --Settings-- */
-	data.interval = 3500;
+	data.interval = options.ticker_time_interval * 1000 || 3500;
 	data.direction = 'up'; // 'up' or 'down'
 	data.line_height = 60;
 	data.num_lines = 3;
@@ -130,7 +130,7 @@ function getField(gr, name) {
         <sys_created_on>2018-02-27 19:53:31</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>6d0df1290f6013003fd44cace1050e78</sys_id>
-        <sys_mod_count>274</sys_mod_count>
+        <sys_mod_count>279</sys_mod_count>
         <sys_name>UCSB Announcements Ticker</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
@@ -138,7 +138,7 @@ function getField(gr, name) {
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_widget_6d0df1290f6013003fd44cace1050e78</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-07 00:26:39</sys_updated_on>
+        <sys_updated_on>2018-04-17 19:13:51</sys_updated_on>
         <template><![CDATA[<div ng-if="data.list.length > 0">
   <div class="panel panel-{{options.color}}">
     <div class="panel-heading">
@@ -182,10 +182,7 @@ function getField(gr, name) {
       overflow-y: hidden
     }
     [sp-ticker] a {
-      height: {{data.line_height}}px;
-      overflow: hidden;
       transition: opacity 0.5s ease, margin 0.5s ease;
-      white-space: nowrap;
     }
     [sp-ticker] a.fade-out {
       opacity: 0;

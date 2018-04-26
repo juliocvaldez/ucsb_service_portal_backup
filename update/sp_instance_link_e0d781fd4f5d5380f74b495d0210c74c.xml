@@ -24,7 +24,7 @@
         <sys_created_on>2018-04-06 17:26:38</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>e0d781fd4f5d5380f74b495d0210c74c</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Messaging, Communication, &amp; Collaboration</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
@@ -32,14 +32,18 @@
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_instance_link_e0d781fd4f5d5380f74b495d0210c74c</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-16 22:46:59</sys_updated_on>
+        <sys_updated_on>2018-04-26 17:19:46</sys_updated_on>
         <title>Messaging, Communication, &amp; Collaboration</title>
         <type>sc_category</type>
         <url/>
         <widget_parameters><![CDATA[{
 	"link_template": {
-		"value": "Circle Icon",
-		"displayValue": "Circle Icon"
+		"value": "Top Icon",
+		"displayValue": "Top Icon"
+	},
+	"flyout_direction": {
+		"value": "right",
+		"displayValue": "right"
 	}
 }]]></widget_parameters>
     </sp_instance_link>

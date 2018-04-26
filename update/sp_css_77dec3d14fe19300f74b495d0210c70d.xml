@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_css">
+    <sp_css action="INSERT_OR_UPDATE">
+        <css>body {&#13;
+   font-family: 'Nunito Sans', sans-serif;&#13;
+}</css>
+        <name>ucsbNunitoSansFont</name>
+        <sys_class_name>sp_css</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-04-18 00:15:25</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>77dec3d14fe19300f74b495d0210c70d</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>ucsbNunitoSansFont</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_css_77dec3d14fe19300f74b495d0210c70d</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-04-18 00:31:10</sys_updated_on>
+    </sp_css>
+</record_update>

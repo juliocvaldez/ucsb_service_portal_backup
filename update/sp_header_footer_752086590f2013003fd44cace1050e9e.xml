@@ -2,6 +2,8 @@
 <record_update table="sp_header_footer">
     <sp_header_footer action="INSERT_OR_UPDATE">
         <client_script><![CDATA[function ($rootScope, $scope, snRecordWatcher, spUtil, $location, $uibModal, cabrillo, $timeout) {
+	
+	
 	$scope.userID = $scope.user.sys_id;
 	if (cabrillo.isNative())
 		$scope.isViewNative = true;
@@ -59,6 +61,10 @@
 .navbar-brand {
   height: 50px;
   padding: 0;
+}
+
+.navbar-sc-title {
+  max-width: fit-content !important;
 }
 
 .navbar-brand img, .navbar-brand span {
@@ -135,6 +141,7 @@ nav{
         <public>true</public>
         <roles/>
         <script><![CDATA[// Defines the support queue ID that will be linked to by the Live Chat link in header
+data.sc_title = $sp.getDisplayValue('sc_catalog');
 data.connect_support_queue_id = $sp.getValue('sp_chat_queue'); // portal's Chat Queue value
 data.login_page = $sp.getValue('login_page');	// portal's Login Page value
 var menu = $sp.getValue("sp_rectangle_menu"); // portal's Main Menu value
@@ -163,7 +170,7 @@ data.announcementWidget = $sp.getWidget("ucsb-announcements-header-banner");
         <sys_created_on>2018-02-27 01:28:42</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>752086590f2013003fd44cace1050e9e</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>36</sys_mod_count>
         <sys_name>UCSB Header w/ Announcement</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
@@ -171,10 +178,11 @@ data.announcementWidget = $sp.getWidget("ucsb-announcements-header-banner");
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_header_footer_752086590f2013003fd44cace1050e9e</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-12 23:51:32</sys_updated_on>
-        <template><![CDATA[<div class="announcement"> 
+        <sys_updated_on>2018-04-25 21:32:09</sys_updated_on>
+        <template><![CDATA[<!-- // Disabled the announcement banner
+<div class="announcement"> 
   <sp-widget widget="c.data.announcementWidget"></sp-widget>
-</div>
+</div> -->
 
 <div>
   <nav class="navbar-inverse" ng-class="::{'navbar':!isViewNative, 'is-native': isViewNative}"
@@ -183,7 +191,11 @@ data.announcementWidget = $sp.getWidget("ucsb-announcements-header-banner");
       <a class="navbar-brand" ng-if="::!portal.logo" href="?id={{::portal.homepage_dv}}"><span>{{::portal.title}}</span></a>
       <a class="navbar-brand navbar-brand-logo" ng-if="::portal.logo" href="?id={{::portal.homepage_dv}}">
         <img ng-src="{{::portal.logo}}" />
+        
       </a>
+      <div class="navbar-brand">
+        <span class="navbar-sc-title">{{::c.data.sc_title}}</span>
+      </div>
 
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sp-nav-bar">
         <span class="sr-only">${Toggle navigation}</span>
@@ -201,11 +213,14 @@ data.announcementWidget = $sp.getWidget("ucsb-announcements-header-banner");
       </ul>
       <ul ng-if="::user.logged_in" class="nav navbar-nav">
         <!-- chat, avatar, and logout -->
-        <li ng-if="::data.connect_support_queue_id"><a href ng-click="openPopUp()">${Live Chat}</a></li>
-        <!-- Announcement Picker -->
+        <li ng-if="::data.connect_support_queue_id"><a href ng-click="openPopUp()"><i class="fa fa-weixin" aria-hidden="true"></i>${ Chat}</a></li>
+        
+        <!--// Announcement Picker
         <li class="embedded-list-menu">
           <sp-widget ng-if="::c.data.announcementPicker" widget="c.data.announcementPicker"></sp-widget>
         </li>
+				--> 
+        
         <li class="dropdown hidden-xs">
           <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
             <span class="navbar-avatar"><sn-avatar class="avatar-small-medium" primary="userID" /></span>

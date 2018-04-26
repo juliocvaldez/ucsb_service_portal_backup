@@ -5,13 +5,13 @@
 $body-bg: #f5f5f5;
 $state-success-text: #0BA89A;
 $sp-homepage-bg: #f5f5f5;
-$sp-navbar-divider-color: #0BA89A;
+$sp-navbar-divider-color: #04859B;
 $text-color: #4d4e4e;
 $sp-logo-margin-y: .5rem;
 $navbar-inverse-link-hover-color: #FEBC11;
 $panel-bg: #fff;
 $brand-success: #0BA89A;
-$navbar-inverse-bg: #0BA89A;
+$navbar-inverse-bg: #04859B;
 $brand-warning: #FEBC11;
 $brand-danger: #EF5645;
 $sp-tagline-color: #fff;
@@ -42,7 +42,7 @@ $text-muted: #04859B;
 		"field" : "background_image"
 	}
 }]]]></quick_start_config>
-        <sc_catalog display_value="Information Technology Services">838f05054f255300a2f02ae6f110c7c4</sc_catalog>
+        <sc_catalog display_value="ETS Service Catalog">528201e56f198600ec1523eabb3ee421</sc_catalog>
         <sc_catalog_page display_value="it_sc_home">1599b5b04f1d1380a2f02ae6f110c7e1</sc_catalog_page>
         <sc_category_page/>
         <sp_chat_queue display_value="Service Desk Chat">c54f0abf0a0a0b452db84664f409c79c</sp_chat_queue>
@@ -53,7 +53,7 @@ $text-muted: #04859B;
         <sys_created_on>2018-02-23 20:51:28</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>97e36d5c0f6013003fd44cace1050e37</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>UCSB BFS</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
@@ -61,7 +61,7 @@ $text-muted: #04859B;
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_portal_97e36d5c0f6013003fd44cace1050e37</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-16 22:56:11</sys_updated_on>
+        <sys_updated_on>2018-04-26 00:38:23</sys_updated_on>
         <theme display_value="ucsb_bfs">f074219c0f6013003fd44cace1050e2b</theme>
         <title>UCSB BFS</title>
         <url_suffix>bfs</url_suffix>

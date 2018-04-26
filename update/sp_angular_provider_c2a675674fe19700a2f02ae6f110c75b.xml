@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_angular_provider">
+    <sp_angular_provider action="INSERT_OR_UPDATE">
+        <name>ucsbSubCatItem</name>
+        <script><![CDATA[function ucsbSubCatItem() {
+	var template = 
+			'<li ng-repeat="subcat in subcategories">' + 
+				'<a ng-mouseover="action(subcat)" ng-class="{active: subcat.title == active}">' +
+					'{{subcat.title}}' + 
+					//'<span ng-show="subcat.children">&gt;</span>' +
+					//'<ul ng-show="subcat.children">' +
+					//'</ul>' + 
+				'</a>' +
+			'</li>';
+	
+	return {
+		restrict: 'E',
+		scope: {
+			subcategories: "=",
+			page: "=?"
+		},
+		replace: true,
+		template: template
+	};
+}]]></script>
+        <sys_class_name>sp_angular_provider</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-04-24 17:55:49</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>c2a675674fe19700a2f02ae6f110c75b</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>ucsbSubCatItem</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_angular_provider_c2a675674fe19700a2f02ae6f110c75b</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-04-24 20:39:29</sys_updated_on>
+        <type>directive</type>
+    </sp_angular_provider>
+</record_update>

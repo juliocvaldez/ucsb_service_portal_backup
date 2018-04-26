@@ -2,7 +2,9 @@
 <record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <client_script><![CDATA[function ($scope, spUtil, $rootScope, $location, $timeout) {
-	console.log('JCV: test is .....', $scope.data.test);
+	$scope.toggleLegend = function() {
+		$scope.showLegend = !$scope.showLegend;
+	}
 	
 	var bc = [{label: $scope.page.title, url: '?id=' + $scope.data.sc_catalog_page}];
 	if ($scope.data.category)
@@ -55,7 +57,21 @@
 	/*=============== End link handling ===============*/
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css/>
+        <css>.legend-toggle {
+  cursor: pointer;
+}
+
+.title {
+  display: unset;
+}
+
+.title-container {
+  margin-bottom: 10px;
+}
+
+.legend {
+  margin-top: 10px;
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -172,7 +188,7 @@
         <sys_created_on>2018-04-03 16:13:52</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>916a99b84f991380a2f02ae6f110c776</sys_id>
-        <sys_mod_count>76</sys_mod_count>
+        <sys_mod_count>112</sys_mod_count>
         <sys_name>UCSB SC Category Page</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
@@ -180,25 +196,36 @@
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_widget_916a99b84f991380a2f02ae6f110c776</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-12 17:42:38</sys_updated_on>
+        <sys_updated_on>2018-04-19 01:16:03</sys_updated_on>
         <template><![CDATA[<div>
   <h4 ng-if="data.error">{{data.error}}</h4>
   <div ng-init="spSearch.targetCatalog()">
-    <h1 class="h4 m-t-none" aria-label="{{data.category}} ${Category}">{{data.category}}</h1>
+
+    <div class="row title-container">
+      <h1 class="h4 m-t-none title" aria-label="{{data.category}} ${Category}">{{data.category}}</h1>
+      <a ng-if="data.subcategories.length || data.items.length" class="text-muted pull-right legend-toggle" ng-click="toggleLegend()">
+        {{showLegend? "Hide" : "Show"}} legend
+      </a>
+      <br />
+      <div ng-if="showLegend" class="text-muted pull-right legend">
+        <i class="fa fa-fw text-warning" ng-class="'fa-folder'" />&nbsp;labeled items are subcategories&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-fw" ng-class="'fa-file-text'" />&nbsp;labeled items are catalog items
+      </div>
+    </div>
+
     <div class="row">
-      
       <!-- CASE: No subcategories or items found -->
       <div class="col-sm-6 col-md-4" ng-if="!data.subcategories.length && !data.items.length && !data.error">
         ${No items in category}
       </div>
-      
+
       <!-- CASE: Subcategories exist -->
       <div class="col-sm-6 col-md-4" ng-if="data.subcategories.length" ng-repeat="subcategory in data.subcategories | orderBy: 'order' track by subcategory.sys_id">
         <div class="panel panel-{{::options.color}} b">
           <a target="{{::subcategory.target}}" ng-href="{{::getItemHREF(subcategory)}}" ng-click="onClick($event, subcategory)" class="panel-body block">
             <div class="overflow-100">
               <h2 class="h4 m-t-none m-b-xs">
-                <i class="fa fa-fw text-muted" ng-class="'fa-folder'" />    {{::subcategory.title}}<span ng-if="subcategory.content_type == 'external'" aria-label="${External Link}"> ➚</span>
+                <i class="fa fa-fw text-warning" ng-class="'fa-folder'" />    {{::subcategory.title}}<span ng-if="subcategory.content_type == 'external'" aria-label="${External Link}"> ➚</span>
               </h2>
               <img ng-src="{{::subcategory.picture}}" ng-if="subcategory.picture" alt="{{::subcategory.title}}" class="m-r-sm m-b-sm item-image pull-left" />
               <div class="text-muted item-short-desc">{{::subcategory.description}}</div>
@@ -211,14 +238,14 @@
           </div>
         </div>
       </div>
-      
+
       <!-- CASE: Items exist -->
       <div class="col-sm-6 col-md-4" ng-if="data.items.length" ng-repeat="item in data.items | orderBy: 'order' track by item.sys_id">
         <div class="panel panel-{{::options.color}} b">
           <a target="{{::item.target}}" ng-href="{{::getItemHREF(item)}}" ng-click="onClick($event, item)" class="panel-body block">
             <div class="overflow-100">
               <h2 class="h4 m-t-none m-b-xs">
-                <i class="fa fa-fw" ng-class="'fa-file-text'" />    {{::item.name}}<span ng-if="item.content_type == 'external'" aria-label="${External Link}"> ➚</span>
+                <i class="fa fa-fw text-muted" ng-class="'fa-file-text'" />    {{::item.name}}<span ng-if="item.content_type == 'external'" aria-label="${External Link}"> ➚</span>
               </h2>
               <img ng-src="{{::item.picture}}" ng-if="item.picture" alt="{{::item.name}}" class="m-r-sm m-b-sm item-image pull-left" />
               <div class="text-muted item-short-desc">{{::item.description}}</div>
@@ -233,8 +260,8 @@
           </div>
         </div>
       </div>
-    
     </div>
+
   </div>
 </div>]]></template>
     </sp_widget>

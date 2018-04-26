@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>0</order>
+        <roles/>
+        <short_description/>
+        <size>lg</size>
+        <sp_column display_value="1">989c33ed4f2d9300f74b495d0210c71c</sp_column>
+        <sp_widget display_value="HTML">8679ef89cb21120000f8d856634c9c4f</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-04-18 22:13:42</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>7a9cbbad4f2d9300f74b495d0210c751</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_instance_7a9cbbad4f2d9300f74b495d0210c751</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-04-26 00:09:25</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"html": {
+		"value": "<div style=\"height: 140px; align-items: center; justify-content: center; display: flex;\">\n<h1 style=\"font-size: 4rem; text-align: center; color: white;\">Information Technology Services</h1>\n</div>",
+		"displayValue": "<div style=\"height: 140px; align-items: center; justify-content: center; display: flex;\">\n<h1 style=\"font-size: 4rem; text-align: center; color: white;\">Information Technology Services</h1>\n</div>"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+</record_update>

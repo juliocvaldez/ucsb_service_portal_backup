@@ -10,7 +10,7 @@ $body-bg: 				#f0f3f4 !default;&#13;
 $dropdown-link-disabled-color: #ccc;&#13;
 $primary-color: #fff;</css_variables>
         <footer display_value="Sample Footer">feb4f763df121200ba13a4836bf26320</footer>
-        <footer_fixed>false</footer_fixed>
+        <footer_fixed>true</footer_fixed>
         <header display_value="UCSB Header w/ Announcement">752086590f2013003fd44cace1050e9e</header>
         <name>ucsb_bfs</name>
         <navbar_fixed>true</navbar_fixed>
@@ -19,7 +19,7 @@ $primary-color: #fff;</css_variables>
         <sys_created_on>2018-02-23 20:53:44</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>f074219c0f6013003fd44cace1050e2b</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>ucsb_bfs</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
@@ -27,6 +27,6 @@ $primary-color: #fff;</css_variables>
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_theme_f074219c0f6013003fd44cace1050e2b</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-16 22:50:18</sys_updated_on>
+        <sys_updated_on>2018-04-17 22:43:25</sys_updated_on>
     </sp_theme>
 </record_update>

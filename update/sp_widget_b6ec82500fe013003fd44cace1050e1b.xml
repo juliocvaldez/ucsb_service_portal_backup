@@ -2,7 +2,7 @@
 <record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <client_script><![CDATA[function($scope, $http, $timeout) {
-	$scope.expandedCategory = ($scope.expandedCategory ? $scope.expandedCategory : null);
+	console.log($scope.options.page)
 
 	var getCatalogCategories = "/api/sn_sc/servicecatalog/catalogs/" + $scope.data.sc_catalog + "/categories?sysparm_top_level_only=" + ($scope.options.category_layout === "Nested") + "&sysparm_check_item_can_view=" + $scope.options.check_can_view + "&sysparm_limit=-1&sysparm_dynamic_category=false";
 	$http({method: 'GET', url: getCatalogCategories}).
@@ -15,9 +15,6 @@
 			categories : $scope.data.categories
 		}).then(function(response) {
 			$scope.data.categories = response.data.categories;
-			$scope.expandedCategory = $scope.data.categories.find(function(element) {
-				return element.showSubcategories == true;
-			});
 		});
 
 	}, function(response) {
@@ -27,9 +24,6 @@
 	$scope.$on("$sp.sc_category.retrieve_subcategories", function(evt, category) {
 		var specificCategoryDetails = "/api/sn_sc/servicecatalog/categories/" + category.sys_id + "?sysparm_check_item_can_view=" + $scope.options.check_can_view;
 
-		if ($scope.expandedCategory && $scope.expandedCategory.sys_id != category.sys_id)
-			$scope.expandedCategory.showSubcategories = !$scope.expandedCategory.showSubcategories;
-
 		if (!category.subcategories || !category.subcategories[0].count) {
 			$http({method: 'GET', url: specificCategoryDetails}).
 			then(function(response) {
@@ -38,8 +32,6 @@
 				console.log(response.data.error.message);
 			});
 		}
-
-		$scope.expandedCategory = category;
 
 	});
 }]]></client_script>
@@ -210,7 +202,7 @@ function buildSubcategoryArr(parentID) {
         <sys_created_on>2018-02-23 23:50:34</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>b6ec82500fe013003fd44cace1050e1b</sys_id>
-        <sys_mod_count>90</sys_mod_count>
+        <sys_mod_count>91</sys_mod_count>
         <sys_name>UCSB SC Categories</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
@@ -218,7 +210,7 @@ function buildSubcategoryArr(parentID) {
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_widget_b6ec82500fe013003fd44cace1050e1b</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-05 22:57:26</sys_updated_on>
+        <sys_updated_on>2018-04-19 00:06:08</sys_updated_on>
         <template><![CDATA[<div ng-class="::{'hidden-xs' : options.hide_xs}" class="panel panel-{{::options.color}} b">
   <div class="panel-heading">
     <h1 class="h4 panel-title">

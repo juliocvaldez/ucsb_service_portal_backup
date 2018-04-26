@@ -18,21 +18,21 @@
         <sys_created_on>2018-02-23 20:52:59</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>7d44215c0f6013003fd44cace1050ef1</sys_id>
-        <sys_mod_count>6</sys_mod_count>
-        <sys_name>Business and Financial Services</sys_name>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>Information Technology Services</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_instance_7d44215c0f6013003fd44cace1050ef1</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-12 21:59:02</sys_updated_on>
-        <title>Business and Financial Services</title>
+        <sys_updated_on>2018-04-18 22:53:13</sys_updated_on>
+        <title>Information Technology Services</title>
         <url/>
         <widget_parameters><![CDATA[{
 	"typeahead_search": {
-		"value": "",
-		"displayValue": ""
+		"value": "{ title: 'How can we help?'; size: 'md' }",
+		"displayValue": "{ title: 'How can we help?'; size: 'md' }"
 	}
 }]]></widget_parameters>
     </sp_instance>

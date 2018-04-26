@@ -28,510 +28,513 @@
 	};
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css>/* Announcement Header */
-
-.announcement-container {
-  font-family: "Open Sans", Arial, sans-serif;
-
-  h3 {
-    padding-top:0px;
-    margin-top:5px;
-    margin-bottom:0;
-    font-size:18px;
-    line-height:27px;
-
-  }
-  p {
-    font-size:1em;
-    line-height:13px;
-  }
-  .panel {
-    border-radius:0;
-    margin-bottom:0;
-  }
-  .panel-body {
-    padding:2px;
-  }
-  small {
-    font-size:100%;
-  }
-}
-
-.announcement-container {
-  padding:0 0 0 0;
-}
-
-.announcement-info {
-  background-color: $brand-info;
-  color: #fff;
-
-  h3 {
-    color:$primary-color;
-    font-weight:bold;
-  }
-  .announcement-category {
-    border:0px solid $primary-color;
-  }
-  .information-icon {
-    color:$primary-color;
-  }
-  small {
-    color:$primary-color;
-  }
-  p {
-    color:$primary-color;
-  }
-  .btn {
-    background-color:$brand-primary;
-    color:#fff;
-    border:0;
-    &amp;:hover {
-      border:1px solid #eee;
-      color:#eee;
-    }
-  }
-}
-
-.announcement-warning {
-  $primary-color: #555;
-  background-color: $brand-warning;
-  color: #fff;
-  h3 {
-    color:$primary-color;
-    font-weight:bold;
-  }
-  .announcement-category {
-    border:0px solid $primary-color;
-  }
-  .information-icon {
-    color:$primary-color;
-  }
-  small {
-    color:$primary-color;
-  }
-  p {
-    color:$primary-color;
-  }
-  .btn {
-    background-color:$brand-primary;
-    color:#fff;
-    border:0;
-    &amp;:hover {
-      border:1px solid #eee;
-      color:#eee;
-    }
-  }
-}
-
-.announcement-danger {
-  $primary-color: #dee5e7;
-  background-color: $brand-danger;
-  color: #fff;
-  h3 {
-    color: #fff;
-    font-weight:bold;
-  }
-  .announcement-category {
-    border:0px solid $primary-color;
-  }
-  .information-icon {
-    color: #fff;
-  }
-  small {
-    color: #fff;
-  }
-  p {
-    color: #fff;
-  }
-  .btn {
-    background-color:$brand-primary;
-    color:#fff;
-    border:0;
-    &amp;:hover {
-      border:1px solid #eee;
-      color:#eee;
-    }
-  }
-}
-
-.announcement-success {
-  $primary-color: #fff;
-  background-color: $brand-success;
-  color: #fff;
-
-  h3 {
-    color:$primary-color;
-    font-weight:bold;
-  }
-  .announcement-category {
-    border:0px solid $primary-color;
-  }
-  .information-icon {
-    color:$primary-color;
-  }
-  small {
-    color:$primary-color;
-  }
-  p {
-    color:$primary-color;
-  }
-  .btn {
-    background-color:$brand-primary;
-    color:#fff;
-    border:0;
-    &amp;:hover {
-      border:1px solid #eee;
-      color:#eee;
-    }
-  }
-}
-
-.announcement-category {
-  font-size: 1.3em;
-  font-weight: 100;
-  padding:1%;
-  text-align:left;
-}
-
-.announcement-published {
-  font-size:12px;
-  font-weight:normal;
-  vertical-align:bottom;
-  margin-top:3px;
-}
-
-.announcement-text {
-  padding-left:40px;
-}
-
-.announcement-button {
-  padding-left: 25px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-}
-
-.close {
-  opacity: inherit;
-  color: #fff;
-  padding-top:8px;
-  padding-bottom:4px;
-  padding-left:10px;
-  font-size:1em;
-  font-weight:100;
-  &amp;:hover {
-    border-bottom:2px solid #fff;
-  }
-}
-
-@media (max-width: 768px) {
-  .cta {
-    padding-bottom:10px;
-  }
-  .information-icon, .announcement-published {
-    padding-left:4px;
-  }
-  .announcement-category {
-    padding-left:12px;
-  }
-  .announcement-text {
-    padding-left:15px;
-  }
-}
-
-.cta .dismiss {
-  margin-top:5%;
-}
-
-.close i {
-  font-size:1.3em;
-  font-weight:normal;
-}
-
-.information-icon {
-  line-height:1em;
-}
-
-
-/*!
-* bootstrap-notifications v0.9.0 (https://skywalkapps.github.io/bootstrap-notifications)
-* Copyright 2016 Martin Staněk
-* Licensed under MIT
-*/
-.dropdown-container {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  display: none;
-  float: left;
-  min-width: 200px;
-  max-width: 330px;
-  margin: 2px 0 0;
-  list-style: none;
-  font-size: 14px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  background-clip: padding-box;
-}
-.dropdown-container &gt; .dropdown-menu {
-  position: static;
-  z-index: 1000;
-  float: none!important;
-  padding: 10px 0;
-  margin: 0;
-  border: 0;
-  background: transparent;
-  border-radius: 0;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  max-height: 330px;
-  overflow-y: auto;
-}
-.dropdown-container &gt; .dropdown-menu + .dropdown-menu {
-  padding-top: 0;
-}
-.dropdown-menu &gt; li &gt; a {
-  overflow: hidden;
-  white-space: nowrap;
-  word-wrap: normal;
-  text-decoration: none;
-  text-overflow: ellipsis;
-  -o-text-overflow: ellipsis;
-  -webkit-transition: none;
-  -o-transition: none;
-  transition: none;
-}
-.dropdown-toggle {
-  cursor: pointer;
-}
-.dropdown-header {
-  white-space: nowrap;
-}
-.open &gt; .dropdown-container &gt; .dropdown-menu,
-.open &gt; .dropdown-container {
-  display: block;
-}
-.dropdown-toolbar {
-  padding-top: 6px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 5px;
-  background-color: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 4px 4px 0 0;
-}
-.dropdown-toolbar &gt; .form-group {
-  margin: 5px -10px;
-}
-.dropdown-toolbar .dropdown-toolbar-actions {
-  float: right;
-}
-.dropdown-toolbar .dropdown-toolbar-title {
-  margin: 0;
-  font-size: 14px;
-}
-.dropdown-footer {
-  padding: 5px 20px;
-  border-top: 1px solid #ccc;
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0 0 4px 4px;
-}
-.anchor-block small {
-  display: none;
-}
-@media (min-width: 992px) {
-  .anchor-block small {
-    display: block;
-    font-weight: normal;
-    color: #777777;
-  }
-  .dropdown-menu &gt; li &gt; a.anchor-block {
-    padding-top: 6px;
-    padding-bottom: 6px;
-  }
-}
-@media (min-width: 992px) {
-  .dropdown.hoverable:hover &gt; ul {
-    display: block;
-  }
-}
-.dropdown-position-topright {
-  top: auto;
-  right: 0;
-  bottom: 100%;
-  left: auto;
-  margin-bottom: 2px;
-}
-.dropdown-position-topleft {
-  top: auto;
-  right: auto;
-  bottom: 100%;
-  left: 0;
-  margin-bottom: 2px;
-}
-.dropdown-position-bottomright {
-  right: 0;
-  left: auto;
-}
-.dropmenu-item-label {
-  white-space: nowrap;
-}
-.dropmenu-item-content {
-  position: absolute;
-  text-align: right;
-  max-width: 60px;
-  right: 20px;
-  color: #777777;
-  overflow: hidden;
-  white-space: nowrap;
-  word-wrap: normal;
-  -o-text-overflow: ellipsis;
-  text-overflow: ellipsis;
-}
-small.dropmenu-item-content {
-  line-height: 20px;
-}
-.dropdown-menu &gt; li &gt; a.dropmenu-item {
-  position: relative;
-  padding-right: 66px;
-}
-.dropdown-submenu .dropmenu-item-content {
-  right: 40px;
-}
-.dropdown-menu &gt; li.dropdown-submenu &gt; a.dropmenu-item {
-  padding-right: 86px;
-}
-.dropdown-inverse .dropdown-menu {
-  background-color: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.9);
-}
-.dropdown-inverse .dropdown-menu .divider {
-  height: 1px;
-  margin: 9px 0;
-  overflow: hidden;
-  background-color: #2b2b2b;
-}
-.dropdown-inverse .dropdown-menu &gt; li &gt; a {
-  color: #cccccc;
-}
-.dropdown-inverse .dropdown-menu &gt; li &gt; a:hover,
-.dropdown-inverse .dropdown-menu &gt; li &gt; a:focus {
-  color: #fff;
-  background-color: #262626;
-}
-.dropdown-inverse .dropdown-menu &gt; .active &gt; a,
-.dropdown-inverse .dropdown-menu &gt; .active &gt; a:hover,
-.dropdown-inverse .dropdown-menu &gt; .active &gt; a:focus {
-  color: #fff;
-  background-color: #337ab7;
-}
-.dropdown-inverse .dropdown-menu &gt; .disabled &gt; a,
-.dropdown-inverse .dropdown-menu &gt; .disabled &gt; a:hover,
-.dropdown-inverse .dropdown-menu &gt; .disabled &gt; a:focus {
-  color: #777777;
-}
-.dropdown-inverse .dropdown-header {
-  color: #777777;
-}
-.table &gt; thead &gt; tr &gt; th.col-actions {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-.table &gt; thead &gt; tr &gt; th.col-actions .dropdown-toggle {
-  color: #777777;
-}
-.notifications {
-  list-style: none;
-  padding: 0;
-}
-.notification {
-  display: block;
-  padding: 9.6px 12px;
-  border-bottom: 1px solid #eeeeee;
-  color: #333333;
-  text-decoration: none;
-}
-.notification:last-child {
-  border-bottom: 0;
-}
-
-.notification-title {
-  font-size: 15px;
-  margin-bottom: 0;
-}
-.notification-desc {
-  margin-bottom: 0;
-}
-.notification-meta {
-  color: #777777;
-}
-a.notification:hover {
-  text-decoration: none;
-}
-.dropdown-notifications &gt; .dropdown-container,
-.dropdown-notifications &gt; .dropdown-menu {
-  width: 450px;
-  max-width: 450px;
-}
-.dropdown-notifications .dropdown-menu {
-  padding: 0;
-}
-.dropdown-notifications .dropdown-toolbar,
-.dropdown-notifications .dropdown-footer {
-  padding: 9.6px 12px;
-}
-.dropdown-notifications .dropdown-toolbar {
-  background: #fff;
-}
-.dropdown-notifications .dropdown-footer {
-  background: #eeeeee;
-}
-.notification-icon {
-  margin-right: 6.8775px;
-}
-.notification-icon:after {
-  position: absolute;
-  content: attr(data-count);
-  margin-left: -6.8775px;
-  margin-top: -6.8775px;
-  padding: 0 4px;
-  min-width: 13.755px;
-  height: 13.755px;
-  line-height: 13.755px;
-  background: red;
-  border-radius: 10px;
-  color: #fff;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 11.004px;
-  font-weight: 600;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.btn-lg .notification-icon:after {
-  margin-left: -8.253px;
-  margin-top: -8.253px;
-  min-width: 16.506px;
-  height: 16.506px;
-  line-height: 16.506px;
-  font-size: 13.755px;
-}
-.btn-xs .notification-icon:after {
-  content: '';
-  margin-left: -4.1265px;
-  margin-top: -2.06325px;
-  min-width: 6.25227273px;
-  height: 6.25227273px;
-  line-height: 6.25227273px;
-  padding: 0;
-}
-.btn-xs .notification-icon {
-  margin-right: 3.43875px;
-}
+        <css>.panel-danger {&#13;
+  border: none !important;&#13;
+}&#13;
+/* Announcement Header */&#13;
+&#13;
+.announcement-container {&#13;
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;&#13;
+&#13;
+  h3 {&#13;
+    padding-top:0px;&#13;
+    margin-top:5px;&#13;
+    margin-bottom:0;&#13;
+    font-size:16px;&#13;
+    line-height:27px;&#13;
+&#13;
+  }&#13;
+  p {&#13;
+    font-size:12px;&#13;
+    line-height:13px;&#13;
+  }&#13;
+  .panel {&#13;
+    border-radius:0;&#13;
+    margin-bottom:0;&#13;
+  }&#13;
+  .panel-body {&#13;
+    padding:2px;&#13;
+  }&#13;
+  small {&#13;
+    font-size:100%;&#13;
+  }&#13;
+}&#13;
+&#13;
+.announcement-container {&#13;
+  padding:0 0 0 0;&#13;
+}&#13;
+&#13;
+.announcement-info {&#13;
+  background-color: $brand-info;&#13;
+  color: #fff;&#13;
+&#13;
+  h3 {&#13;
+    color:$primary-color;&#13;
+    font-weight:bold;&#13;
+  }&#13;
+  .announcement-category {&#13;
+    border:0px solid $primary-color;&#13;
+  }&#13;
+  .information-icon {&#13;
+    color:$primary-color;&#13;
+  }&#13;
+  small {&#13;
+    color:$primary-color;&#13;
+  }&#13;
+  p {&#13;
+    color:$primary-color;&#13;
+  }&#13;
+  .btn {&#13;
+    background-color:$brand-primary;&#13;
+    color:#fff;&#13;
+    border:0;&#13;
+    &amp;:hover {&#13;
+      border:1px solid #eee;&#13;
+      color:#eee;&#13;
+    }&#13;
+  }&#13;
+}&#13;
+&#13;
+.announcement-warning {&#13;
+  $primary-color: #555;&#13;
+  background-color: $brand-warning;&#13;
+  color: #fff;&#13;
+  h3 {&#13;
+    color:$primary-color;&#13;
+    font-weight:bold;&#13;
+  }&#13;
+  .announcement-category {&#13;
+    border:0px solid $primary-color;&#13;
+  }&#13;
+  .information-icon {&#13;
+    color:$primary-color;&#13;
+  }&#13;
+  small {&#13;
+    color:$primary-color;&#13;
+  }&#13;
+  p {&#13;
+    color:$primary-color;&#13;
+  }&#13;
+  .btn {&#13;
+    background-color:$brand-primary;&#13;
+    color:#fff;&#13;
+    border:0;&#13;
+    &amp;:hover {&#13;
+      border:1px solid #eee;&#13;
+      color:#eee;&#13;
+    }&#13;
+  }&#13;
+}&#13;
+&#13;
+.announcement-danger {&#13;
+  $primary-color: #dee5e7;&#13;
+  background-color: $brand-danger;&#13;
+  color: #fff;&#13;
+  h3 {&#13;
+    color: #fff;&#13;
+    font-weight:bold;&#13;
+  }&#13;
+  .announcement-category {&#13;
+    border:0px solid $primary-color;&#13;
+  }&#13;
+  .information-icon {&#13;
+    color: #fff;&#13;
+  }&#13;
+  small {&#13;
+    color: #fff;&#13;
+  }&#13;
+  p {&#13;
+    color: #fff;&#13;
+  }&#13;
+  .btn {&#13;
+    background-color:$brand-primary;&#13;
+    color:#fff;&#13;
+    border:0;&#13;
+    &amp;:hover {&#13;
+      border:1px solid #eee;&#13;
+      color:#eee;&#13;
+    }&#13;
+  }&#13;
+}&#13;
+&#13;
+.announcement-success {&#13;
+  $primary-color: #fff;&#13;
+  background-color: $brand-success;&#13;
+  color: #fff;&#13;
+&#13;
+  h3 {&#13;
+    color:$primary-color;&#13;
+    font-weight:bold;&#13;
+  }&#13;
+  .announcement-category {&#13;
+    border:0px solid $primary-color;&#13;
+  }&#13;
+  .information-icon {&#13;
+    color:$primary-color;&#13;
+  }&#13;
+  small {&#13;
+    color:$primary-color;&#13;
+  }&#13;
+  p {&#13;
+    color:$primary-color;&#13;
+  }&#13;
+  .btn {&#13;
+    background-color:$brand-primary;&#13;
+    color:#fff;&#13;
+    border:0;&#13;
+    &amp;:hover {&#13;
+      border:1px solid #eee;&#13;
+      color:#eee;&#13;
+    }&#13;
+  }&#13;
+}&#13;
+&#13;
+.announcement-category {&#13;
+  font-size: 12px;&#13;
+  font-weight: 100;&#13;
+  padding:1%;&#13;
+  text-align:left;&#13;
+}&#13;
+&#13;
+.announcement-published {&#13;
+  font-size:10px;&#13;
+  font-weight:normal;&#13;
+  vertical-align:bottom;&#13;
+  margin-top:3px;&#13;
+}&#13;
+&#13;
+.announcement-text {&#13;
+  padding: 0px !important;&#13;
+}&#13;
+&#13;
+.announcement-button {&#13;
+  padding-left: 25px;&#13;
+  padding-bottom: 5px;&#13;
+  padding-top: 5px;&#13;
+}&#13;
+&#13;
+.close {&#13;
+  opacity: inherit;&#13;
+  color: #fff;&#13;
+  padding-top:8px;&#13;
+  padding-bottom:4px;&#13;
+  padding-left:10px;&#13;
+  font-size:1em;&#13;
+  font-weight:100;&#13;
+  &amp;:hover {&#13;
+    border-bottom:2px solid #fff;&#13;
+  }&#13;
+}&#13;
+&#13;
+@media (max-width: 768px) {&#13;
+  .cta {&#13;
+    padding-bottom:10px;&#13;
+  }&#13;
+  .information-icon, .announcement-published {&#13;
+    padding-left:4px;&#13;
+  }&#13;
+  .announcement-category {&#13;
+    padding-left:12px;&#13;
+  }&#13;
+  .announcement-text {&#13;
+    padding-left:15px;&#13;
+  }&#13;
+}&#13;
+&#13;
+.cta .dismiss {&#13;
+  margin-top:5%;&#13;
+}&#13;
+&#13;
+.close i {&#13;
+  font-size:1.3em;&#13;
+  font-weight:normal;&#13;
+}&#13;
+&#13;
+.information-icon {&#13;
+  line-height:1em;&#13;
+}&#13;
+&#13;
+&#13;
+/*!&#13;
+* bootstrap-notifications v0.9.0 (https://skywalkapps.github.io/bootstrap-notifications)&#13;
+* Copyright 2016 Martin Staněk&#13;
+* Licensed under MIT&#13;
+*/&#13;
+.dropdown-container {&#13;
+  position: absolute;&#13;
+  top: 100%;&#13;
+  left: 0;&#13;
+  z-index: 1000;&#13;
+  display: none;&#13;
+  float: left;&#13;
+  min-width: 200px;&#13;
+  max-width: 330px;&#13;
+  margin: 2px 0 0;&#13;
+  list-style: none;&#13;
+  font-size: 14px;&#13;
+  background-color: #fff;&#13;
+  border: 1px solid #ccc;&#13;
+  border: 1px solid rgba(0, 0, 0, 0.15);&#13;
+  border-radius: 4px;&#13;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);&#13;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);&#13;
+  background-clip: padding-box;&#13;
+}&#13;
+.dropdown-container &gt; .dropdown-menu {&#13;
+  position: static;&#13;
+  z-index: 1000;&#13;
+  float: none!important;&#13;
+  padding: 10px 0;&#13;
+  margin: 0;&#13;
+  border: 0;&#13;
+  background: transparent;&#13;
+  border-radius: 0;&#13;
+  -webkit-box-shadow: none;&#13;
+  box-shadow: none;&#13;
+  max-height: 330px;&#13;
+  overflow-y: auto;&#13;
+}&#13;
+.dropdown-container &gt; .dropdown-menu + .dropdown-menu {&#13;
+  padding-top: 0;&#13;
+}&#13;
+.dropdown-menu &gt; li &gt; a {&#13;
+  overflow: hidden;&#13;
+  white-space: nowrap;&#13;
+  word-wrap: normal;&#13;
+  text-decoration: none;&#13;
+  text-overflow: ellipsis;&#13;
+  -o-text-overflow: ellipsis;&#13;
+  -webkit-transition: none;&#13;
+  -o-transition: none;&#13;
+  transition: none;&#13;
+}&#13;
+.dropdown-toggle {&#13;
+  cursor: pointer;&#13;
+}&#13;
+.dropdown-header {&#13;
+  white-space: nowrap;&#13;
+}&#13;
+.open &gt; .dropdown-container &gt; .dropdown-menu,&#13;
+.open &gt; .dropdown-container {&#13;
+  display: block;&#13;
+}&#13;
+.dropdown-toolbar {&#13;
+  padding-top: 6px;&#13;
+  padding-left: 20px;&#13;
+  padding-right: 20px;&#13;
+  padding-bottom: 5px;&#13;
+  background-color: #fff;&#13;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);&#13;
+  border-radius: 4px 4px 0 0;&#13;
+}&#13;
+.dropdown-toolbar &gt; .form-group {&#13;
+  margin: 5px -10px;&#13;
+}&#13;
+.dropdown-toolbar .dropdown-toolbar-actions {&#13;
+  float: right;&#13;
+}&#13;
+.dropdown-toolbar .dropdown-toolbar-title {&#13;
+  margin: 0;&#13;
+  font-size: 14px;&#13;
+}&#13;
+.dropdown-footer {&#13;
+  padding: 5px 20px;&#13;
+  border-top: 1px solid #ccc;&#13;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);&#13;
+  border-radius: 0 0 4px 4px;&#13;
+}&#13;
+.anchor-block small {&#13;
+  display: none;&#13;
+}&#13;
+@media (min-width: 992px) {&#13;
+  .anchor-block small {&#13;
+    display: block;&#13;
+    font-weight: normal;&#13;
+    color: #777777;&#13;
+  }&#13;
+  .dropdown-menu &gt; li &gt; a.anchor-block {&#13;
+    padding-top: 6px;&#13;
+    padding-bottom: 6px;&#13;
+  }&#13;
+}&#13;
+@media (min-width: 992px) {&#13;
+  .dropdown.hoverable:hover &gt; ul {&#13;
+    display: block;&#13;
+  }&#13;
+}&#13;
+.dropdown-position-topright {&#13;
+  top: auto;&#13;
+  right: 0;&#13;
+  bottom: 100%;&#13;
+  left: auto;&#13;
+  margin-bottom: 2px;&#13;
+}&#13;
+.dropdown-position-topleft {&#13;
+  top: auto;&#13;
+  right: auto;&#13;
+  bottom: 100%;&#13;
+  left: 0;&#13;
+  margin-bottom: 2px;&#13;
+}&#13;
+.dropdown-position-bottomright {&#13;
+  right: 0;&#13;
+  left: auto;&#13;
+}&#13;
+.dropmenu-item-label {&#13;
+  white-space: nowrap;&#13;
+}&#13;
+.dropmenu-item-content {&#13;
+  position: absolute;&#13;
+  text-align: right;&#13;
+  max-width: 60px;&#13;
+  right: 20px;&#13;
+  color: #777777;&#13;
+  overflow: hidden;&#13;
+  white-space: nowrap;&#13;
+  word-wrap: normal;&#13;
+  -o-text-overflow: ellipsis;&#13;
+  text-overflow: ellipsis;&#13;
+}&#13;
+small.dropmenu-item-content {&#13;
+  line-height: 20px;&#13;
+}&#13;
+.dropdown-menu &gt; li &gt; a.dropmenu-item {&#13;
+  position: relative;&#13;
+  padding-right: 66px;&#13;
+}&#13;
+.dropdown-submenu .dropmenu-item-content {&#13;
+  right: 40px;&#13;
+}&#13;
+.dropdown-menu &gt; li.dropdown-submenu &gt; a.dropmenu-item {&#13;
+  padding-right: 86px;&#13;
+}&#13;
+.dropdown-inverse .dropdown-menu {&#13;
+  background-color: rgba(0, 0, 0, 0.8);&#13;
+  border: 1px solid rgba(0, 0, 0, 0.9);&#13;
+}&#13;
+.dropdown-inverse .dropdown-menu .divider {&#13;
+  height: 1px;&#13;
+  margin: 9px 0;&#13;
+  overflow: hidden;&#13;
+  background-color: #2b2b2b;&#13;
+}&#13;
+.dropdown-inverse .dropdown-menu &gt; li &gt; a {&#13;
+  color: #cccccc;&#13;
+}&#13;
+.dropdown-inverse .dropdown-menu &gt; li &gt; a:hover,&#13;
+.dropdown-inverse .dropdown-menu &gt; li &gt; a:focus {&#13;
+  color: #fff;&#13;
+  background-color: #262626;&#13;
+}&#13;
+.dropdown-inverse .dropdown-menu &gt; .active &gt; a,&#13;
+.dropdown-inverse .dropdown-menu &gt; .active &gt; a:hover,&#13;
+.dropdown-inverse .dropdown-menu &gt; .active &gt; a:focus {&#13;
+  color: #fff;&#13;
+  background-color: #337ab7;&#13;
+}&#13;
+.dropdown-inverse .dropdown-menu &gt; .disabled &gt; a,&#13;
+.dropdown-inverse .dropdown-menu &gt; .disabled &gt; a:hover,&#13;
+.dropdown-inverse .dropdown-menu &gt; .disabled &gt; a:focus {&#13;
+  color: #777777;&#13;
+}&#13;
+.dropdown-inverse .dropdown-header {&#13;
+  color: #777777;&#13;
+}&#13;
+.table &gt; thead &gt; tr &gt; th.col-actions {&#13;
+  padding-top: 0;&#13;
+  padding-bottom: 0;&#13;
+}&#13;
+.table &gt; thead &gt; tr &gt; th.col-actions .dropdown-toggle {&#13;
+  color: #777777;&#13;
+}&#13;
+.notifications {&#13;
+  list-style: none;&#13;
+  padding: 0;&#13;
+}&#13;
+.notification {&#13;
+  display: block;&#13;
+  padding: 9.6px 12px;&#13;
+  border-bottom: 1px solid #eeeeee;&#13;
+  color: #333333;&#13;
+  text-decoration: none;&#13;
+}&#13;
+.notification:last-child {&#13;
+  border-bottom: 0;&#13;
+}&#13;
+&#13;
+.notification-title {&#13;
+  font-size: 15px;&#13;
+  margin-bottom: 0;&#13;
+}&#13;
+.notification-desc {&#13;
+  margin-bottom: 0;&#13;
+}&#13;
+.notification-meta {&#13;
+  color: #777777;&#13;
+}&#13;
+a.notification:hover {&#13;
+  text-decoration: none;&#13;
+}&#13;
+.dropdown-notifications &gt; .dropdown-container,&#13;
+.dropdown-notifications &gt; .dropdown-menu {&#13;
+  width: 450px;&#13;
+  max-width: 450px;&#13;
+}&#13;
+.dropdown-notifications .dropdown-menu {&#13;
+  padding: 0;&#13;
+}&#13;
+.dropdown-notifications .dropdown-toolbar,&#13;
+.dropdown-notifications .dropdown-footer {&#13;
+  padding: 9.6px 12px;&#13;
+}&#13;
+.dropdown-notifications .dropdown-toolbar {&#13;
+  background: #fff;&#13;
+}&#13;
+.dropdown-notifications .dropdown-footer {&#13;
+  background: #eeeeee;&#13;
+}&#13;
+.notification-icon {&#13;
+  margin-right: 6.8775px;&#13;
+}&#13;
+.notification-icon:after {&#13;
+  position: absolute;&#13;
+  content: attr(data-count);&#13;
+  margin-left: -6.8775px;&#13;
+  margin-top: -6.8775px;&#13;
+  padding: 0 4px;&#13;
+  min-width: 13.755px;&#13;
+  height: 13.755px;&#13;
+  line-height: 13.755px;&#13;
+  background: red;&#13;
+  border-radius: 10px;&#13;
+  color: #fff;&#13;
+  text-align: center;&#13;
+  vertical-align: middle;&#13;
+  font-size: 11.004px;&#13;
+  font-weight: 600;&#13;
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;&#13;
+}&#13;
+&#13;
+.btn-lg .notification-icon:after {&#13;
+  margin-left: -8.253px;&#13;
+  margin-top: -8.253px;&#13;
+  min-width: 16.506px;&#13;
+  height: 16.506px;&#13;
+  line-height: 16.506px;&#13;
+  font-size: 13.755px;&#13;
+}&#13;
+.btn-xs .notification-icon:after {&#13;
+  content: '';&#13;
+  margin-left: -4.1265px;&#13;
+  margin-top: -2.06325px;&#13;
+  min-width: 6.25227273px;&#13;
+  height: 6.25227273px;&#13;
+  line-height: 6.25227273px;&#13;
+  padding: 0;&#13;
+}&#13;
+.btn-xs .notification-icon {&#13;
+  margin-right: 3.43875px;&#13;
+}&#13;
 </css>
         <data_table>u_sp_announcement_instance</data_table>
         <demo_data/>
@@ -622,7 +625,7 @@ a.notification:hover {
         <sys_created_on>2018-03-05 19:44:51</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>4194b8e70f6013003fd44cace1050ee7</sys_id>
-        <sys_mod_count>44</sys_mod_count>
+        <sys_mod_count>70</sys_mod_count>
         <sys_name>UCSB Announcements for Header</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
@@ -630,12 +633,12 @@ a.notification:hover {
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_widget_4194b8e70f6013003fd44cace1050ee7</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-17 00:00:59</sys_updated_on>
+        <sys_updated_on>2018-04-17 23:41:35</sys_updated_on>
         <template><![CDATA[<div class="container-fluid announcement-container" ng-if="c.data.showAnnouncements && (c.data.informationAnnouncements.length > 0 || c.data.outages.length > 0)">
   <!-- Information -->
   <div ng-show="c.data.informationAnnouncements.length > 0 && c.data.showAnnouncements">
     <div ng-repeat="announcement in data.informationAnnouncements | limitTo: 1" class="panel panel-info announcement-info">
-      <div class="container panel-body">
+      <div class="container-fluid panel-body">
         <div class="col-xs-12 col-sm-3 col-md-2 announcement-category">
           <div class="information-icon">
             <i class="fa fa-{{c.options.u_information_glyph || 'info-circle'}}" aria-hidden="true"></i> {{c.options.u_information_text || "Current Information"}} 
@@ -644,16 +647,19 @@ a.notification:hover {
             <small>${Published:}</small>
             <small>{{announcement.published}}</small>
           </div>
+          <button ng-if="data.informationAnnouncements.length > 1" class="btn btn-xs btn-primary" type="button" ng-click="c.openAnnouncements()">
+            <i class="fa fa-list-alt"></i> ${View all announcements}
+          </button>
         </div> 
-        <div class="col-xs-12 col-sm-6 col-md-7 announcement-text">
+        <div class="col-xs-12 col-sm-6 col-md-8 announcement-text">
           <h3>{{announcement.short_description}}</h3>
           <p class="notification-desc" ng-bind-html="announcement.text"></p>
         </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 cta">
+        <div class="col-xs-12 col-sm-3 col-md-2 cta">
           <div class="dismiss row">
             <div class="col-xs-6">
               <a ng-if="announcement.u_more_info_link && announcement.u_more_info_button_text" href="{{announcement.u_more_info_link}}" class="btn btn-md active" role="button" aria-pressed="true">{{announcement.u_more_info_button_text}}</a>
-            <a ng-if="!announcement.u_more_info_link || !announcement.u_more_info_button_text" href="?id=ucsb_announcement_article&sys_id={{announcement.sys_id}}" class="btn btn-md active" role="button" aria-pressed="true">${Read More}</a>
+              <a ng-if="!announcement.u_more_info_link || !announcement.u_more_info_button_text" href="?id=ucsb_announcement_article&sys_id={{announcement.sys_id}}" class="btn btn-md active" role="button" aria-pressed="true">${Read More}</a>
             </div>
             <div class="col-xs-6">
               <button type="button" class="close" aria-label="Close" ng-click="c.closeAnnouncements()">
@@ -672,7 +678,7 @@ a.notification:hover {
   <!-- Outages -->
   <div ng-show="c.data.outages.length > 0 && c.data.showAnnouncements">
     <div ng-repeat="outage in data.outages | limitTo: 1" class="panel panel-danger announcement-danger">
-      <div class="container panel-body">
+      <div class="container-fluid panel-body">
         <div class="col-xs-12 col-sm-3 col-md-2 announcement-category">
           <div class="information-icon">
             <i class="fa fa-{{c.options.u_outage_glyph || 'exclamation-triangle'}}" aria-hidden="true"></i> {{c.options.u_outage_text || "Service Interruptions"}} 
@@ -681,25 +687,38 @@ a.notification:hover {
             <small>${Published:}</small>
             <small>{{outage.published}}</small>
           </div>
+          <br />
+          <button ng-if="data.outages.length > 1" class="btn btn-xs btn-primary" type="button" ng-click="c.openAnnouncements()">
+            <i class="fa fa-list-alt"></i> ${View all alerts}
+          </button>
         </div> 
-        <div ng-if="outage.short_description" class="col-xs-12 col-sm-6 col-md-7 announcement-text">
+        <div ng-if="outage.short_description" class="col-xs-12 col-sm-6 col-md-8 announcement-text">
           <h3>{{outage.short_description}}</h3>
           <p class="notification-desc" ng-bind-html="outage.text"></p>
         </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 cta">
+        <div class="col-xs-12 col-sm-3 col-md-2 cta">
           <div class="dismiss">
             <a ng-if="outage.u_more_info_link && outage.u_more_info_button_text" href="{{outage.u_more_info_link}}" class="btn btn-md active" role="button" aria-pressed="true">{{outage.u_more_info_button_text}}</a>
             <a ng-if="!outage.u_more_info_link || !outage.u_more_info_button_text" ng-href="?id=ucsb_announcement_article&sys_id={{outage.sys_id}}" class="btn btn-md active" role="button" aria-pressed="true">${Outage Info}</a>
+            <button type="button" class="close" aria-label="Close" ng-click="c.closeAnnouncements()">
+              <span aria-hidden="true">
+                <i class="fa fa-close" />
+              </span>
+            </button>
           </div>
         </div>
       </div>          
     </div>  
   </div>
-  <div class="container announcement-content announcement-button" ng-if="data.outages.length > 1 || data.informationAnnouncements.length > 1">
-    <button class="btn btn-xs btn-primary" type="button" ng-click="c.openAnnouncements()">
-      <i class="fa fa-list-alt"></i> ${View all announcements}
-    </button>
-  </div>
+
+  <!--// View All btn 
+<div class="container announcement-content announcement-button" ng-if="data.outages.length > 1 || data.informationAnnouncements.length > 1">
+<button class="btn btn-xs btn-primary" type="button" ng-click="c.openAnnouncements()">
+<i class="fa fa-list-alt"></i> ${View all announcements}
+</button>
+</div>
+-->
+
 </div>
 ]]></template>
     </sp_widget>
