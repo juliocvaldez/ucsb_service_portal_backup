@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>top-icon-template</id>
+        <sp_widget display_value="UCSB SC Category Icon Menu">f3e940154f595380a2f02ae6f110c719</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-05-17 16:01:30</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>4d8db37e4f821740a2f02ae6f110c7af</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>top-icon-template</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_ng_template_4d8db37e4f821740a2f02ae6f110c7af</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-05-23 06:20:47</sys_updated_on>
+        <template><![CDATA[<!--// TOP ICON -->
+<a class="category_container top_icon flyout_{{::options.flyout_direction}} {{::options.class_name}}" 
+   ng-href="{{::data.href}}" 
+   target="{{::data.target}}">
+  <div class="icon_container" ng-mouseenter="toggleShow(true)">
+    <div class="m-b fa fa-{{::options.glyph}} fa-4x {{::options.class_name}} text-{{::options.color}}"></div>
+  </div>
+  <div class="title_container">
+    <div class="title"  ng-mouseenter="toggleShow(true)">
+      <h2>{{::data.title}}</h2>
+    </div>
+    <div ng-if="showSubcategories" class="top_icon list-group no-radius alt" role="list">
+        <ucsb-sp-category-icon-list-item 
+          ng-repeat="child in data.children"
+          child="child"
+          subcat-page="data.subcatPage"
+          item-page="data.catItemPage"
+      		omit-badges="data.omit_badges"
+          level="1"
+        />
+    </div>
+    <div class="description text-muted">
+      <span>{{::data.short_description}}</span>
+    </div>
+  </div>
+</a>]]></template>
+    </sp_ng_template>
+</record_update>

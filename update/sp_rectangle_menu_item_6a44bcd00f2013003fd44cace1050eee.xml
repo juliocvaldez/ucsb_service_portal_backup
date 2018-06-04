@@ -13,11 +13,9 @@
         <kb_article/>
         <kb_category/>
         <kb_topic/>
-        <label>Tickets</label>
-        <order>300</order>
-        <record_script><![CDATA[gs.info("JCV: RUNNING THE TICKETS MENU ITEM SCRIPT");
-
-// maximum number of entries in this Menu
+        <label>MyTickets</label>
+        <order>400</order>
+        <record_script><![CDATA[// maximum number of entries in this Menu
 var max = 30;
 
 var t = data;  // shortcut
@@ -113,10 +111,13 @@ t.items.sort(function(a, b) {
   return b.sortOrder - a.sortOrder;
 });
 t.items = t.items.slice(0, max); // only want first 30
-t.count = t.items.length;
 
 var link = {title: gs.getMessage('View all requests'), type: 'link', href: '?id=requests', items: []};
-t.items.unshift(link); // put 'View all requests' first]]></record_script>
+t.items.unshift(link); // put 'View all requests' first
+
+t.count = t.items.length;
+if (t.count < 2) 
+  t.omitBadge = true;]]></record_script>
         <sc_cat_item/>
         <sc_category/>
         <short_description/>
@@ -128,15 +129,15 @@ t.items.unshift(link); // put 'View all requests' first]]></record_script>
         <sys_created_on>2018-02-23 17:23:20</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>6a44bcd00f2013003fd44cace1050eee</sys_id>
-        <sys_mod_count>31</sys_mod_count>
-        <sys_name>Tickets</sys_name>
+        <sys_mod_count>35</sys_mod_count>
+        <sys_name>MyTickets</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_rectangle_menu_item_6a44bcd00f2013003fd44cace1050eee</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-03-01 23:27:52</sys_updated_on>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-05-21 04:52:24</sys_updated_on>
         <table/>
         <type>scripted</type>
         <url/>

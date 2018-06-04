@@ -18,16 +18,16 @@
         <sys_created_on>2018-04-02 18:36:43</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>14817ce04f511380a2f02ae6f110c700</sys_id>
-        <sys_mod_count>10</sys_mod_count>
-        <sys_name>Information Technology Services</sys_name>
+        <sys_mod_count>32</sys_mod_count>
+        <sys_name>IT Services</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_instance_14817ce04f511380a2f02ae6f110c700</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-03 18:27:44</sys_updated_on>
-        <title>Information Technology Services</title>
+        <sys_updated_on>2018-05-24 23:13:20</sys_updated_on>
+        <title>IT Services</title>
         <url/>
         <widget_parameters><![CDATA[{
 	"hide_xs": {
@@ -47,8 +47,20 @@
 		"displayValue": "Nested"
 	},
 	"page": {
+		"value": "07261a2147132100ba13a5554ee49092",
+		"displayValue": "sc_category"
+	},
+	"include_problems": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"sc_category_page": {
 		"value": "4899cd934f0d5f40a2f02ae6f110c745",
 		"displayValue": "ucsb_sc_category"
+	},
+	"catalog_item_page": {
+		"value": "246be2b24f391f00a2f02ae6f110c711",
+		"displayValue": "ucsb_sc_cat_item"
 	}
 }]]></widget_parameters>
     </sp_instance>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>subcat-template</id>
+        <sp_widget display_value="UCSB SC Category Page">916a99b84f991380a2f02ae6f110c776</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-05-17 00:11:09</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a4b32c7a4f461b00f74b495d0210c7ee</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>subcat-template</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_ng_template_a4b32c7a4f461b00f74b495d0210c7ee</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-05-17 22:28:47</sys_updated_on>
+        <template><![CDATA[<!-- CASE: Subcategories exist -->
+<div class="col-sm-6 col-md-4" ng-repeat="subcategory in data.subcategories | orderBy:propertyName:reverse track by subcategory.sys_id">
+  <div class="panel panel-{{::options.color}} b">
+    <a target="{{::subcategory.target}}" ng-href="{{::getItemHREF(subcategory)}}" ng-click="onClick($event, subcategory)" class="panel-body block">
+      <div class="overflow-100">
+        <h2 class="h4 m-t-none m-b-xs">
+          <i class="fa fa-fw text-{{::options.subcategory_icon_color}}" ng-class="'fa-folder'" />    {{::subcategory.name}}<span ng-if="subcategory.content_type == 'external'" aria-label="${External Link}"> ➚</span>
+        </h2>
+        <img ng-src="{{::subcategory.picture}}" ng-if="subcategory.picture" alt="{{::subcategory.name}}" class="m-r-sm m-b-sm item-image pull-left" />
+        <div class="text-muted item-short-desc">{{::subcategory.description}}</div>
+      </div>
+    </a>
+    <div aria-hidden="true" class="panel-footer">
+      <a aria-hidden="true" ng-click="onClick($event, subcategory)" ng-href="{{getItemHREF(subcategory)}}" class="pull-left text-muted" tabindex="-1">
+        ${View Items}</a>
+      <span ng-if="data.showPrices && item.hasPrice" class="pull-right item-price font-bold">{{item.price}}</span> &nbsp;
+    </div>
+  </div>
+</div>]]></template>
+    </sp_ng_template>
+</record_update>

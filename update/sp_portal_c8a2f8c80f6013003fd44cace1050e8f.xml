@@ -27,7 +27,7 @@ $text-muted: #9CBEBE;
         <icon/>
         <kb_knowledge_base/>
         <kb_knowledge_page/>
-        <login_page display_value="landing">36c61807cb31120000f8d856634c9ca9</login_page>
+        <login_page display_value="login">6995a144cb11120000f8d856634c9c25</login_page>
         <logo>f2e2f8c80f6013003fd44cace1050e75.iix?t=m</logo>
         <notfound_page display_value="404">3c2c9063cb11020000f8d856634c9c1f</notfound_page>
         <quick_start_config><![CDATA[[{
@@ -42,9 +42,9 @@ $text-muted: #9CBEBE;
 		"field" : "background_image"
 	}
 }]]]></quick_start_config>
-        <sc_catalog display_value="">061a74624fec1f00a2f02ae6f110c794</sc_catalog>
+        <sc_catalog display_value="CFS Service Catalog">af23a18c6f3526009fc877f16a3ee474</sc_catalog>
         <sc_catalog_page display_value="sc_home">fe87a11147132100ba13a5554ee490b9</sc_catalog_page>
-        <sc_category_page/>
+        <sc_category_page display_value="ucsb_sc_category">4899cd934f0d5f40a2f02ae6f110c745</sc_category_page>
         <sp_chat_queue/>
         <sp_rectangle_menu display_value="UCSB header menu">078151c80fa013003fd44cace1050e3e</sp_rectangle_menu>
         <sqanda_knowledge_base/>
@@ -53,17 +53,18 @@ $text-muted: #9CBEBE;
         <sys_created_on>2018-02-22 22:39:14</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>c8a2f8c80f6013003fd44cace1050e8f</sys_id>
-        <sys_mod_count>77</sys_mod_count>
-        <sys_name>UCSB Human Resources</sys_name>
+        <sys_mod_count>82</sys_mod_count>
+        <sys_name>HR Services Portal</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_portal_c8a2f8c80f6013003fd44cace1050e8f</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-06 21:53:22</sys_updated_on>
+        <sys_updated_on>2018-05-24 21:40:07</sys_updated_on>
         <theme display_value="ucsb_hr">4742b8880f6013003fd44cace1050ec7</theme>
-        <title>UCSB Human Resources</title>
+        <title>HR Services Portal</title>
+        <u_site_nav_flag>true</u_site_nav_flag>
         <url_suffix>hr</url_suffix>
     </sp_portal>
     <sys_attachment action="INSERT_OR_UPDATE">

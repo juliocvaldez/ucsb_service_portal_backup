@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update table="m2m_sp_ng_pro_sp_widget">
     <m2m_sp_ng_pro_sp_widget action="INSERT_OR_UPDATE">
-        <sp_angular_provider display_value="spCategoryFlyoutListItemUcsb">dbdeec694f919380a2f02ae6f110c7f3</sp_angular_provider>
-        <sp_widget display_value="UCSB Category Icon Link">f3e940154f595380a2f02ae6f110c719</sp_widget>
+        <sp_angular_provider display_value="ucsbSpCategoryIconListItem">dbdeec694f919380a2f02ae6f110c7f3</sp_angular_provider>
+        <sp_widget display_value="UCSB SC Category Icon Menu">f3e940154f595380a2f02ae6f110c719</sp_widget>
         <sys_class_name>m2m_sp_ng_pro_sp_widget</sys_class_name>
         <sys_created_by>julio.valdez_admin</sys_created_by>
         <sys_created_on>2018-04-05 20:59:42</sys_created_on>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance_link">
+    <sp_instance_link action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>warning</color>
+        <css/>
+        <glyph>exclamation</glyph>
+        <id/>
+        <kb_article/>
+        <kb_category/>
+        <kb_topic/>
+        <order>0</order>
+        <roles/>
+        <sc_cat_item/>
+        <sc_category display_value="Report a Problem">3afaeacc4f9e9b00f74b495d0210c700</sc_category>
+        <short_description>Report a technical problem you are currently experiencing.</short_description>
+        <size>md</size>
+        <sp_column display_value="2">cb35fe244fdedb00f74b495d0210c72e</sp_column>
+        <sp_page/>
+        <sp_widget display_value="UCSB SC Category Icon Menu">f3e940154f595380a2f02ae6f110c719</sp_widget>
+        <sys_class_name>sp_instance_link</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-05-22 22:40:01</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>afa8c3204f121f00f74b495d0210c774</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_instance_link_afa8c3204f121f00f74b495d0210c774</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-05-26 00:38:20</sys_updated_on>
+        <title/>
+        <type>sc_category</type>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"link_template": {
+		"value": "Circle Icon",
+		"displayValue": "Circle Icon"
+	},
+	"flyout_direction": {
+		"value": "down",
+		"displayValue": "down"
+	},
+	"omit_badges": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"cat_item_page": {
+		"value": "",
+		"displayValue": ""
+	},
+	"include_problems": {
+		"value": "true",
+		"displayValue": "true"
+	}
+}]]></widget_parameters>
+    </sp_instance_link>
+</record_update>

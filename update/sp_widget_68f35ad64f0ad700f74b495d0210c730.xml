@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope) {
+	/* widget controller */
+	var c = this;
+
+	$scope.model = {
+		name: 'Tabs'
+	};
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>form.tab-form-demo .tab-pane {
+  margin: 20px 20px;
+}
+
+.panel, .panel-heading {
+  border-width: 0px;
+  border-radius: 0px;
+}
+
+.panel-heading {
+  //display: none;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>ucsb_home_tabs</id>
+        <internal>false</internal>
+        <link/>
+        <name>UCSB Home Tabs</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); 
+	var announcementsOptions = {
+		secondary_fields: "published,article_type",
+		category_field: "topic",
+		alert_icon_color: "#EF5645",
+		info_icon_color: "#FEBC11",
+		color: "default",
+		table: "kb_knowledge",
+		title: "Annnouncements"
+	};
+	data.announcements = $sp.getWidget('ucsb-announcement-ticker', announcementsOptions);
+
+	var approvalsOptions = {
+		color: "default",
+		max_number_of_elements_shown_on_the_list: null,
+		always_show: "true"
+	};
+	data.approvals = $sp.getWidget('ucsb_approvals', approvalsOptions);
+	*/
+	
+	data.announcements = $sp.getWidgetFromInstance('9b6f131e4fcad700f74b495d0210c72f');
+	data.approvals = $sp.getWidgetFromInstance('1f6f131e4fcad700f74b495d0210c731');
+	data.requests = $sp.getWidgetFromInstance('d36baa71d7301200a9addd173e24d42c');
+	data.incidents = $sp.getWidgetFromInstance('bf9fea51d7130200a9ad1e173e24d449');
+	data.cat1 = $sp.getWidgetFromInstance('5f6f131e4fcad700f74b495d0210c739');
+	data.cat2 = $sp.getWidgetFromInstance('1b6f131e4fcad700f74b495d0210c73d');
+	data.cat3 = $sp.getWidgetFromInstance('db6f131e4fcad700f74b495d0210c740');
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-05-15 19:03:16</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>68f35ad64f0ad700f74b495d0210c730</sys_id>
+        <sys_mod_count>51</sys_mod_count>
+        <sys_name>UCSB Home Tabs</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_widget_68f35ad64f0ad700f74b495d0210c730</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-05-16 01:00:31</sys_updated_on>
+        <template><![CDATA[<uib-tabset active="active">
+  <uib-tab index="0">
+    <uib-tab-heading><i class="glyphicon glyphicon-home"></i></uib-tab-heading>
+    <div class="row">
+      <div class="col-md-3 col-sm-12">
+        <sp-widget widget="data.announcements"></sp-widget>
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <sp-widget widget="data.cat1"></sp-widget>
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <sp-widget widget="data.cat2"></sp-widget>
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <sp-widget widget="data.cat3"></sp-widget>
+      </div>
+    </div>
+  </uib-tab>
+  <uib-tab index="1" heading="My approvals">
+    <sp-widget widget="data.approvals"></sp-widget>
+  </uib-tab>
+  <uib-tab index="2" heading="My issues">
+    <sp-widget widget="data.incidents"></sp-widget>
+  </uib-tab>
+  <uib-tab index="3" heading="My requests">
+    <sp-widget widget="data.requests"></sp-widget>
+  </uib-tab>
+</uib-tabset>]]></template>
+    </sp_widget>
+</record_update>

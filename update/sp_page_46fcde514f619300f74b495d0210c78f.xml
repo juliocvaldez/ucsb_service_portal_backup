@@ -26,7 +26,7 @@ section.page, main.body {
         <draft>false</draft>
         <id>ucsb_it_index3</id>
         <internal>false</internal>
-        <public>false</public>
+        <public>true</public>
         <roles/>
         <short_description>UCSB Information Techonology index</short_description>
         <sys_class_name>sp_page</sys_class_name>
@@ -34,7 +34,7 @@ section.page, main.body {
         <sys_created_on>2018-04-17 20:37:23</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>46fcde514f619300f74b495d0210c78f</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>ucsb_it_index3</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
@@ -42,7 +42,7 @@ section.page, main.body {
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_page_46fcde514f619300f74b495d0210c78f</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-17 22:12:36</sys_updated_on>
+        <sys_updated_on>2018-05-01 18:48:56</sys_updated_on>
         <title>IT Index 3</title>
     </sp_page>
 </record_update>

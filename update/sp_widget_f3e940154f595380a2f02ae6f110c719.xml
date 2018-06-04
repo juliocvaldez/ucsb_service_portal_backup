@@ -2,306 +2,339 @@
 <record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <client_script><![CDATA[function($scope, $http, $timeout) {
-  /* widget controller */
-  var c = this;
+	var c = this; //shortcut
 	
+	// initiate children array
+	c.data.children = [];
+	
+	// log http errors to console
+	c.reportError = function(response) {
+		console.log(response.data.error.message);
+	};
+
+	// get and set category catalog items
+	c.setCategoryCatItems = function() {
+		if (c.data.apiCatItemsURL && 
+				(!c.data.catItems || !c.data.catItems.length)) {
+			$http({method: 'GET', url: c.data.apiCatItemsURL.toString()})
+				.then(function(response) {
+					c.data.children = c.data.children.concat(response.data.result)
+				}, c.reportError);
+		}
+	};
+
+	// if urls have been generated get and set subcategories and cat items
+	if (c.data.apiCatURL ) {
+		$http({method: 'GET', url: c.data.apiCatURL.toString()})
+			.then(function(response) {
+				c.data.children = c.data.children.concat(response.data.result.child_categories);
+			}, c.reportError)
+			.then(c.setCategoryCatItems, c.reportError);
+	}
+
+	// used onmouseenter and onmouseleave widget
 	$scope.toggleShow = function(bool) {
-		$scope.showSubcategories = bool;
+		$scope.showSubcategories = !!bool;
+	}
+
+	// used to determine which template to deploy
+	$scope.setTemplate = function() {
+		var template = 'top-icon-template';
+		if ($scope.options.link_template.includes('Circle Icon'))
+			template = 'circle-icon-template';
+		if ($scope.options.link_template === 'Color Box')
+			template = 'color-box-template';
+		return template;
 	};
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css>.widget_container {&#13;
-  position: relative;&#13;
-  margin-bottom: 20px;&#13;
-  min-width: fit-content;&#13;
-}&#13;
-&#13;
-.category_container {&#13;
-  display: flex;&#13;
-  flex-direction: row;&#13;
-}&#13;
-&#13;
-.list-group {&#13;
-  position: absolute;&#13;
-  z-index: 1000;&#13;
-}&#13;
-&#13;
-a label,h2 {&#13;
-  font-size: 2.5rem;&#13;
-  font-weight: 300;&#13;
-  line-height: 1.1;&#13;
-  padding: 0;&#13;
-  margin: 0 0 10px 0;&#13;
-}&#13;
-&#13;
-&#13;
-&#13;
-/* TOP ICON ---------- */&#13;
-&#13;
-a.top_icon {&#13;
-  align-items: stretch;&#13;
-  border: 1px solid $body-bg;&#13;
-  border-top: 5px solid $body-bg;&#13;
-  flex-direction: column;&#13;
-  padding-bottom: 15px;&#13;
-  text-align: center;&#13;
-&#13;
-  h2 {&#13;
-    padding: 0 0 10px 0;&#13;
-    margin: 0;&#13;
-  }&#13;
-&#13;
-  .icon_container {&#13;
-    padding-top: 20px;&#13;
-  }&#13;
-&#13;
-  .title, .description {&#13;
-    padding: 0 20px 0 20px;&#13;
-  }&#13;
-}&#13;
-&#13;
-a.top_icon.flyout_down:hover {&#13;
-  border-top: 4px solid;&#13;
-  border-radius: 4px;&#13;
-&#13;
-  .title {&#13;
-    border: 1px solid;&#13;
-    border-top: 0;&#13;
-    border-bottom-left-radius: 4px;&#13;
-    border-bottom-right-radius: 4px;&#13;
-  }&#13;
-&#13;
-  .list-group {&#13;
-    width: 99.5%;&#13;
-  }&#13;
-&#13;
-  .icon_container {&#13;
-    border-right: 1px solid;&#13;
-    border-left: 1px solid;&#13;
-  }&#13;
-}&#13;
-&#13;
-a.top_icon.flyout_right:hover {&#13;
-  border-top: 4px solid;&#13;
-  border-radius: 4px;&#13;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);&#13;
-  transition: all 0.2s ease-in-out;&#13;
-&#13;
-  .list-group {&#13;
-    width: fit-content;&#13;
-    top: 0px;&#13;
-    left: 100.5%;&#13;
-    border-top: 4px solid;&#13;
-    border-radius: 4px;&#13;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);&#13;
-    transition: all 0.2s ease-in-out;&#13;
-  }&#13;
-&#13;
-  .list-group-item {&#13;
-    border-radius: unset;&#13;
-  }&#13;
-}&#13;
-&#13;
-&#13;
-&#13;
-/* CIRCLE ICON ---------- */&#13;
-&#13;
-a.circle_icon {&#13;
-  padding: 20px 0px 20px 0px;&#13;
-  border: 1px solid $body-bg;&#13;
-  border-top: 5px solid $body-bg;&#13;
-&#13;
-  .title_container {&#13;
-    margin-right: 10px;&#13;
-    width: 90%;&#13;
-  }&#13;
-&#13;
-  .icon_container {&#13;
-    width: 10%;&#13;
-    display: flex;&#13;
-    justify-content: center;&#13;
-    min-width: 50px;&#13;
-    margin: 0px 10px 0px 10px;&#13;
-  }&#13;
-&#13;
-  .flyout_down {&#13;
-    width: 99%;&#13;
-    top: 100.5%;&#13;
-    left: 0.5%;&#13;
-  }&#13;
-&#13;
-  .flyout_right {&#13;
-    width: fit-content;&#13;
-    top: 0px;&#13;
-    left: 100.5%;&#13;
-&#13;
-    .list-group-item {&#13;
-      border-radius: unset;&#13;
-    }&#13;
-  }&#13;
-}&#13;
-&#13;
-a.circle_icon:hover {&#13;
-  border-top: 5px solid;&#13;
-  border-radius: 4px;&#13;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);&#13;
-  transition: all 0.3s ease-in-out;&#13;
-&#13;
-  ul.flyout_down {&#13;
-    border-radius: 4px;&#13;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 0 6px 20px 0 rgba(0, 0, 0, 0.19);&#13;
-    transition: all 0.3s ease-in-out;&#13;
-  }&#13;
-&#13;
-  ul.flyout_right {&#13;
-    border-top: 5px solid;&#13;
-    border-radius: 4px;&#13;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 0 6px 20px 0 rgba(0, 0, 0, 0.19);&#13;
-    transition: all 0.3s ease-in-out;&#13;
-  }&#13;
-}&#13;
-&#13;
-&#13;
-&#13;
-/* CIRCLE ICON INVERSE---------- */&#13;
-&#13;
-a.circle_icon.inverse {&#13;
-  .flyout_right {&#13;
-    left: 99.5%;&#13;
-  }&#13;
-}&#13;
-&#13;
-a.circle_icon.inverse:hover {&#13;
-  background-color: #f5f5f5;&#13;
-  box-shadow: unset;&#13;
-&#13;
-  ul.flyout_down {&#13;
-    box-shadow: unset;&#13;
-    top: unset;&#13;
-    left: 1px;&#13;
-  }  &#13;
-&#13;
-  ul.flyout_right {&#13;
-    box-shadow: unset;&#13;
-  }&#13;
-}&#13;
-&#13;
-&#13;
-&#13;
-/* COLOR BOX ---------- */&#13;
-&#13;
-a.color_box {&#13;
-  padding: 20px 20px 20px 10px;&#13;
-  border-radius: 4px;&#13;
-&#13;
-  .title_container {&#13;
-    width: 90%;&#13;
-  }&#13;
-&#13;
-  .icon_container {&#13;
-    width: 10%;&#13;
-    display: flex;&#13;
-    justify-content: center;&#13;
-    min-width: 65px;&#13;
-  }&#13;
-&#13;
-  + .list-group-down {&#13;
-    position: absolute;&#13;
-    z-index: 1000;&#13;
-  }&#13;
-&#13;
-  + .list-group-right {&#13;
-    position: absolute;&#13;
-    z-index: 1000;&#13;
-    top: 0%;&#13;
-    left: 100%;&#13;
-  }&#13;
-}&#13;
-&#13;
-a.color_box:hover {&#13;
-  background-color: $brand-info;&#13;
-}&#13;
-&#13;
-&#13;
-&#13;
-/* THEME COLORS -------- */&#13;
-&#13;
-.icon-link-background-primary {&#13;
-  background-color: $brand-primary;&#13;
-}&#13;
-&#13;
-.icon-link-background-info {&#13;
-  background-color: $brand-info;&#13;
-}&#13;
-&#13;
-.icon-link-background-success {&#13;
-  background-color: $brand-success;&#13;
-}&#13;
-&#13;
-.icon-link-background-warning {&#13;
-  background-color: $brand-warning;&#13;
-}&#13;
-&#13;
-.icon-link-background-danger {&#13;
-  background-color: $brand-danger;&#13;
-}&#13;
-&#13;
-.icon-link-background-default {&#13;
-  background-color: $brand-primary;&#13;
+        <css>.widget_container {
+  position: relative;
+  margin-bottom: 15px;
+  min-width: fit-content;
+}
+
+.category_container {
+  display: flex;
+  flex-direction: row;
+}
+
+.list-group {
+  position: absolute;
+  z-index: 2;
+}
+
+a label,h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.1;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+
+
+/* TOP ICON ---------- */
+
+a.top_icon {
+  align-items: stretch;
+  border: 1px solid $body-bg;
+  border-top: 5px solid $body-bg;
+  flex-direction: column;
+  padding-bottom: 15px;
+  text-align: center;
+
+  h2 {
+    padding: 0 0 10px 0;
+    margin: 0;
+  }
+
+  .icon_container {
+    padding-top: 20px;
+  }
+
+  .title, .description {
+    padding: 0 20px 0 20px;
+  }
+}
+
+a.top_icon.flyout_down:hover {
+  border-top: 4px solid;
+  border-radius: 4px;
+
+  .title {
+    border: 1px solid;
+    border-top: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  .list-group {
+    width: 99.5%;
+  }
+
+  .icon_container {
+    border-right: 1px solid;
+    border-left: 1px solid;
+  }
+}
+
+a.top_icon.flyout_right:hover {
+  border-top: 4px solid;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.2s ease-in-out;
+
+  .list-group {
+    width: fit-content;
+    top: 0px;
+    left: 100.5%;
+    border-top: 4px solid;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .list-group-item {
+    border-radius: unset;
+  }
+}
+
+
+
+/* CIRCLE ICON ---------- */
+
+a.circle_icon {
+  padding: 15px 0px;
+  border: 1px solid $body-bg;
+  border-top: 5px solid $body-bg;
+
+  .title_container {
+    margin-right: 10px;
+    width: 90%;
+  }
+
+  .icon_container {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    min-width: 50px;
+    margin: 0px 10px 0px 10px;
+  }
+
+  .flyout_down {
+    width: 99%;
+    top: 100.5%;
+    left: 0.5%;
+  }
+
+  .flyout_right {
+    width: fit-content;
+    top: 0px;
+    left: 100.5%;
+
+    .list-group-item {
+      border-radius: unset;
+    }
+  }
+}
+
+a.circle_icon:hover {
+  border-top: 5px solid;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.3s ease-in-out;
+
+  ul.flyout_down {
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 0.3s ease-in-out;
+  }
+
+  ul.flyout_right {
+    border-top: 5px solid;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+
+
+/* CIRCLE ICON INVERSE---------- */
+
+a.circle_icon.inverse {
+  .flyout_right {
+    left: 99.5%;
+  }
+}
+
+a.circle_icon.inverse:hover {
+  background-color: #f5f5f5;
+  box-shadow: unset;
+
+  ul.flyout_down {
+    box-shadow: unset;
+    top: unset;
+    left: 1px;
+  }  
+
+  ul.flyout_right {
+    box-shadow: unset;
+  }
+}
+
+
+
+/* COLOR BOX ---------- */
+
+a.color_box {
+  padding: 20px 20px 20px 10px;
+  border-radius: 4px;
+
+  .title_container {
+    width: 90%;
+  }
+
+  .icon_container {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    min-width: 65px;
+  }
+
+  + .list-group-down {
+    position: absolute;
+    z-index: 2;
+  }
+
+  + .list-group-right {
+    position: absolute;
+    z-index: 1000;
+    top: 0%;
+    left: 100%;
+  }
+}
+
+a.color_box:hover {
+  background-color: $brand-info;
+}
+
+
+
+/* THEME COLORS -------- */
+
+.icon-link-background-primary {
+  background-color: $brand-primary;
+}
+
+.icon-link-background-info {
+  background-color: $brand-info;
+}
+
+.icon-link-background-success {
+  background-color: $brand-success;
+}
+
+.icon-link-background-warning {
+  background-color: $brand-warning;
+}
+
+.icon-link-background-danger {
+  background-color: $brand-danger;
+}
+
+.icon-link-background-default {
+  background-color: $brand-primary;
 }</css>
         <data_table>sp_instance_link</data_table>
         <demo_data>{
 	"options": {
 		"title": "Technical Support Services",
-		"link_template": "Top Icon",
+		"link_template": "Circle Icon Inverse",
 		"short_description": "Technical Support Services, including assistance with desktops, laptops, printers, mobile and handheld devices.",
 		"category_ref": "800491c54f255300a2f02ae6f110c740",
 		"glyph": "anchor",
 		"color": "default",
-		"class_name": "",
 		"sc_page": "ucsb_sc_category",
 		"sc_category": "800491c54f255300a2f02ae6f110c740",
-		"flyout_direction": "down"
+		"flyout_direction": "down",
+		"omit_badges": "false",
+		"include_problems": "true"
 	}
 }</demo_data>
         <description/>
         <docs/>
-        <field_list>title,short_description,glyph,class_name,type,sc_category,url,kb_article,kb_topic,kb_category,sc_cat_item,sp_page,color</field_list>
+        <field_list>type,sc_category,title,short_description,glyph,color</field_list>
         <has_preview>true</has_preview>
         <id>ucsb-cat-icon-link</id>
         <internal>false</internal>
         <link/>
-        <name>UCSB Category Icon Link</name>
-        <option_schema>[{"name":"link_template","label":"Template","type":"choice","choices":[{"label":"Top Icon","value":"Top Icon"},{"label":"Circle Icon","value":"Circle Icon"},{"label":"Circle Icon Inverse","value":"Circle Icon Inverse"},{"label":"Color Box","value":"Color Box"}]},{"hint":"","name":"flyout_direction","default_value":"","label":"Flyout direction","type":"choice","choices":[{"label":"down","value":"down"},{"label":"right","value":"right"}]}]</option_schema>
+        <name>UCSB SC Category Icon Menu</name>
+        <option_schema>[{"name":"link_template","default_value":"Top Icon","label":"Template","type":"choice","choices":[{"label":"Top Icon","value":"Top Icon"},{"label":"Circle Icon","value":"Circle Icon"},{"label":"Circle Icon Inverse","value":"Circle Icon Inverse"},{"label":"Color Box","value":"Color Box"}]},{"hint":"","name":"flyout_direction","default_value":"","label":"Flyout direction","type":"choice","choices":[{"label":"down","value":"down"},{"label":"right","value":"right"}]},{"name":"omit_badges","default_value":"true","label":"Omit badges","type":"boolean"},{"displayValue":"Page","name":"cat_item_page","label":"Cat Item Page","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}},{"name":"include_problems","default_value":"true","label":"Include Problem items","type":"boolean"}]</option_schema>
         <public>true</public>
         <roles/>
         <script><![CDATA[(function(){
 	var categoryID = data.id = options.sc_category;
-	var page = options.sc_page || 'ucsb_sc_category';
-	options.inverse = options.link_template.includes('Inverse') ? 'inverse' : '';
+	
+	// set cat item page
+	var params = JSON.parse($sp.getDisplayValue('widget_parameters'));
+	data.catItemPage = params.cat_item_page ? params.cat_item_page.displayValue : 'ucsb_sc_cat_item';
+	
+	data.subcatPage = $sp.getDisplayValue('sc_category_page') || 'ucsb_sc_category';
+	data.inverse = options.link_template && options.link_template.includes('Inverse') ? 'inverse' : '';
+	data.omit_badges = options.omit_badges == "true" ;
 	data.title = options.title || options.sc_category_dv;
-	data.short_description = options.short_description;
-	data.href = '?id=' + page + '&sys_id=' + categoryID;
+	data.short_description = options.short_description || '';
 	data.target = options.target || "";
-
-	var categoryJS = new sn_sc.CatCategory(categoryID);
-	if (!categoryJS)
-		return;
-		
-	// gather related subcategories
-	var subcategories = data.subcategories = [];
-	var buildSubcatArr = categoryJS.getViewableSubCategories();
-	for (var subcat = 0; subcat < buildSubcatArr.length; subcat++) {
-		var subcategory = {};
-		subcategory.title = buildSubcatArr[subcat].title;
-		subcategory.description = buildSubcatArr[subcat].description;
-		subcategory.sys_id = buildSubcatArr[subcat].sys_id;
-		subcategory.order = buildSubcatArr[subcat].order;
-		subcategory.page = page;
-
-		subcategories.push(subcategory);
-
+	
+	if (categoryID) {
+		data.href = '?id=' + data.subcatPage + '&sys_id=' + categoryID;
+		data.apiCatURL = '/api/sn_sc/servicecatalog/categories/' + categoryID + '?sysparm_check_item_can_view=true';
+		if (options.include_problems != 'false')
+			data.apiCatItemsURL = '/api/sn_sc/servicecatalog/items?sysparm_category=' + categoryID;
 	}
+
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
@@ -309,91 +342,17 @@ a.color_box:hover {&#13;
         <sys_created_on>2018-04-04 23:39:17</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>f3e940154f595380a2f02ae6f110c719</sys_id>
-        <sys_mod_count>225</sys_mod_count>
-        <sys_name>UCSB Category Icon Link</sys_name>
+        <sys_mod_count>357</sys_mod_count>
+        <sys_name>UCSB SC Category Icon Menu</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_widget_f3e940154f595380a2f02ae6f110c719</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-26 00:37:02</sys_updated_on>
+        <sys_updated_on>2018-05-23 16:50:06</sys_updated_on>
         <template><![CDATA[<div class="widget_container" ng-mouseleave="toggleShow(false)">
-
-  <!--// TOP ICON -->
-  <a ng-if="::(options.link_template == 'Top Icon' || !options.link_template)" class="category_container top_icon flyout_{{::options.flyout_direction}} {{::options.class_name}}" ng-href="{{::data.href}}" target="{{::data.target}}">
-    <div class="icon_container" ng-mouseenter="toggleShow(true)">
-      <div class="m-b fa fa-{{::options.glyph}} fa-4x {{::options.class_name}} text-{{::options.color}}"></div>
-    </div>
-    <div class="title_container">
-      <div class="title"  ng-mouseenter="toggleShow(true)">
-        <h2>{{::c.data.title}}</h2>
-      </div>
-      <div class="top_icon list-group no-radius alt" role="list">
-        <sp-category-flyout-list-item-ucsb 
-          ng-repeat="subcat in data.subcategories"
-          ng-if="showSubcategories"                               
-          category="subcat"
-          page="options.sc_page"
-          level="1"
-        />
-      </div>
-      <div class="description text-muted">
-        <span>{{::c.data.short_description}}</span>
-      </div>
-    </div>
-  </a>
-
-  <!--// CIRCLE ICON -->
-  <a ng-if="::(options.link_template == 'Circle Icon' || options.link_template == 'Circle Icon Inverse')" ng-href="{{::data.href}}" class="category_container circle_icon {{::options.class_name}} {{::options.inverse}} text-{{::options.color}}" target="{{::data.target}}">
-    <div class="icon_container">
-      <span class="fa fa-stack fa-2x"  ng-mouseenter="toggleShow(true)">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-{{::options.glyph}} fa-stack-1x fa-inverse"></i>
-      </span>
-    </div>
-    <div class="title_container">
-      <div class="title"  ng-mouseenter="toggleShow(true)">
-        <h2>{{::c.data.title}}</h2>
-      </div>
-      <ul ng-if="showSubcategories" class="circle_icon list-group flyout_{{::options.flyout_direction}} no-radius alt" role="list">
-        <sp-category-flyout-list-item-ucsb 
-          ng-repeat="subcat in data.subcategories"                               
-          category="subcat"
-          page="options.sc_page"
-          level="1"
-        />
-      </ul>
-      <div class="description text-muted">
-        <span>{{::c.data.short_description}}</span>
-      </div>
-    </div>
-  </a>
-
-  <!--// COLOR BOX -->
-  <a ng-if="::(options.link_template == 'Color Box')" ng-href="{{::data.href}}" class="category_container color_box {{::options.class_name}} icon-link-background-{{::options.color}} text-white" target="{{::data.target}}"   ng-mouseenter="toggleShow(true)">
-    <div class="icon_container">
-      <div class="fa fa-{{::options.glyph}} fa-3x {{::options.class_name}}"></div>
-    </div>
-    <div class="title_container">
-      <div class="title">
-        <h2>{{::c.data.title}}</h2>
-      </div>
-      <div class="description">
-        <span>{{::c.data.short_description}}</span>
-      </div>
-    </div>
-  </a>
-  <div ng-if="::(options.link_template == 'Color Box')" class="color_box list-group-{{::options.flyout_direction}} no-radius alt" role="list" style="width:100%">
-    <sp-category-flyout-list-item-ucsb 
-      ng-repeat="subcat in data.subcategories"
-      ng-if="showSubcategories"                               
-      category="subcat"
-      page="options.sc_page"
-      level="1"
-    />
-  </div>
-
+  <div ng-include="setTemplate()"/>
 </div>]]></template>
     </sp_widget>
 </record_update>

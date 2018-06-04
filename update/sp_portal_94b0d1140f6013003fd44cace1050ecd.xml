@@ -2,11 +2,11 @@
 <record_update table="sp_portal">
     <sp_portal action="INSERT_OR_UPDATE">
         <css_variables>$brand-primary: #003660;
-$body-bg: #F5f5f5;
+$body-bg: #f7f7f7;
 $state-success-text: #0BA89A;
-$sp-homepage-bg: #f5f5f5;
+$sp-homepage-bg: #f7f7f7;
 $sp-navbar-divider-color: #04859B;
-$text-color: #4d4e4e;
+$text-color: #333333;
 $sp-logo-margin-y: .5rem;
 $navbar-inverse-link-hover-color: #FEBC11;
 $panel-bg: #fff;
@@ -18,16 +18,16 @@ $sp-tagline-color: #FEBC11;
 $navbar-inverse-link-color: #fff;
 $brand-info: #7A8D39;
 $link-color: #04859B;
-$sp-logo-margin-x: 15px;
+$sp-logo-margin-x: 7px;
 $btn-default-bg: #9CBEBE;
-$text-muted: #809e9e;
+$text-muted: #3b3b3b;
 </css_variables>
         <default>false</default>
-        <homepage display_value="ucsb_it_index3">46fcde514f619300f74b495d0210c78f</homepage>
+        <homepage display_value="ucsb_it_index7">209fb1834fc61740a2f02ae6f110c71d</homepage>
         <icon/>
         <kb_knowledge_base/>
         <kb_knowledge_page/>
-        <login_page display_value="landing">36c61807cb31120000f8d856634c9ca9</login_page>
+        <login_page display_value="login">6995a144cb11120000f8d856634c9c25</login_page>
         <logo>66f011140f6013003fd44cace1050e98.iix?t=m</logo>
         <notfound_page display_value="404">3c2c9063cb11020000f8d856634c9c1f</notfound_page>
         <quick_start_config><![CDATA[[{
@@ -42,9 +42,9 @@ $text-muted: #809e9e;
 		"field" : "background_image"
 	}
 }]]]></quick_start_config>
-        <sc_catalog display_value="Information Technology Services">838f05054f255300a2f02ae6f110c7c4</sc_catalog>
+        <sc_catalog display_value="IT Services">23faa0aa4fb51300f74b495d0210c7cb</sc_catalog>
         <sc_catalog_page display_value="it_sc_home">1599b5b04f1d1380a2f02ae6f110c7e1</sc_catalog_page>
-        <sc_category_page/>
+        <sc_category_page display_value="ucsb_sc_category">4899cd934f0d5f40a2f02ae6f110c745</sc_category_page>
         <sp_chat_queue display_value="Service Desk Chat">c54f0abf0a0a0b452db84664f409c79c</sp_chat_queue>
         <sp_rectangle_menu display_value="UCSB header menu">078151c80fa013003fd44cace1050e3e</sp_rectangle_menu>
         <sqanda_knowledge_base display_value="">5c45a3a0d712120023c84f80de61038b</sqanda_knowledge_base>
@@ -53,17 +53,18 @@ $text-muted: #809e9e;
         <sys_created_on>2018-02-23 19:28:43</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>94b0d1140f6013003fd44cace1050ecd</sys_id>
-        <sys_mod_count>59</sys_mod_count>
-        <sys_name>UCSB IT Unified</sys_name>
+        <sys_mod_count>86</sys_mod_count>
+        <sys_name>IT Services Portal</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_portal_94b0d1140f6013003fd44cace1050ecd</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-25 17:56:56</sys_updated_on>
+        <sys_updated_on>2018-05-26 00:17:38</sys_updated_on>
         <theme display_value="ucsb_it">cea195140f6013003fd44cace1050e4e</theme>
-        <title>UCSB IT Unified</title>
+        <title>IT Services Portal</title>
+        <u_site_nav_flag>true</u_site_nav_flag>
         <url_suffix>it</url_suffix>
     </sp_portal>
     <sys_attachment action="INSERT_OR_UPDATE">

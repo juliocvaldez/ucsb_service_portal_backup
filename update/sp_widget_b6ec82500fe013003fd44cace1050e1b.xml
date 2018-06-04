@@ -2,53 +2,88 @@
 <record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <client_script><![CDATA[function($scope, $http, $timeout) {
-	console.log($scope.options.page)
+	var c = this; // shortcut
+	// expand or collapse all categories' children
+	c.toggleIcon = 'angle-double-right';
+	c.toggleAll = function() {
+		c.toggled = !c.toggled;
+		c.toggleIcon = c.toggled ? 'angle-double-down' : 'angle-double-right';
+		c.data.categories.forEach(function(category) {
+			category.showChildren = c.toggled;
+		});
+	};
 
-	var getCatalogCategories = "/api/sn_sc/servicecatalog/catalogs/" + $scope.data.sc_catalog + "/categories?sysparm_top_level_only=" + ($scope.options.category_layout === "Nested") + "&sysparm_check_item_can_view=" + $scope.options.check_can_view + "&sysparm_limit=-1&sysparm_dynamic_category=false";
+	// check if a category with subcategories exists
+	c.checkForChildren = function() {
+		c.data.categories.some(function(cat) {
+			if (cat.children && cat.children.length)
+				c.data.childrenExist = true;
+			return;
+		});
+	};
+
+	// log http errors to console
+	c.reportError = function(response) {
+		console.log(response.data.error.message);
+	};
+
+	// get and set category cat items
+	c.setCategoryCatItems = function(category) {
+		var specificCategoryItems = '/api/sn_sc/servicecatalog/items?sysparm_category='+ category.sys_id + '&sysparm_type=record_producer&sysparm_catalog=' + c.data.sc_catalog + '&sysparm_check_item_can_view' + c.options.check_can_view;
+		$http({method: 'GET', url: specificCategoryItems}).
+		then(function(response) {
+			category.catItems = response.data.result
+			category.children = category.children.concat(category.catItems);
+		}, c.reportError);
+	}
+
+	// get all parent categories
+	var getCatalogCategories = "/api/sn_sc/servicecatalog/catalogs/" + c.data.sc_catalog + "/categories?sysparm_top_level_only=" + (c.options.category_layout === "Nested") + "&sysparm_check_item_can_view=" + c.options.check_can_view + "&sysparm_limit=-1&sysparm_dynamic_category=false";
 	$http({method: 'GET', url: getCatalogCategories}).
 	then(function(response) {
-		$scope.data.categories = response.data.result;
-
+		// set categories and send back to server
+		c.data.categories = response.data.result;
 		$scope.server.get({
 			action: "retrieve_parent_hierarchy",
-			cur_category_id : $scope.data.selected_category_id,
-			categories : $scope.data.categories
+			cur_category_id : c.data.selected_category_id,
+			categories : c.data.categories
 		}).then(function(response) {
-			$scope.data.categories = response.data.categories;
-		});
+			c.data.categories = response.data.categories;
+		}).then(c.checkForChildren);
+	}, c.reportError);
 
-	}, function(response) {
-		console.log(response.data.error.message);
-	});
-
-	$scope.$on("$sp.sc_category.retrieve_subcategories", function(evt, category) {
-		var specificCategoryDetails = "/api/sn_sc/servicecatalog/categories/" + category.sys_id + "?sysparm_check_item_can_view=" + $scope.options.check_can_view;
-
-		if (!category.subcategories || !category.subcategories[0].count) {
+	// retrieve children on $sp.sc_category.retrieve_subcategories
+	$scope.$on("$sp.sc_category.retrieve_children", function(evt, category) {
+		category.children = category.children || [];
+		var specificCategoryDetails = "/api/sn_sc/servicecatalog/categories/" + category.sys_id + "?sysparm_check_item_can_view=" + c.options.check_can_view;
+		if (!category.subcategories || !category.children.length) {
 			$http({method: 'GET', url: specificCategoryDetails}).
 			then(function(response) {
-				category.subcategories = response.data.result.child_categories;
-			}, function(response) {
-				console.log(response.data.error.message);
-			});
+				// set category subcategories
+				category.children = category.children.concat(response.data.result.child_categories);
+			}, c.reportError).
+			then(function() {
+				if (c.options.include_problems && (!category.catItems || !category.catItems.length)) {
+					// get and set category cat items
+					c.setCategoryCatItems(category);
+				}
+			}, c.reportError);
 		}
-
+		else if (c.options.include_problems && (!category.catItems || !category.catItems.length)) {
+			var specificCategoryItems = '/api/sn_sc/servicecatalog/items?sysparm_category=' + category.sys_id;
+			// get and set category cat items
+			c.setCategoryCatItems(category);
+		}
 	});
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css>.list-group-item {
-  .fa-fw {
-    margin-right: 5px;
-  }
-}
-
-.indent-category {
+        <css>.indent-category {
   margin-left: 25px;
 }
 
 .selected {
-  color: $primary !important;
   background-color: #f5f5f5;
+  color: $link-color;
 }
 
 .list-group {
@@ -56,46 +91,49 @@
   padding: 10px;
 
   a.list-group-item {
-  	border: 0;
-    padding: 5px 5px;
+    border: 0;
+    padding: 7px 5px;
     margin-bottom: 2px;
-    color: $link-color;
-
+    
+    .fa-fw {
+      margin-right: 5px;
+    }
+    
     .badge {
-    	background-color: #0574DE;
       border-radius: 1em;
     }
   }
 }</css>
         <data_table>sp_instance</data_table>
-        <demo_data>{"options" :&#13;
-   {&#13;
-      "hide_xs" : false&#13;
-   }&#13;
+        <demo_data>{"options" :
+   {
+      "hide_xs" : false,
+			"title" : "Service Catalog Categories",
+			"color" : "default"
+   }
 }</demo_data>
         <description/>
         <docs/>
-        <field_list>color</field_list>
+        <field_list>title,color</field_list>
         <has_preview>true</has_preview>
         <id>ucsb-sc-categories</id>
         <internal>false</internal>
         <link/>
         <name>UCSB SC Categories</name>
-        <option_schema>[{"name":"hide_xs","default_value":false,"label":"Hide at XS","type":"boolean"},{"name":"omit_badges","label":"Omit badges","type":"boolean"},{"name":"check_can_view","default_value":"true","label":"Check canView per item (may impact performance for large catalogs)","type":"boolean"},{"hint":"Choose between a flattened and a nested category structure","name":"category_layout","label":"Category Layout","type":"choice","choices":[{"label":"Flat","value":"Flat"},{"label":"Nested","value":"Nested"}]},{"displayValue":"Page","name":"page","label":"page","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}}]</option_schema>
+        <option_schema>[{"name":"hide_xs","default_value":false,"label":"Hide at XS","type":"boolean"},{"name":"omit_badges","label":"Omit badges","type":"boolean"},{"hint":"Checks permissions for each item","name":"check_can_view","default_value":"true","label":"Check canView per item (may impact performance for large catalogs)","type":"boolean"},{"hint":"Choose between a flattened and a nested category structure","name":"category_layout","label":"Category Layout","type":"choice","choices":[{"label":"Flat","value":"Flat"},{"label":"Nested","value":"Nested"}]},{"displayValue":"Page","hint":"Use when you don't want to use the Portal's default category page","name":"sc_category_page","label":"Category Page","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}},{"hint":"When true, Record Producer type items will display in list","name":"include_problems","default_value":"true","label":"Include Problems as children","type":"boolean"},{"displayValue":"Page","hint":"Choose a page for Catalog Items","name":"catalog_item_page","default_value":"","label":"Catalog Item Page","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}}]</option_schema>
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
-	options.title = options.title || "SC Categories";
+	options.title = options.title || 'UCSB SC Categories';
 	options.category_layout = options.category_layout || "Nested";
 	options.omit_badges = options.omit_badges == "true" || options.omit_badges == true;
 	options.hide_xs = options.hide_xs == "true" || options.hide_xs == true;
+	options.include_problems = options.include_problems == "true" || options.include_problems == true;
 
-	// set the page that will be displayed when clicking a category node
-	if (options.page) {
-		var pageGR = new GlideRecord("sp_page");
-		options.page = (pageGR.get(options.page) ? pageGR.getValue("id") : null);
-	} else
-		options.page = $sp.getDisplayValue("sc_category_page") || 'sc_category';
+	// set the pages that will be displayed when clicking a category node
+	var params = JSON.parse($sp.getDisplayValue('widget_parameters'));
+	data.subcatPage = params.sc_category_page.displayValue || $sp.getDisplayValue('sc_category_page') || 'sc_category';
+	data.itemPage = params.catalog_item_page.displayValue || 'sc_cat_item';
 
 	// set the catalog
 	data.sc_catalog = $sp.getValue('sc_catalog');
@@ -103,19 +141,33 @@
 	// If the selected category is a subcategory, we need to open all it's parent categories
 	if (input && input.action === "retrieve_parent_hierarchy") {
 		data.categories = input.categories;
+
+		// set all categories' children properties
+		data.categories.forEach(function(cat) {
+			if (options.include_problems) {
+				var categoryJS = new sn_sc.CatCategory(cat.sys_id);
+				cat.catItems = retrieveCategoryCatItems(categoryJS);
+			}
+			else
+				cat.catItems = [];
+			cat.children = cat.subcategories.concat(cat.catItems);		
+			if (options.category_layout === "Nested" && cat.children.length)
+				cat.isParentCategory = true;
+		});
+
 		if(!input.cur_category_id)
 			return;
-		
+
 		var categoryJS = new sn_sc.CatCategory(input.cur_category_id);
 		if (!categoryJS)
 			return;
-		
+
 		var parentArr;
 		if (options.category_layout !== "Nested")
 			parentArr = data.categories;
 		else
 			parentArr = 
-				(categoryJS.getParent() ? openParent(categoryJS.getParent(), false) : openParent(input.cur_category_id, true));
+				(categoryJS.getParent() ? openParent(categoryJS.getParent()) : openParent(input.cur_category_id));
 
 		var selectedCategoryItem = findElementBySysID(parentArr, input.cur_category_id);
 		if (selectedCategoryItem)
@@ -127,7 +179,7 @@
 	}
 })();
 
-function openParent(cat_id, setSelected) {
+function openParent(cat_id) {
 	var catItem;
 	var categoryJS = new sn_sc.CatCategory(cat_id);
 	if (!cat_id || !categoryJS)
@@ -140,14 +192,15 @@ function openParent(cat_id, setSelected) {
 	}
 	if (!catItem)
 		return [];
+
 	var subcategoryArr = buildSubcategoryArr(catItem.sys_id);
 	catItem.subcategories = retrieveCategoriesFromArr(subcategoryArr);
-	catItem.showSubcategories = true;
-	
-	if (setSelected)
-		catItem.selected = true;
-	
-	return catItem.subcategories;
+	catItem.catItems = options.include_problems ? retrieveCategoryCatItems(categoryJS) : [];
+	catItem.children = catItem.subcategories.concat(catItem.catItems);
+	catItem.showChildren = true;
+	catItem.selected = true;
+
+	return catItem.children;
 }
 
 function findElementBySysID(arr, id) {
@@ -192,6 +245,43 @@ function retrieveCategoryFromArr(cat_id) {
 	return null;
 }
 
+function retrieveCategoryCatItems(categoryJS) {
+	var categoryItemIds = categoryJS.getItemIds();
+	var items = [];
+	if (categoryItemIds.length) {
+		for (var i = 0; i < categoryItemIds.length; i++) {
+			var catalogItemJS = new sn_sc.CatItem(categoryItemIds[i]);
+			var catItemDetails = data.catItemsDetailsTest = catalogItemJS.getItemSummary();
+			var item = {};
+			item.name = catItemDetails.name;
+			item.sys_id = catItemDetails.sys_id;
+			item.page = options.sc_cat_item_page;
+			item.parent = catItemDetails.category;
+			item.type = catItemDetails.type;
+			item.order = Number(catItemDetails.order);
+
+			items.push(item);
+		}
+
+		//sort cat items list in alpha order by default
+		items.sort(function(a, b) {
+			var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+			var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+			if (nameA < nameB) {
+				return -1;
+			}
+			if (nameA > nameB) {
+				return 1;
+			}
+
+			// names must be equal
+			return 0;
+		})
+	}
+
+	return items;
+}
+
 function buildSubcategoryArr(parentID) {
 	var categoryJS = new sn_sc.CatCategory(parentID);
 	return categoryJS.getViewableSubCategories();
@@ -202,7 +292,7 @@ function buildSubcategoryArr(parentID) {
         <sys_created_on>2018-02-23 23:50:34</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>b6ec82500fe013003fd44cace1050e1b</sys_id>
-        <sys_mod_count>91</sys_mod_count>
+        <sys_mod_count>344</sys_mod_count>
         <sys_name>UCSB SC Categories</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
@@ -210,26 +300,27 @@ function buildSubcategoryArr(parentID) {
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_widget_b6ec82500fe013003fd44cace1050e1b</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-19 00:06:08</sys_updated_on>
+        <sys_updated_on>2018-05-24 23:14:58</sys_updated_on>
         <template><![CDATA[<div ng-class="::{'hidden-xs' : options.hide_xs}" class="panel panel-{{::options.color}} b">
   <div class="panel-heading">
     <h1 class="h4 panel-title">
-      <span ng-if="::options.glyph">
-        <fa name="{{::options.glyph}}" />
-      </span>
+      <fa name="{{::options.glyph}}" ng-if="::options.glyph" />
       {{::options.title}}
+      <fa name="{{c.toggleIcon}}" ng-if="data.childrenExist" class="pull-right" ng-click="c.toggleAll()"/>
     </h1>
   </div>
   <div class="list-group no-radius alt" role="list">
-    <sp-category-list-item-ucsb 
-    	ng-repeat="cat in data.categories"
+    <sp-category-list-item-ucsb
+      ng-repeat="cat in data.categories"
       ng-if="options.category_layout == 'Flat' && cat.count > 0 || options.category_layout == 'Nested'"
-      category="cat"
+      child="cat"
       omit-badges="options.omit_badges"
-      page="options.page"
+      subcat-page="data.subcatPage"
+      item-page="data.itemPage"
       level="0"
     />
   </div>
-</div>]]></template>
+</div>
+]]></template>
     </sp_widget>
 </record_update>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance_vlist">
+    <sp_instance_vlist action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>primary</color>
+        <css/>
+        <display_field>short_description</display_field>
+        <field_list/>
+        <filter/>
+        <glyph>bullhorn</glyph>
+        <id/>
+        <maximum_entries>5</maximum_entries>
+        <order>0</order>
+        <order_by/>
+        <order_direction>asc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">ada429ae4f391300f74b495d0210c711</sp_column>
+        <sp_page display_value="ucsb_announcement_article">1f55bb860f2013003fd44cace1050e11</sp_page>
+        <sp_widget display_value="UCSB Announcements Ticker">6d0df1290f6013003fd44cace1050e78</sp_widget>
+        <sys_class_name>sp_instance_vlist</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-05-03 23:59:25</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>69a429ae4f391300f74b495d0210c713</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Announcements</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_instance_vlist_69a429ae4f391300f74b495d0210c713</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-05-04 00:03:37</sys_updated_on>
+        <table>kb_knowledge</table>
+        <title>Announcements</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"secondary_fields": {
+		"value": "published,article_type",
+		"displayValue": "published,article_type"
+	},
+	"category_field": {
+		"value": "topic",
+		"displayValue": "topic"
+	},
+	"alert_icon_color": {
+		"value": "#EF5645",
+		"displayValue": "#EF5645"
+	},
+	"info_icon_color": {
+		"value": "#FEBC11",
+		"displayValue": "#FEBC11"
+	},
+	"ticker_time_interval": {
+		"value": "",
+		"displayValue": ""
+	}
+}]]></widget_parameters>
+    </sp_instance_vlist>
+</record_update>

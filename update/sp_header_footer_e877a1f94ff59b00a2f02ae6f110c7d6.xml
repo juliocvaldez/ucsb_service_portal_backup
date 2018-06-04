@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_header_footer">
+    <sp_header_footer action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function() {
+  // widget controller
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.footer-bottom {&#13;
+  background-color: $brand-primary;&#13;
+  box-sizing: border-box;&#13;
+  clear: both;&#13;
+  float: left;&#13;
+  font-size: 12px;&#13;
+  font-weight: normal;&#13;
+  padding: 16px 0 24px 0;&#13;
+  width: 100%;&#13;
+}&#13;
+&#13;
+.footer-bottom div, &#13;
+.footer-bottom p, &#13;
+.footer-bottom a {&#13;
+  border-color: #fff;&#13;
+  color: #fff !important;&#13;
+}&#13;
+&#13;
+.footer-bottom span, &#13;
+.footer-bottom a.terms {&#13;
+    display: inline-block;&#13;
+    margin-right: 16px;&#13;
+}&#13;
+&#13;
+.region-footer {&#13;
+  padding-left: 15px;&#13;
+  padding-right: 15px;&#13;
+  margin-left: auto;&#13;
+  margin-right: auto;&#13;
+  max-width: 1230px;&#13;
+  display: flex;&#13;
+  justify-content: center;&#13;
+}&#13;
+&#13;
+div.copyright {&#13;
+  align-items: center;&#13;
+  display: contents;&#13;
+}&#13;
+&#13;
+&#13;
+&#13;
+@media (min-width: 992px)&#13;
+  .footer-bottom {&#13;
+    padding: 16px 20px 48px 20px;&#13;
+  }&#13;
+&#13;
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>ucsb-footer</id>
+        <internal>false</internal>
+        <link/>
+        <name>UCSB Footer</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+ data.time = new GlideDateTime().getDisplayValue();
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_header_footer</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-05-01 16:16:13</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>e877a1f94ff59b00a2f02ae6f110c7d6</sys_id>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_name>UCSB Footer</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_header_footer_e877a1f94ff59b00a2f02ae6f110c7d6</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-05-23 04:58:37</sys_updated_on>
+        <template><![CDATA[<div class="footer-bottom">
+  <div class="region region-footer">
+    <div class="col-xs-12 col-sm-8 copyright">
+      <span class="copyright">Copyright © 2018 The Regents of the University of California. All Rights Reserved.</span> 
+      <a href="https://www.ucsb.edu/accessibility" class="terms">Accessibility</a>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_header_footer>
+</record_update>

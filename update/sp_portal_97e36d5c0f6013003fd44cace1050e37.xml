@@ -27,7 +27,7 @@ $text-muted: #04859B;
         <icon/>
         <kb_knowledge_base/>
         <kb_knowledge_page/>
-        <login_page display_value="landing">36c61807cb31120000f8d856634c9ca9</login_page>
+        <login_page display_value="login">6995a144cb11120000f8d856634c9c25</login_page>
         <logo>66f011140f6013003fd44cace1050e98.iix?t=m</logo>
         <notfound_page display_value="404">3c2c9063cb11020000f8d856634c9c1f</notfound_page>
         <quick_start_config><![CDATA[[{
@@ -42,9 +42,9 @@ $text-muted: #04859B;
 		"field" : "background_image"
 	}
 }]]]></quick_start_config>
-        <sc_catalog display_value="ETS Service Catalog">528201e56f198600ec1523eabb3ee421</sc_catalog>
+        <sc_catalog display_value="Information Technology Services">838f05054f255300a2f02ae6f110c7c4</sc_catalog>
         <sc_catalog_page display_value="it_sc_home">1599b5b04f1d1380a2f02ae6f110c7e1</sc_catalog_page>
-        <sc_category_page/>
+        <sc_category_page display_value="ucsb_sc_category">4899cd934f0d5f40a2f02ae6f110c745</sc_category_page>
         <sp_chat_queue display_value="Service Desk Chat">c54f0abf0a0a0b452db84664f409c79c</sp_chat_queue>
         <sp_rectangle_menu display_value="UCSB header menu">078151c80fa013003fd44cace1050e3e</sp_rectangle_menu>
         <sqanda_knowledge_base display_value="">5c45a3a0d712120023c84f80de61038b</sqanda_knowledge_base>
@@ -53,17 +53,18 @@ $text-muted: #04859B;
         <sys_created_on>2018-02-23 20:51:28</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>97e36d5c0f6013003fd44cace1050e37</sys_id>
-        <sys_mod_count>25</sys_mod_count>
-        <sys_name>UCSB BFS</sys_name>
+        <sys_mod_count>31</sys_mod_count>
+        <sys_name>IT Service Portal</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_portal_97e36d5c0f6013003fd44cace1050e37</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-26 00:38:23</sys_updated_on>
+        <sys_updated_on>2018-05-21 04:45:23</sys_updated_on>
         <theme display_value="ucsb_bfs">f074219c0f6013003fd44cace1050e2b</theme>
-        <title>UCSB BFS</title>
+        <title>IT Service Portal</title>
+        <u_site_nav_flag>true</u_site_nav_flag>
         <url_suffix>bfs</url_suffix>
     </sp_portal>
     <sys_attachment action="INSERT_OR_UPDATE">

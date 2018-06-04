@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>circle-icon-template</id>
+        <sp_widget display_value="UCSB SC Category Icon Menu">f3e940154f595380a2f02ae6f110c719</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-05-17 16:00:57</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>386d3bfa4f821740a2f02ae6f110c7d0</sys_id>
+        <sys_mod_count>41</sys_mod_count>
+        <sys_name>circle-icon-template</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_ng_template_386d3bfa4f821740a2f02ae6f110c7d0</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-05-23 06:15:22</sys_updated_on>
+        <template><![CDATA[<!--// CIRCLE ICON -->
+<a class="category_container circle_icon {{::options.class_name}} {{::data.inverse}} text-{{::options.color}}" 
+   ng-href="{{::data.href}}"
+   target="{{::data.target}}">
+  <div class="icon_container">
+    <span class="fa fa-stack fa-2x"  ng-mouseenter="toggleShow(true)">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-{{::options.glyph}} fa-stack-1x fa-inverse"></i>
+    </span>
+  </div>
+  <div class="title_container">
+    <div class="title"  ng-mouseenter="toggleShow(true)">
+      <h2>{{::data.title}}</h2>
+    </div>
+    <div class="description text-muted">
+      <span>{{::data.short_description}}</span>
+    </div>
+  </div>
+  <ul ng-if="showSubcategories" class="circle_icon list-group flyout_{{::options.flyout_direction}} no-radius alt" role="list">
+    <ucsb-sp-category-icon-list-item 
+          ng-repeat="child in data.children"                               
+          child="child"
+          subcat-page="data.subcatPage"
+          item-page="data.catItemPage"
+      		omit-badges="data.omit_badges"
+          level="1"
+    />
+  </ul>
+</a>
+]]></template>
+    </sp_ng_template>
+</record_update>

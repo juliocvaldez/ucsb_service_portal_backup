@@ -4,152 +4,152 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>active</element>
-            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">d64221154fad5300f74b495d0210c737</list_id>
+            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">40b031354f399b00a2f02ae6f110c77d</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
             <sum>false</sum>
             <sys_created_by>julio.valdez_admin</sys_created_by>
-            <sys_created_on>2018-04-17 16:21:00</sys_created_on>
-            <sys_id>1e4221154fad5300f74b495d0210c737</sys_id>
+            <sys_created_on>2018-05-01 16:56:35</sys_created_on>
+            <sys_id>c4b031354f399b00a2f02ae6f110c77d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>julio.valdez_admin</sys_updated_by>
-            <sys_updated_on>2018-04-17 16:21:00</sys_updated_on>
+            <sys_updated_on>2018-05-01 16:56:35</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>color</element>
-            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">d64221154fad5300f74b495d0210c737</list_id>
+            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">40b031354f399b00a2f02ae6f110c77d</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
             <sum>false</sum>
             <sys_created_by>julio.valdez_admin</sys_created_by>
-            <sys_created_on>2018-04-17 16:21:00</sys_created_on>
-            <sys_id>9e4221154fad5300f74b495d0210c737</sys_id>
+            <sys_created_on>2018-05-01 16:56:35</sys_created_on>
+            <sys_id>48b031354f399b00a2f02ae6f110c77d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>julio.valdez_admin</sys_updated_by>
-            <sys_updated_on>2018-04-17 16:21:00</sys_updated_on>
+            <sys_updated_on>2018-05-01 16:56:35</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>condition</element>
-            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">d64221154fad5300f74b495d0210c737</list_id>
+            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">40b031354f399b00a2f02ae6f110c77d</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>2</position>
             <sum>false</sum>
             <sys_created_by>julio.valdez_admin</sys_created_by>
-            <sys_created_on>2018-04-17 16:21:00</sys_created_on>
-            <sys_id>124221154fad5300f74b495d0210c738</sys_id>
+            <sys_created_on>2018-05-01 16:56:35</sys_created_on>
+            <sys_id>c8b031354f399b00a2f02ae6f110c77d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>julio.valdez_admin</sys_updated_by>
-            <sys_updated_on>2018-04-17 16:21:00</sys_updated_on>
+            <sys_updated_on>2018-05-01 16:56:35</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>display_1</element>
-            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">d64221154fad5300f74b495d0210c737</list_id>
+            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">40b031354f399b00a2f02ae6f110c77d</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>3</position>
             <sum>false</sum>
             <sys_created_by>julio.valdez_admin</sys_created_by>
-            <sys_created_on>2018-04-17 16:21:00</sys_created_on>
-            <sys_id>924221154fad5300f74b495d0210c738</sys_id>
+            <sys_created_on>2018-05-01 16:56:35</sys_created_on>
+            <sys_id>4cb031354f399b00a2f02ae6f110c77d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>julio.valdez_admin</sys_updated_by>
-            <sys_updated_on>2018-04-17 16:21:00</sys_updated_on>
+            <sys_updated_on>2018-05-01 16:56:35</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>display_2</element>
-            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">d64221154fad5300f74b495d0210c737</list_id>
+            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">40b031354f399b00a2f02ae6f110c77d</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>4</position>
             <sum>false</sum>
             <sys_created_by>julio.valdez_admin</sys_created_by>
-            <sys_created_on>2018-04-17 16:21:00</sys_created_on>
-            <sys_id>164221154fad5300f74b495d0210c738</sys_id>
+            <sys_created_on>2018-05-01 16:56:35</sys_created_on>
+            <sys_id>ccb031354f399b00a2f02ae6f110c77d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>julio.valdez_admin</sys_updated_by>
-            <sys_updated_on>2018-04-17 16:21:00</sys_updated_on>
+            <sys_updated_on>2018-05-01 16:56:35</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>display_date</element>
-            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">d64221154fad5300f74b495d0210c737</list_id>
+            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">40b031354f399b00a2f02ae6f110c77d</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>5</position>
             <sum>false</sum>
             <sys_created_by>julio.valdez_admin</sys_created_by>
-            <sys_created_on>2018-04-17 16:21:00</sys_created_on>
-            <sys_id>964221154fad5300f74b495d0210c738</sys_id>
+            <sys_created_on>2018-05-01 16:56:35</sys_created_on>
+            <sys_id>40b031354f399b00a2f02ae6f110c77e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>julio.valdez_admin</sys_updated_by>
-            <sys_updated_on>2018-04-17 16:21:00</sys_updated_on>
+            <sys_updated_on>2018-05-01 16:56:35</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>filter</element>
-            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">d64221154fad5300f74b495d0210c737</list_id>
+            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">40b031354f399b00a2f02ae6f110c77d</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>6</position>
             <sum>false</sum>
             <sys_created_by>julio.valdez_admin</sys_created_by>
-            <sys_created_on>2018-04-17 16:21:00</sys_created_on>
-            <sys_id>1a4221154fad5300f74b495d0210c738</sys_id>
+            <sys_created_on>2018-05-01 16:56:35</sys_created_on>
+            <sys_id>c0b031354f399b00a2f02ae6f110c77e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>julio.valdez_admin</sys_updated_by>
-            <sys_updated_on>2018-04-17 16:21:00</sys_updated_on>
+            <sys_updated_on>2018-05-01 16:56:35</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>glyph</element>
-            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">d64221154fad5300f74b495d0210c737</list_id>
+            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">40b031354f399b00a2f02ae6f110c77d</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>7</position>
             <sum>false</sum>
             <sys_created_by>julio.valdez_admin</sys_created_by>
-            <sys_created_on>2018-04-17 16:21:00</sys_created_on>
-            <sys_id>9a4221154fad5300f74b495d0210c738</sys_id>
+            <sys_created_on>2018-05-01 16:56:35</sys_created_on>
+            <sys_id>44b031354f399b00a2f02ae6f110c77e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>julio.valdez_admin</sys_updated_by>
-            <sys_updated_on>2018-04-17 16:21:00</sys_updated_on>
+            <sys_updated_on>2018-05-01 16:56:35</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>hint</element>
-            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">d64221154fad5300f74b495d0210c737</list_id>
+            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">40b031354f399b00a2f02ae6f110c77d</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>8</position>
             <sum>false</sum>
             <sys_created_by>julio.valdez_admin</sys_created_by>
-            <sys_created_on>2018-04-17 16:21:00</sys_created_on>
-            <sys_id>1e4221154fad5300f74b495d0210c738</sys_id>
+            <sys_created_on>2018-05-01 16:56:35</sys_created_on>
+            <sys_id>c4b031354f399b00a2f02ae6f110c77e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>julio.valdez_admin</sys_updated_by>
-            <sys_updated_on>2018-04-17 16:21:00</sys_updated_on>
+            <sys_updated_on>2018-05-01 16:56:35</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>kb_article</element>
-            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">d64221154fad5300f74b495d0210c737</list_id>
+            <list_id display_value="sp_rectangle_menu_item" element="NULL" name="sp_rectangle_menu_item" parent="sp_rectangle_menu_item" relationship="NULL" sys_domain="global" view="Default view">40b031354f399b00a2f02ae6f110c77d</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>9</position>
             <sum>false</sum>
             <sys_created_by>julio.valdez_admin</sys_created_by>
-            <sys_created_on>2018-04-17 16:21:00</sys_created_on>
-            <sys_id>ae4221154fad5300f74b495d0210c738</sys_id>
+            <sys_created_on>2018-05-01 16:56:35</sys_created_on>
+            <sys_id>48b031354f399b00a2f02ae6f110c77e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>julio.valdez_admin</sys_updated_by>
-            <sys_updated_on>2018-04-17 16:21:00</sys_updated_on>
+            <sys_updated_on>2018-05-01 16:56:35</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
@@ -163,19 +163,19 @@
             <sum>false</sum>
             <sys_class_name>sys_ui_list</sys_class_name>
             <sys_created_by>julio.valdez_admin</sys_created_by>
-            <sys_created_on>2018-04-04 22:39:00</sys_created_on>
+            <sys_created_on>2018-05-01 16:57:28</sys_created_on>
             <sys_customer_update>false</sys_customer_update>
             <sys_domain>global</sys_domain>
-            <sys_id>6db16f13cb10020000f8d856634c9c6c</sys_id>
+            <sys_id>cde0b1354f399b00a2f02ae6f110c7c2</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name/>
             <sys_package/>
             <sys_policy/>
             <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
             <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
-            <sys_update_name>sys_ui_list_sp_rectangle_menu_item_sp_rectangle_menu_item_null</sys_update_name>
+            <sys_update_name/>
             <sys_updated_by>julio.valdez_admin</sys_updated_by>
-            <sys_updated_on>2018-04-04 22:39:00</sys_updated_on>
+            <sys_updated_on>2018-05-01 16:57:28</sys_updated_on>
             <sys_user display_value="Julio Admin">0caa141d6f856e009fc877f16a3ee443</sys_user>
             <view display_value="Default view" name="NULL">Default view</view>
             <view_name/>

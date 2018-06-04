@@ -7,7 +7,7 @@
         <bootstrap_alt>false</bootstrap_alt>
         <class_name/>
         <container_class_name/>
-        <name>IT Service Catalog - Container 2</name>
+        <name>UCSB SC Category - Container 2</name>
         <order>2</order>
         <sp_page display_value="ucsb_sc_category">4899cd934f0d5f40a2f02ae6f110c745</sp_page>
         <subheader>false</subheader>
@@ -16,15 +16,15 @@
         <sys_created_on>2018-03-29 23:09:26</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>c499c5174f0d5f40a2f02ae6f110c785</sys_id>
-        <sys_mod_count>3</sys_mod_count>
-        <sys_name>IT Service Catalog - Container 2</sys_name>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>UCSB SC Category - Container 2</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_container_c499c5174f0d5f40a2f02ae6f110c785</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-03 18:28:46</sys_updated_on>
+        <sys_updated_on>2018-05-04 23:51:50</sys_updated_on>
         <title/>
         <width>container</width>
     </sp_container>

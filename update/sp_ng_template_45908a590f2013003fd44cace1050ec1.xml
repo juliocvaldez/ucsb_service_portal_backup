@@ -2,7 +2,7 @@
 <record_update table="sp_ng_template">
     <sp_ng_template action="INSERT_OR_UPDATE">
         <id>ucsbModalLoginAnnouncementHeader</id>
-        <sp_widget display_value="UCSB Header w/ Announcement">752086590f2013003fd44cace1050e9e</sp_widget>
+        <sp_widget display_value="UCSB Header">752086590f2013003fd44cace1050e9e</sp_widget>
         <sys_class_name>sp_ng_template</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-02-27 01:30:34</sys_created_on>

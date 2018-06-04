@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance_link">
+    <sp_instance_link action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>primary</color>
+        <css/>
+        <glyph>slideshare</glyph>
+        <id/>
+        <kb_article/>
+        <kb_category/>
+        <kb_topic/>
+        <order>0</order>
+        <roles/>
+        <sc_cat_item/>
+        <sc_category display_value="Messaging, Communication, and Collaboration0">fdc13c6e4fb51300f74b495d0210c7a5</sc_category>
+        <short_description>Messaging, Communication, and Collaboration services, including UCSB Connect services and Web Conferencing services.</short_description>
+        <size>md</size>
+        <sp_column display_value="2">c1f4a9ee4f391300f74b495d0210c75e</sp_column>
+        <sp_page display_value="ucsb_sc_category">4899cd934f0d5f40a2f02ae6f110c745</sp_page>
+        <sp_widget display_value="UCSB SC Category Icon Menu">f3e940154f595380a2f02ae6f110c719</sp_widget>
+        <sys_class_name>sp_instance_link</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-05-03 23:59:25</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>ada429ae4f391300f74b495d0210c72d</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Messaging, Communication, &amp; Collaboration</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_instance_link_ada429ae4f391300f74b495d0210c72d</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-05-04 00:01:44</sys_updated_on>
+        <title>Messaging, Communication, &amp; Collaboration</title>
+        <type>sc_category</type>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"link_template": {
+		"value": "Circle Icon",
+		"displayValue": "Circle Icon"
+	},
+	"flyout_direction": {
+		"value": "down",
+		"displayValue": "down"
+	}
+}]]></widget_parameters>
+    </sp_instance_link>
+</record_update>

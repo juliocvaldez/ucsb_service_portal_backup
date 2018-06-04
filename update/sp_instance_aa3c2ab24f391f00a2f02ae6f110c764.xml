@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>0</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">bc6be2b24f391f00a2f02ae6f110c721</sp_column>
+        <sp_widget display_value="UCSB SC Cat Item">6fcbee324f391f00a2f02ae6f110c735</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-05-04 23:50:39</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>aa3c2ab24f391f00a2f02ae6f110c764</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_instance_aa3c2ab24f391f00a2f02ae6f110c764</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-05-30 21:46:06</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"show_add_cart_button": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"url": {
+		"value": "",
+		"displayValue": ""
+	},
+	"page": {
+		"value": "",
+		"displayValue": ""
+	},
+	"table": {
+		"value": "",
+		"displayValue": ""
+	},
+	"auto_redirect": {
+		"value": "",
+		"displayValue": ""
+	}
+}]]></widget_parameters>
+    </sp_instance>
+</record_update>

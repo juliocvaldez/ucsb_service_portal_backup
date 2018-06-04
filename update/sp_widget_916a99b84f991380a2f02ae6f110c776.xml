@@ -1,12 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-        <client_script><![CDATA[function ($scope, spUtil, $rootScope, $location, $timeout) {
-	$scope.toggleLegend = function() {
-		$scope.showLegend = !$scope.showLegend;
+        <client_script><![CDATA[function ($scope, spUtil, $rootScope, $location, $timeout, $sce) {
+	// Legend popover content
+	$scope.htmlPopover = $sce.trustAsHtml('<i class="fa fa-fw fa-folder text-'+$scope.options.subcategory_icon_color+'"/>&nbsp;Subcategories<br />' + 
+																				'<i class="fa fa-fw fa-file-text text-'+$scope.options.cat_item_icon_color+'"/>&nbsp;Catalog items');
+	// Sorting functionality
+	$scope.nameCaret = 'caret-right';
+	$scope.countCaret = 'caret-right';
+	$scope.propertyName = 'order';
+	$scope.reverse = undefined;
+	$scope.sortBy = function(propertyName) {
+		$scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+		$scope.propertyName = propertyName;
+		setCaret($scope.reverse, $scope.propertyName);
+	};	
+	function setCaret(rev, prop) {
+		if (prop !== 'name')
+			$scope.nameCaret = 'caret-right';
+		if (prop === 'name' && !rev && rev !== undefined)
+			$scope.nameCaret = 'caret-up';
+		if (prop === 'name' && rev)
+			$scope.nameCaret = 'caret-down';
+		if (prop !== 'count')
+			$scope.countCaret = 'caret-right';
+		if (prop === 'count' && !rev && rev !== undefined)
+			$scope.countCaret = 'caret-up';
+		if (prop === 'count' && rev)
+			$scope.countCaret = 'caret-down';	
 	}
 	
+	// Breadcrumbs
 	var bc = [{label: $scope.page.title, url: '?id=' + $scope.data.sc_catalog_page}];
+	if ($scope.data.parent)
+		bc[bc.length] = {
+			label: $scope.data.parent, 
+			url: '?id=' + $scope.data.sc_category_page + '&sys_id=' + $scope.data.parent_id
+		};
 	if ($scope.data.category)
 		bc[bc.length] = {label: $scope.data.category, url: '#'};
 
@@ -42,7 +72,7 @@
 			return lp;
 
 		return "?id=" + lp.id + "&sys_id=" + lp.sys_id;
-	}
+	};
 
 	var unregister = $rootScope.$on($scope.options.click_event_name, function($event, o) {
 		if ("url" in o)
@@ -57,20 +87,28 @@
 	/*=============== End link handling ===============*/
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css>.legend-toggle {
-  cursor: pointer;
+        <css>.title-container {
+  margin-bottom: 10px;
 }
 
 .title {
   display: unset;
 }
 
-.title-container {
-  margin-bottom: 10px;
+.sort {
+  margin-right: 20px;
 }
 
-.legend {
-  margin-top: 10px;
+.name {
+  min-width: 65px;
+}
+
+.count {
+  min-width: 125px;
+}
+
+.popover {
+  min-width: fit-content;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -78,71 +116,75 @@
         <docs/>
         <field_list/>
         <has_preview>false</has_preview>
-        <id>ucsb_sc_category_page</id>
+        <id>ucsb-sc-category-page</id>
         <internal>false</internal>
         <link/>
         <name>UCSB SC Category Page</name>
-        <option_schema>[{"name":"click_event_name","default_value":"$sp.cat_item_list.click","label":"Click event name","type":"string"}]</option_schema>
+        <option_schema>[{"name":"click_event_name","default_value":"$sp.cat_item_list.click","label":"Click event name","type":"string"},{"displayValue":"Page","name":"sc_cat_item_page","label":"SC Catalog Item Page","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}},{"name":"subcategory_icon_color","default_value":"default","label":"Subcategory Icon Color","type":"choice","choices":[{"label":"default","value":"default"},{"label":"primary","value":"primary"},{"label":"success","value":"success"},{"label":"info","value":"info"},{"label":"warning","value":"warning"},{"label":"danger","value":"danger"}]},{"name":"cat_item_icon_color","default_value":"default","label":"Cat Item Icon Color","type":"choice","choices":[{"label":"default","value":"default"},{"label":"primary","value":"primary"},{"label":"success","value":"success"},{"label":"info","value":"info"},{"label":"warning","value":"warning"},{"label":"danger","value":"danger"}]},{"name":"cat_item_subfield","default_value":"","label":"Catalog Item Subfield","type":"choice","choices":[{"label":"Description","value":"Description"},{"label":"Short Description","value":"Short Description"}]}]</option_schema>
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
-	data.category_id = $sp.getParameter("sys_id");
+	// set cat item page option
+	var params = JSON.parse($sp.getDisplayValue('widget_parameters'));
+	options.sc_cat_item_page = params.sc_cat_item_page.displayValue || 'sc_cat_item';
+	
+	// set catalog and category id
+	data.sc_catalog = $sp.getValue('sc_catalogs') || $sp.getValue('sc_catalog');
+	data.category_id = $sp.getParameter('sys_id');
+
+	// set page and price options
+	data.showPrices = $sp.showCatalogPrices();
+	data.sc_catalog_page = $sp.getDisplayValue("sc_catalog_page") || "sc_home";
+	data.sc_category_page = $sp.getDisplayValue("sc_category_page") || "sc_category";
+
 	if (options && options.sys_id)
 		data.category_id = options.sys_id;
-
 	if (!data.category_id) {
 		data.error = gs.getMessage("No category specified");
 		return;
 	}
 
-	data.showPrices = $sp.showCatalogPrices();
-	data.sc_catalog_page = $sp.getDisplayValue("sc_catalog_page") || "sc_home";
-	// Does user have permission to see this category?
+	// does user have permission to see this category?
 	var categoryId = '' + data.category_id;
 	var categoryJS = new sn_sc.CatCategory(categoryId);
 	if (!categoryJS.canView()) {
 		data.error = gs.getMessage("You do not have permission to see this category");
 		return;
 	}
+
+	// if so, set title
 	data.category = categoryJS.getTitle();
 
-	/* This method allows for better security but does not provide the description field
-	// gather related subcategories
-	var subcategories = data.subcategories = [];
-	var buildSubcatArr = data.test = categoryJS.getViewableSubCategories();
-	for (var subcat = 0; subcat < buildSubcatArr.length; subcat++) {
-		var subcategory = {};
-		subcategory.title = buildSubcatArr[subcat].title;
-		subcategory.description = buildSubcatArr[subcat].description;
-		subcategory.sys_id = buildSubcatArr[subcat].sys_id;
-		subcategory.order = buildSubcatArr[subcat].order;
-		subcategory.page = 'ucsb_sc_category';
-		
-		subcategories.push(subcategory)
-	
+	// set parent category if one exists
+	data.parent_id = categoryJS.getParent();
+	if (data.parent_id) {
+		var gr = new GlideRecord('sc_category');
+		if (gr.get(data.parent_id)) {
+			data.parent = gr.getDisplayValue();
+		}
 	}
-	*/
-	
+
 	// gather related subcategories
 	var subcategories = data.subcategories = [];
 	var subcategoryIds = new GlideRecord('sc_category');
 	subcategoryIds.addActiveQuery();
-	subcategoryIds.addQuery('parent.sys_id', categoryId)
+	subcategoryIds.addQuery('parent.sys_id', categoryId);
 	subcategoryIds.query();
 	while(subcategoryIds.next()){
 		var subcategoryJS = new sn_sc.CatCategory(subcategoryIds.getUniqueValue());
 		if (!subcategoryJS.canView())
 			continue;
 		var subcategory = {};
-		subcategory.title = subcategoryIds.getValue('title');
+		subcategory.count = 0;
+		subcategory.name = subcategoryIds.getValue('title');
 		subcategory.description = subcategoryIds.getValue('description');
 		subcategory.sys_id = subcategoryIds.getUniqueValue();
-		subcategory.order = subcategoryIds.getValue('order');
-		subcategory.page = 'ucsb_sc_category';
-		subcategories.push(subcategory)
+		subcategory.order = Number(subcategoryIds.getValue('order'));
+		subcategory.page = data.sc_category_page;
+		subcategories.push(subcategory);
 	}
 
-	
+
 	// gather related catalog items
 	var categoryItemIds = categoryJS.getItemIds();
 	var items = data.items = [];
@@ -154,13 +196,14 @@
 		if (catItemDetails.type == 'wizard_item')
 			continue;
 		var item = {};
+		item.count = 0;
 		item.name = catItemDetails.name;
-		item.short_description = catItemDetails.short_description;
+		item.description = options.cat_item_subfield == 'Description' ? catItemDetails.description : catItemDetails.short_description;
 		item.picture = catItemDetails.picture;
 		item.price = catItemDetails.price;
 		item.sys_id = catItemDetails.sys_id;
 		item.hasPrice = catItemDetails.show_price;
-		item.page = 'sc_cat_item';
+		item.page = options.sc_cat_item_page;
 		item.type = catItemDetails.type;
 		item.order = catItemDetails.order;
 		item.sys_class_name = catItemDetails.sys_class_name;
@@ -178,7 +221,27 @@
 			}
 		}
 		items.push(item);
+	}
 
+	// query for aggregate count
+	var count = new GlideAggregate('sc_req_item');
+	count.addAggregate('COUNT','cat_item');
+	count.groupBy('cat_item');
+	count.addQuery('cat_item.sys_class_name', 'NOT IN', 'sc_cat_item_guide,sc_cat_item_wizard,sc_cat_item_content');
+	count.addQuery('cat_item.sc_catalogs', 'IN', data.sc_catalog);
+	count.query();
+	while(count.next()) {
+		// parse through cat items and add count
+		items.forEach(function(item) {
+			if(count.cat_item.sys_id.getDisplayValue() == item.sys_id)
+				item.count = parseInt(count.getAggregate('COUNT', 'cat_item'));
+		});
+		// parse throught subcategories and add counts
+		subcategories.forEach(function(subcategory) {
+			if(count.cat_item.category.sys_id.getDisplayValue() == subcategory.sys_id ||
+				 count.cat_item.category.parent.sys_id.getDisplayValue() == subcategory.sys_id)
+				subcategory.count += parseInt(count.getAggregate('COUNT', 'cat_item'));
+		});
 	}
 })();
 ]]></script>
@@ -188,7 +251,7 @@
         <sys_created_on>2018-04-03 16:13:52</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>916a99b84f991380a2f02ae6f110c776</sys_id>
-        <sys_mod_count>112</sys_mod_count>
+        <sys_mod_count>265</sys_mod_count>
         <sys_name>UCSB SC Category Page</sys_name>
         <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
         <sys_policy/>
@@ -196,20 +259,28 @@
         <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
         <sys_update_name>sp_widget_916a99b84f991380a2f02ae6f110c776</sys_update_name>
         <sys_updated_by>julio.valdez_admin</sys_updated_by>
-        <sys_updated_on>2018-04-19 01:16:03</sys_updated_on>
+        <sys_updated_on>2018-05-21 22:44:29</sys_updated_on>
         <template><![CDATA[<div>
   <h4 ng-if="data.error">{{data.error}}</h4>
   <div ng-init="spSearch.targetCatalog()">
-
-    <div class="row title-container">
-      <h1 class="h4 m-t-none title" aria-label="{{data.category}} ${Category}">{{data.category}}</h1>
-      <a ng-if="data.subcategories.length || data.items.length" class="text-muted pull-right legend-toggle" ng-click="toggleLegend()">
-        {{showLegend? "Hide" : "Show"}} legend
-      </a>
-      <br />
-      <div ng-if="showLegend" class="text-muted pull-right legend">
-        <i class="fa fa-fw text-warning" ng-class="'fa-folder'" />&nbsp;labeled items are subcategories&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <i class="fa fa-fw" ng-class="'fa-file-text'" />&nbsp;labeled items are catalog items
+    <div class="title-container">
+      <div class="row">
+          <div class="col-md-12">
+          <h1 class="h4 m-t-none title" aria-label="{{data.category}} ${Category}">{{data.category}}</h1>
+          <div ng-if="data.subcategories.length || data.items.length" class="text-muted pull-right">
+            <button type="button" class="btn btn-sm sort name" ng-click="sortBy('name')">
+              A - Z&nbsp;<fa name="{{nameCaret}}"/></button>
+            <button type="button" class="btn btn-sm sort count" ng-click="sortBy('count')">
+              Most Popular&nbsp;<fa name="{{countCaret}}"/></button>
+            <button 
+                    popover-placement="bottom"
+                    popover-animation="true"
+                    uib-popover-html="htmlPopover"
+                    type="button"
+                    class="btn btn-sm">
+              Legend</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -220,48 +291,11 @@
       </div>
 
       <!-- CASE: Subcategories exist -->
-      <div class="col-sm-6 col-md-4" ng-if="data.subcategories.length" ng-repeat="subcategory in data.subcategories | orderBy: 'order' track by subcategory.sys_id">
-        <div class="panel panel-{{::options.color}} b">
-          <a target="{{::subcategory.target}}" ng-href="{{::getItemHREF(subcategory)}}" ng-click="onClick($event, subcategory)" class="panel-body block">
-            <div class="overflow-100">
-              <h2 class="h4 m-t-none m-b-xs">
-                <i class="fa fa-fw text-warning" ng-class="'fa-folder'" />    {{::subcategory.title}}<span ng-if="subcategory.content_type == 'external'" aria-label="${External Link}"> ➚</span>
-              </h2>
-              <img ng-src="{{::subcategory.picture}}" ng-if="subcategory.picture" alt="{{::subcategory.title}}" class="m-r-sm m-b-sm item-image pull-left" />
-              <div class="text-muted item-short-desc">{{::subcategory.description}}</div>
-            </div>
-          </a>
-          <div aria-hidden="true" class="panel-footer">
-            <a aria-hidden="true" ng-click="onClick($event, subcategory)" ng-href="{{getItemHREF(subcategory)}}" class="pull-left text-muted" tabindex="-1">
-              ${View Items}</a>
-            <span ng-if="data.showPrices && item.hasPrice" class="pull-right item-price font-bold">{{item.price}}</span> &nbsp;
-          </div>
-        </div>
-      </div>
+      <div ng-if="data.subcategories.length"  ng-include="'subcat-template'"/>
 
       <!-- CASE: Items exist -->
-      <div class="col-sm-6 col-md-4" ng-if="data.items.length" ng-repeat="item in data.items | orderBy: 'order' track by item.sys_id">
-        <div class="panel panel-{{::options.color}} b">
-          <a target="{{::item.target}}" ng-href="{{::getItemHREF(item)}}" ng-click="onClick($event, item)" class="panel-body block">
-            <div class="overflow-100">
-              <h2 class="h4 m-t-none m-b-xs">
-                <i class="fa fa-fw text-muted" ng-class="'fa-file-text'" />    {{::item.name}}<span ng-if="item.content_type == 'external'" aria-label="${External Link}"> ➚</span>
-              </h2>
-              <img ng-src="{{::item.picture}}" ng-if="item.picture" alt="{{::item.name}}" class="m-r-sm m-b-sm item-image pull-left" />
-              <div class="text-muted item-short-desc">{{::item.description}}</div>
-            </div>
-          </a>
-          <div aria-hidden="true" class="panel-footer">
-            <a aria-hidden="true" ng-if="item.sys_class_name != 'sc_cat_item_content' || item.content_type == 'kb' || item.content_type == 'literal'" ng-click="onClick($event, item)" ng-href="{{getItemHREF(item)}}" class="pull-left text-muted" tabindex="-1">
-              ${View Details}</a>
-            <a aria-hidden="true" ng-if="item.sys_class_name == 'sc_cat_item_content' && item.content_type == 'external'" ng-click="onClick($event, item)" ng-href="{{getItemHREF(item)}}" target="_blank" class="pull-left text-muted" tabindex="-1">
-              ${View Details}</a>
-            <span ng-if="data.showPrices && item.hasPrice" class="pull-right item-price font-bold">{{item.price}}</span> &nbsp;
-          </div>
-        </div>
-      </div>
+      <div ng-if="data.items.length"  ng-include="'item-template'"/>
     </div>
-
   </div>
 </div>]]></template>
     </sp_widget>

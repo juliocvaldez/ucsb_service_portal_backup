@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope, $rootScope) {
+	/* widget controller */
+	var c = this;
+	$scope.active = false;
+	$scope.display = { 'display': 'none'};
+	
+	$scope.toggleNav = function() {
+		if ($scope.active)
+			$scope.closeNav();
+		else
+			$scope.openNav();
+	}
+
+	$scope.openNav = function() {
+		$scope.active = true;
+		$scope.myAnnouncements = true;
+	};
+
+	$scope.closeNav = function() {
+		$scope.active = false;
+		$scope.myAnnouncements = false;
+		$scope.myApprovals = false;
+		$scope.myIssues = false;
+		$scope.myRequests = false;
+	};
+
+	$scope.$on("Sidebar.Expand", function(evt, results) {
+		console.log(results);
+		$scope.openNav();
+	})
+	
+	$scope.$on("Sidebar.Collapse", function(evt, results) {
+		console.log(results);
+		$scope.closeNav();
+	})
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.sidenav {
+  height: 87%;
+  width: 45px;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  background-color: $brand-primary;
+  overflow-x: hidden;
+  transition: 0.5s;
+  z-index: 3;
+}
+
+.sidenav.active {
+  width: 250px;
+  border-right: 0.5px solid $brand-primary;
+}
+
+.sidenav &gt; a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 16px;
+  color: $navbar-inverse-link-color;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav &gt; a:hover {
+  color: $navbar-inverse-link-hover-color;
+}
+
+.sidenav .closebtn {
+  font-size: 28px;
+  padding-left: 10px;
+}
+
+.panel, .panel-heading {
+  border-width: 0px;
+  border-radius: 0px;
+}
+
+.panel-heading {
+  display: none;
+}
+
+.btn-primary.hide {
+  display: none;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav &gt; a {font-size: 12px;}
+}
+
+@media screen and (max-width: 850.5px) and (min-width: 768px) {
+  .sidenav {
+    top: 103px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sidenav {
+    display: none;
+  }
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>ucsb-sidebar</id>
+        <internal>false</internal>
+        <link/>
+        <name>UCSB Sidebar</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+
+	var announcementsOptions = {
+		secondary_fields: "published,article_type",
+		category_field: "topic",
+		alert_icon_color: "#EF5645",
+		info_icon_color: "#FEBC11",
+		color: "primary",
+		table: "kb_knowledge"
+	};
+	data.announcements = $sp.getWidget('ucsb-announcement-ticker', announcementsOptions);
+
+	var approvalsOptions = {
+		color: "primary",
+		max_number_of_elements_shown_on_the_list: null,
+		always_show: "true",
+		glyph: "fa-check-circle"
+	};
+	data.approvals = $sp.getWidget('ucsb_approvals', approvalsOptions);
+	
+	data.requests = $sp.getWidgetFromInstance('d36baa71d7301200a9addd173e24d42c');
+	data.incidents = $sp.getWidgetFromInstance('bf9fea51d7130200a9ad1e173e24d449');
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>julio.valdez_admin</sys_created_by>
+        <sys_created_on>2018-05-15 00:05:51</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>3a9f8ec24f02d700f74b495d0210c771</sys_id>
+        <sys_mod_count>236</sys_mod_count>
+        <sys_name>UCSB Sidebar</sys_name>
+        <sys_package display_value="UCSB Service Portal" source="x_68580_ucsb_sp">44bb3f670f1013003fd44cace1050e00</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="UCSB Service Portal">44bb3f670f1013003fd44cace1050e00</sys_scope>
+        <sys_update_name>sp_widget_3a9f8ec24f02d700f74b495d0210c771</sys_update_name>
+        <sys_updated_by>julio.valdez_admin</sys_updated_by>
+        <sys_updated_on>2018-05-15 07:47:53</sys_updated_on>
+        <template><![CDATA[<div class="sidenav" ng-class="{active: active}">
+  <a href="javascript:void(0)" class="closebtn" ng-click="toggleNav()">&#9776;</a>
+
+  <a class="btn-primary" ng-click="myAnnouncements = !myAnnouncements" ng-class="{hide: !active}">Announcements</a>
+  <div uib-collapse="!myAnnouncements">
+    <sp-widget widget="data.announcements"></sp-widget>
+  </div>
+
+  <a class="btn-primary" ng-click="myApprovals = !myApprovals" ng-class="{hide: !active}">My Approvals</a>
+  <div uib-collapse="!myApprovals">
+    <sp-widget widget="data.approvals"></sp-widget>
+  </div>
+
+  <a class="btn-primary" ng-click="myIssues = !myIssues" ng-class="{hide: !active}">My Open Issues</a>
+  <div uib-collapse="!myIssues">
+    <sp-widget widget="data.incidents"></sp-widget>
+  </div>
+
+  <a class="btn-primary" ng-click="myRequests = !myRequests" ng-class="{hide: !active}">My Open Requests</a>
+  <div uib-collapse="!myRequests">
+    <sp-widget widget="data.requests"></sp-widget>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
